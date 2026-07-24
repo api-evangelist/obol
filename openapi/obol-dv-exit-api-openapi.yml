@@ -1,0 +1,390 @@
+openapi: 3.0.0
+info:
+  title: Obol Address DV Exit API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: DV Exit
+paths:
+  /exp/exit/status/summary/{lockHash}:
+    get:
+      description: It shows data of operators who have signed and the count of validators ready to exit
+      operationId: ExitController_getClusterExitStatusSummary[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The exit summary data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterExitStatusSummaryResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve validators exit status summary
+      tags:
+      - DV Exit
+  /v1/exp/exit/status/summary/{lockHash}:
+    get:
+      description: It shows data of operators who have signed and the count of validators ready to exit
+      operationId: ExitController_getClusterExitStatusSummary[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The exit summary data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterExitStatusSummaryResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve validators exit status summary
+      tags:
+      - DV Exit
+  /exp/exit/status/{lockHash}:
+    get:
+      description: It shows data of operators who have signed and who have not
+      operationId: ExitController_getClusterExitStatus[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lockHash.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: operatorAddress
+        required: true
+        in: query
+        description: The operatorAddress.
+        schema:
+          type: string
+      - name: validatorPubkey
+        required: true
+        in: query
+        description: The `pubkey` in a cluster lock.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The exit status data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterExitStatusResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve validators exit status
+      tags:
+      - DV Exit
+  /v1/exp/exit/status/{lockHash}:
+    get:
+      description: It shows data of operators who have signed and who have not
+      operationId: ExitController_getClusterExitStatus[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lockHash.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: operatorAddress
+        required: true
+        in: query
+        description: The operatorAddress.
+        schema:
+          type: string
+      - name: validatorPubkey
+        required: true
+        in: query
+        description: The `pubkey` in a cluster lock.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The exit status data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterExitStatusResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve validators exit status
+      tags:
+      - DV Exit
+  /exp/exit/{lockHash}/{shareIdx}/{validatorPubkey}:
+    get:
+      description: This endpoint is used to retrieve validator exit message
+      operationId: ExitController_getClusterExit[0]
+      parameters:
+      - name: validatorPubkey
+        required: true
+        in: path
+        description: The `distributed_public_key` in a cluster lock.
+        schema:
+          type: string
+      - name: shareIdx
+        required: true
+        in: path
+        description: Represents the cluster operatorIndex+1.
+        schema: {}
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lockHash.
+        schema: {}
+      responses:
+        '200':
+          description: The DV signed exit message
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ExitBlob'
+        '401':
+          description: Authorization header is missing or incorrect
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      security:
+      - bearer: []
+      summary: Retrieve Distributed Validator threshold aggregated signed exit msg
+      tags:
+      - DV Exit
+  /v1/exp/exit/{lockHash}/{shareIdx}/{validatorPubkey}:
+    get:
+      description: This endpoint is used to retrieve validator exit message
+      operationId: ExitController_getClusterExit[1]_v1
+      parameters:
+      - name: validatorPubkey
+        required: true
+        in: path
+        description: The `distributed_public_key` in a cluster lock.
+        schema:
+          type: string
+      - name: shareIdx
+        required: true
+        in: path
+        description: Represents the cluster operatorIndex+1.
+        schema: {}
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lockHash.
+        schema: {}
+      responses:
+        '200':
+          description: The DV signed exit message
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ExitBlob'
+        '401':
+          description: Authorization header is missing or incorrect
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      security:
+      - bearer: []
+      summary: Retrieve Distributed Validator threshold aggregated signed exit msg
+      tags:
+      - DV Exit
+  /exp/partial_exits/{lockHash}:
+    post:
+      description: This endpoint saves partial signed exit messages.
+      operationId: ExitController_postPartialExit[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lockHash` of the cluster which the validator belongs to
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExitDto'
+      responses:
+        '201':
+          description: success message
+        '400':
+          description: Bad request received
+        '404':
+          description: Data or validator not found
+        '409':
+          description: Duplicate entry
+        '500':
+          description: An unknown error occurred
+      summary: Push Distributed Validator partial signed exit message
+      tags:
+      - DV Exit
+  /v1/exp/partial_exits/{lockHash}:
+    post:
+      description: This endpoint saves partial signed exit messages.
+      operationId: ExitController_postPartialExit[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lockHash` of the cluster which the validator belongs to
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExitDto'
+      responses:
+        '201':
+          description: success message
+        '400':
+          description: Bad request received
+        '404':
+          description: Data or validator not found
+        '409':
+          description: Duplicate entry
+        '500':
+          description: An unknown error occurred
+      summary: Push Distributed Validator partial signed exit message
+      tags:
+      - DV Exit
+components:
+  schemas:
+    SignedExitMessageDto:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ExitMessageDto'
+        signature:
+          type: string
+          example: ''
+      required:
+      - message
+      - signature
+    ExitDto:
+      type: object
+      properties:
+        partial_exits:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ExitBlobDto'
+        share_idx:
+          type: number
+          example: 42
+        signature:
+          type: string
+          example: ''
+      required:
+      - partial_exits
+      - share_idx
+      - signature
+    ClusterExitStatusSummaryResponse:
+      type: object
+      properties:
+        operator_exits:
+          type: object
+          example:
+            '0x000000000000000000000000000000000000dea1': 5
+            '0x000000000000000000000000000000000000dead': 10
+          description: An object where the key is an operator address and the value is a number of signed validators.
+        ready_exits:
+          type: number
+          example: 2
+      required:
+      - operator_exits
+      - ready_exits
+    ExitBlobDto:
+      type: object
+      properties:
+        public_key:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
+        signed_exit_message:
+          $ref: '#/components/schemas/SignedExitMessageDto'
+      required:
+      - public_key
+      - signed_exit_message
+    ExitBlob:
+      type: object
+      properties: {}
+    ExitMessageDto:
+      type: object
+      properties:
+        epoch:
+          type: string
+          example: '162304'
+        validator_index:
+          type: string
+          example: '42'
+      required:
+      - epoch
+      - validator_index
+    ClusterExitStatusResponse:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

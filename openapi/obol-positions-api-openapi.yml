@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Positions API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Positions
+paths:
+  /positions/{network}/{address}:
+    post:
+      description: Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters.
+      operationId: PositionsController_getPositions[0]
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: Network name (mainnet, hoodi, etc.)
+        schema:
+          type: string
+      - name: address
+        required: true
+        in: path
+        description: The address to look up positions for
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionsRequestDto'
+      responses:
+        '200':
+          description: Positions found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionsResponse'
+        '400':
+          description: Invalid network
+        '500':
+          description: An unknown error occurred
+      summary: Get positions for an address
+      tags:
+      - Positions
+  /v1/positions/{network}/{address}:
+    post:
+      description: Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters.
+      operationId: PositionsController_getPositions[1]_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: Network name (mainnet, hoodi, etc.)
+        schema:
+          type: string
+      - name: address
+        required: true
+        in: path
+        description: The address to look up positions for
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PositionsRequestDto'
+      responses:
+        '200':
+          description: Positions found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionsResponse'
+        '400':
+          description: Invalid network
+        '500':
+          description: An unknown error occurred
+      summary: Get positions for an address
+      tags:
+      - Positions
+components:
+  schemas:
+    PositionCluster:
+      type: object
+      properties:
+        lock_hash:
+          type: string
+          description: Cluster lock hash
+        cluster_name:
+          type: string
+          description: Cluster name
+        num_validators_total:
+          type: number
+          description: Total validators in this cluster
+        validators:
+          description: Validators matched by search addresses
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionValidator'
+        total_balance_eth:
+          type: number
+          description: Sum of balance_eth for matched validators (latest snapshot)
+        avg_effectiveness:
+          type: number
+          description: Average effectiveness for matched validators (latest snapshot)
+        cluster_apr:
+          type: number
+          description: Average APR of affiliated validators (from validator_apy in clusterinformationdetailedv3)
+      required:
+      - lock_hash
+      - cluster_name
+      - num_validators_total
+      - validators
+      - total_balance_eth
+      - avg_effectiveness
+    PositionsResponse:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionCluster'
+      required:
+      - positions
+    PositionsRequestDto:
+      type: object
+      properties:
+        additionalAddresses:
+          description: Additional addresses to search (e.g. split addresses from getRelatedSplits, DeFi wrapper WA)
+          type: array
+          items:
+            type: string
+    PositionValidator:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          description: Validator public key
+        withdrawal_address:
+          type: string
+          description: Withdrawal address
+        fee_recipient_address:
+          type: string
+          description: Fee recipient address
+        withdrawal_type:
+          type: string
+          description: 'Type of address: "eoa" (default), "splitter", or V2: "ovm"/"owr".'
+          enum:
+          - eoa
+          - splitter
+          - ovm
+          - owr
+        fee_recipient_type:
+          type: string
+          description: 'Type of address: "eoa" (default), "splitter", or V2: "ovm"/"owr".'
+          enum:
+          - eoa
+          - splitter
+          - ovm
+          - owr
+        withdrawal_resolved:
+          description: 'V2: resolved recipients for non-EOA withdrawal addresses'
+          allOf:
+          - $ref: '#/components/schemas/ResolvedRecipients'
+        fee_recipient_resolved:
+          description: 'V2: resolved recipients for non-EOA fee recipients'
+          allOf:
+          - $ref: '#/components/schemas/ResolvedRecipients'
+      required:
+      - pubkey
+      - withdrawal_address
+      - fee_recipient_address
+    ResolvedRecipients:
+      type: object
+      properties:
+        principal_recipient:
+          type: string
+          description: 'OVM/OWR: principal recipient address'
+        reward_recipient:
+          type: string
+          description: 'OVM/OWR: reward recipient address'
+        threshold:
+          type: string
+          description: 'OWR only: threshold in wei'
+        split_recipients:
+          description: 'Split: list of split recipients'
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

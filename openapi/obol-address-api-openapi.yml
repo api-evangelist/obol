@@ -1,0 +1,460 @@
+openapi: 3.0.0
+info:
+  title: Obol Address API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Address
+paths:
+  /v1/address/techne/{address}:
+    get:
+      description: This endpoint is used to retrieve obol techne credentials an address owns
+      operationId: AddressController_getAddressTechneCredentials_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The address to check the techne credentials for.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The address techne credentials object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AddressTechneResponse'
+        '400':
+          description: The Address provided is not valid
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve obol techne credentials of an address
+      tags:
+      - Address
+  /v1/address/badges/{address}:
+    get:
+      description: This endpoint is used to retrieve the badges an address owns
+      operationId: AddressController_getAddressBadgess_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The address to check the techne credentials for.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The address techne credentials object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AddressBadgeResponse'
+        '400':
+          description: The Address provided is not valid
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve badges for an address
+      tags:
+      - Address
+  /v1/address/incentives/{network}/{address}:
+    get:
+      description: This endpoint is used to retrieve incentives an address owns
+      operationId: AddressController_getAddressIncentives_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve operators on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: address
+        required: true
+        in: path
+        description: The address to check the incentives for.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The address incentives object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AddressIncentivesResponse'
+        '400':
+          description: The Address provided is not valid
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve obol incentives of an address
+      tags:
+      - Address
+  /v1/address/incentives/historical/{network}/{address}:
+    get:
+      description: This endpoint is used to retrieve the inventives given to Obol Public Goods by an address.
+      operationId: AddressController_getHistoricalAddressContributions_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve operators on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: address
+        required: true
+        in: path
+        description: The address to check the incentives for.
+        schema:
+          type: string
+      - name: date
+        required: true
+        in: query
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          description: The address contributions object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/AddressIncentivesResponse'
+        '400':
+          description: The Address provided is not valid
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve the historical incentives of an address
+      tags:
+      - Address
+  /v1/address/network/{network}:
+    get:
+      description: This endpoint fetches a number of operators for a given network.
+      operationId: AddressController_getOperatorsByNetwork_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve operators on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of operators to return.
+        schema:
+          type: integer
+          default: 100
+      - name: sortBy
+        required: false
+        in: query
+        description: numerical field to sort by
+        schema:
+          type: string
+          default: active_validators_count
+      - name: sortOrder
+        required: false
+        in: query
+        description: order of sorting the field
+        schema:
+          type: string
+          default: desc
+      - name: techne
+        required: false
+        in: query
+        description: techne to filter by
+        schema:
+          type: object
+          properties:
+            bronze:
+              type: boolean
+            silver:
+              type: boolean
+      - name: badges
+        required: false
+        in: query
+        description: badges to filter by
+        schema:
+          type: object
+          properties:
+            lido:
+              type: boolean
+            etherfi:
+              type: boolean
+      - name: details
+        required: true
+        in: query
+        description: The flag to populate operators information.
+        schema:
+          type: string
+          default: 'false'
+      responses:
+        '200':
+          description: A paged list of Operators on this network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OperatorsPagedResponse'
+        '400':
+          description: Network not spported
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve operators on a given network
+      tags:
+      - Address
+  /v1/address/search/{network}:
+    get:
+      description: This endpoint is used to search for operators that match a substring of their `address`.
+      operationId: AddressController_searchOperators_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve operators on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: partialAddress
+        required: true
+        in: query
+        description: A substring of the `address` of Operator.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of operators to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A paged list of Operators on this network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OperatorsPagedResponse'
+        '404':
+          description: Operators not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list operators on a given network
+      tags:
+      - Address
+  /v1/address/migrateable-validators/{network}/{withdrawalAddress}:
+    get:
+      description: This endpoint is used fetch eligible validators for migration .
+      operationId: AddressController_getMigrateableValidators_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve active validators on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: withdrawalAddress
+        required: true
+        in: path
+        description: Withdrawal address of source validators.
+        schema:
+          type: string
+      - name: limit
+        required: true
+        in: query
+        description: The number of validators to return.
+        schema:
+          type: integer
+          default: 50
+      - name: offset
+        required: true
+        in: query
+        description: The number of items to skip before starting to collect the result set
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: A list of source validators the withdrawal address can migrate
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/MigrateableValidatorsResponse'
+        '400':
+          description: Beaconchain error
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve migrateable validators for withdrawal address
+      tags:
+      - Address
+components:
+  schemas:
+    AddressTechneResponse:
+      type: object
+      properties:
+        base:
+          description: ''
+          type: array
+          items:
+            type: string
+        bronze:
+          description: ''
+          type: array
+          items:
+            type: string
+        silver:
+          description: ''
+          type: array
+          items:
+            type: string
+        gold:
+          description: ''
+          type: array
+          items:
+            type: string
+      required:
+      - base
+      - bronze
+      - silver
+      - gold
+    MigrateableValidatorsResponse:
+      type: object
+      properties:
+        validators:
+          type: array
+          items:
+            type: string
+        hasMore:
+          type: boolean
+      required:
+      - validators
+      - hasMore
+    AddressBadgeResponse:
+      type: object
+      properties:
+        badges:
+          description: List of badge metadata
+          type: array
+          items:
+            type: string
+      required:
+      - badges
+    OperatorsPagedResponse:
+      type: object
+      properties:
+        operators:
+          type: array
+          items:
+            type: string
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - operators
+      - total_count
+      - total_pages
+    AddressIncentivesResponse:
+      type: object
+      properties:
+        operator_address:
+          type: string
+          description: Operator address
+        amount:
+          type: string
+          description: The amount the recipient is entitled to
+        index:
+          type: number
+          description: The recipient’s index in the Merkle tree
+        merkle_proof:
+          description: The Merkle proof (an array of hashes) generated for the recipient
+          type: array
+          items:
+            type: string
+        contract_address:
+          type: string
+          description: The MerkleDistributor contract address.
+      required:
+      - operator_address
+      - amount
+      - index
+      - merkle_proof
+      - contract_address
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

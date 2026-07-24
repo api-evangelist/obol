@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Cluster Effectiveness API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Cluster Effectiveness
+paths:
+  /v1/effectiveness/{lockHash}:
+    get:
+      description: This endpoint is used to retrieve the effectiveness of a cluster by pubkey
+      operationId: EffectivenessController_getClusterLock_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster lock object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterEffectivenessResponse'
+        '404':
+          description: Data not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster Effectiveness Object
+      tags:
+      - Cluster Effectiveness
+components:
+  schemas:
+    ClusterEffectivenessResponse:
+      type: object
+      properties:
+        all:
+          type: number
+          description: Cluster effectiveness for alltime.
+      required:
+      - all
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

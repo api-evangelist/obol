@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Metrics API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Metrics
+paths:
+  /metrics:
+    get:
+      operationId: MetricsController_metrics
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Metrics
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

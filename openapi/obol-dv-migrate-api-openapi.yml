@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Obol Address DV Migrate API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: DV Migrate
+paths:
+  /v1/migrate/{network}:
+    get:
+      description: It shows data of validators status
+      operationId: MigrateController_getValidatorsMigrateStatus_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: limit
+        required: true
+        in: query
+        description: The number of validators to return.
+        schema:
+          type: integer
+          default: 50
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: withdrawalAddress
+        required: true
+        in: query
+        description: Withdrawal address of target validators.
+        schema:
+          type: string
+      - name: targetPubKey
+        required: true
+        in: query
+        description: The `pubkey` of target validator.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The migration status data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/MigrationStateResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve validators migrate status
+      tags:
+      - DV Migrate
+components:
+  schemas:
+    MigrationStateResponse:
+      type: object
+      properties:
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorDetails'
+      required:
+      - validators
+    ValidatorDetails:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          example: '12345'
+        status:
+          type: string
+          example: fully_migrated
+        effective_balance:
+          type: string
+          example: '32000000000'
+          description: Effective balance in gwei
+        lock_hash:
+          type: string
+          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
+      required:
+      - pubkey
+      - status
+      - effective_balance
+      - lock_hash
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

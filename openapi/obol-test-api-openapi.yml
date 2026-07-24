@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Test API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Test
+paths:
+  /v1/test:
+    post:
+      description: 'Accepts the JSON body produced by Charon when running `charon test … --publish`: **`enr`**, **`sig`**, and **`data`**. Authentication is **not** a Bearer token: `TestEnrGuard` verifies that `sig` is a valid secp256k1 ECDSA signature (base64, as emitted by Go `json.Marshal` on the signature bytes) over the SSZ hash of `JSON.stringify(data)` for the public key embedded in `enr`. Only `Content-Type: application/json` is required.'
+      operationId: TestController_postTestResult_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestResultDto'
+      responses:
+        '201':
+          description: Test result data stored successfully
+        '400':
+          description: Invalid test result data
+        '401':
+          description: Signature verification failed for the supplied `enr` and `sig`
+        '403':
+          description: Returned when `enr` or `sig` is missing from the body (guard rejects the request before verification)
+        '500':
+          description: An unknown error occurred
+      summary: Store test result data
+      tags:
+      - Test
+  /v1/test/enr/{enr}:
+    get:
+      description: This endpoint retrieves test results for a specific ENR.
+      operationId: TestController_getTestResultByEnr_v1
+      parameters:
+      - name: enr
+        required: true
+        in: path
+        description: ENR to search for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Test results found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestResultDto'
+        '404':
+          description: No test results found for this ENR
+        '500':
+          description: An unknown error occurred
+      summary: Get test results by ENR
+      tags:
+      - Test
+components:
+  schemas:
+    TestResultDto:
+      type: object
+      properties:
+        data:
+          description: Nested test categories (`charon_peers`, `beacon_node`, `validator_client`, `mev`, `infra`). Charon signs `JSON.stringify` of this object (after `json.Marshal` in Go); the guard recomputes the hash from the parsed `data` value.
+          allOf:
+          - $ref: '#/components/schemas/TestCategoriesDto'
+        enr:
+          type: string
+          description: ENR text for the Charon node whose private key signed the payload
+          example: enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon
+        sig:
+          type: string
+          description: 'Base64-encoded secp256k1 ECDSA signature (65 bytes: 32-byte r + 32-byte s + 1-byte recovery id) over the SSZ `hashTreeRoot` of the UTF-8 bytes of `JSON.stringify(data)`, matching Charon `publishResultToObolAPI`'
+          example: AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ
+    TestCategoriesDto:
+      type: object
+      properties:
+        charon_peers:
+          description: Charon peers test results
+          allOf:
+          - $ref: '#/components/schemas/TestCategoryDto'
+        beacon_node:
+          description: Beacon node test results
+          allOf:
+          - $ref: '#/components/schemas/TestCategoryDto'
+        validator_client:
+          description: Validator client test results
+          allOf:
+          - $ref: '#/components/schemas/TestCategoryDto'
+        mev:
+          description: MEV test results
+          allOf:
+          - $ref: '#/components/schemas/TestCategoryDto'
+        infra:
+          description: Infrastructure test results
+          allOf:
+          - $ref: '#/components/schemas/TestCategoryDto'
+    TestCategoryDto:
+      type: object
+      properties:
+        category_name:
+          type: string
+          description: Category name
+          example: mev
+        execution_time:
+          type: string
+          description: Execution time
+          example: 636.089125ms
+        score:
+          type: string
+          description: Score letter grade
+          example: A
+        targets:
+          type: object
+          description: Targets with test results
+          example: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Fee Recipient API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Fee Recipient
+paths:
+  /fee_recipient/partial/{lockHash}/{shareIdx}:
+    post:
+      description: Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group.
+      operationId: FeeRecipientController_postPartialFeeRecipients[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          example: 0x1234abcd...
+          type: string
+      - name: shareIdx
+        required: true
+        in: path
+        description: The operator share index (1-based).
+        schema:
+          example: 1
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeeRecipientDto'
+      responses:
+        '201':
+          description: Partial registrations saved successfully.
+        '400':
+          description: Invalid request body, signature verification failed, invalid share index, or duplicate pubkey in request.
+        '404':
+          description: Lock not found.
+        '500':
+          description: An unknown error occurred.
+      summary: Submit partial fee recipient registrations
+      tags:
+      - Fee Recipient
+  /v1/fee_recipient/partial/{lockHash}/{shareIdx}:
+    post:
+      description: Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group.
+      operationId: FeeRecipientController_postPartialFeeRecipients[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          example: 0x1234abcd...
+          type: string
+      - name: shareIdx
+        required: true
+        in: path
+        description: The operator share index (1-based).
+        schema:
+          example: 1
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeeRecipientDto'
+      responses:
+        '201':
+          description: Partial registrations saved successfully.
+        '400':
+          description: Invalid request body, signature verification failed, invalid share index, or duplicate pubkey in request.
+        '404':
+          description: Lock not found.
+        '500':
+          description: An unknown error occurred.
+      summary: Submit partial fee recipient registrations
+      tags:
+      - Fee Recipient
+  /fee_recipient/{lockHash}:
+    post:
+      description: 'Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results.'
+      operationId: FeeRecipientController_getPartialFeeRecipients[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          example: 0x1234abcd...
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchQueryDto'
+      responses:
+        '200':
+          description: 'Per validator: at most 2 builder registrations (latest with quorum: true, latest with quorum: false). Each registration includes the signed message, partial signatures, and a quorum boolean. Pubkeys returned without 0x prefix.'
+        '404':
+          description: Lock not found or no partial registrations found.
+        '500':
+          description: An unknown error occurred.
+      summary: Fetch partial fee recipient registrations
+      tags:
+      - Fee Recipient
+  /v1/fee_recipient/{lockHash}:
+    post:
+      description: 'Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results.'
+      operationId: FeeRecipientController_getPartialFeeRecipients[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash.
+        schema:
+          example: 0x1234abcd...
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchQueryDto'
+      responses:
+        '200':
+          description: 'Per validator: at most 2 builder registrations (latest with quorum: true, latest with quorum: false). Each registration includes the signed message, partial signatures, and a quorum boolean. Pubkeys returned without 0x prefix.'
+        '404':
+          description: Lock not found or no partial registrations found.
+        '500':
+          description: An unknown error occurred.
+      summary: Fetch partial fee recipient registrations
+      tags:
+      - Fee Recipient
+components:
+  schemas:
+    FetchQueryDto:
+      type: object
+      properties:
+        pubkeys:
+          description: Optional list of validator pubkeys to filter by. If omitted or empty, returns all validators with registrations.
+          example:
+          - 0xdeadbeef...
+          - 0xcafebabe...
+          type: array
+          items:
+            type: string
+    RegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+        gas_limit:
+          type: string
+        timestamp:
+          type: string
+        pubkey:
+          type: string
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
+    PartialRegistrationDto:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/RegistrationMessageDto'
+        signature:
+          type: string
+      required:
+      - message
+      - signature
+    FeeRecipientDto:
+      type: object
+      properties:
+        partial_registrations:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialRegistrationDto'
+      required:
+      - partial_registrations
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

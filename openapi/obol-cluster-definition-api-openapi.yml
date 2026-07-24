@@ -1,0 +1,491 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Cluster Definition API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Cluster Definition
+paths:
+  /v1/definition/{configHash}:
+    get:
+      description: This endpoint allows a charon client or launchpad interface to retrieve the terms of a proposed DKG. Once all operators listed in the DKG have submitted signed approvals to the terms, this object will be ready for a cluster of operators to use as part of a DKG ceremony. If the objects in the `operators` array are not fully populated, these operators need to use the [PUT request](#/Distributed%20Validators/DefinitionController_updateClusterDefinition) to upload their charon client's public key and a signature from their address to indicate their acceptance of the terms.
+      operationId: DefinitionController_getClusterDefinition_v1
+      parameters:
+      - name: configHash
+        required: true
+        in: path
+        description: The `config_hash` calculated for a cluster definition.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        '404':
+          description: Cluster definition not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster proposal
+      tags:
+      - Cluster Definition
+    put:
+      description: This endpoint is used by the operators present in the `operators` array of a cluster definition. The operator must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). These operators must submit a public key (in ENR form) to serve as their identity during the DKG, along with EIP712 signatures indicating their acceptance of the terms of this DKG.
+      operationId: DefinitionController_updateClusterDefinition_v1
+      parameters:
+      - name: authorization
+        required: true
+        in: header
+        description: EIP712 operator hash as bearer token
+        schema:
+          type: string
+      - name: configHash
+        required: true
+        in: path
+        description: The `config_hash` calculated for a cluster definition.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OperatorDto'
+      responses:
+        '200':
+          description: The cluster object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        '400':
+          description: Invalid payload data
+        '401':
+          description: 'Missing t&c signature
+
+
+            Authorization header is missing or incorrect'
+        '404':
+          description: Data not found
+        '409':
+          description: Duplicate entry
+        '500':
+          description: An unknown error occurred
+      security:
+      - bearer: []
+      summary: Accept a proposed Distributed Validator Cluster
+      tags:
+      - Cluster Definition
+  /v1/definition/operator:
+    get:
+      description: This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page.
+      operationId: DefinitionController_getClusterDefinitionWithOperator[0]_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        schema:
+          type: number
+      - name: limit
+        required: true
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: A list of cluster definitions which the operator is part of
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterDefinitionPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of cluster definitions which the address belongs to.
+      tags:
+      - Cluster Definition
+  /v1/definition/operator/{address}:
+    get:
+      description: This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page.
+      operationId: DefinitionController_getClusterDefinitionWithOperator[1]_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        schema:
+          type: number
+      - name: limit
+        required: true
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: A list of cluster definitions which the operator is part of
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterDefinitionPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of cluster definitions which the address belongs to.
+      tags:
+      - Cluster Definition
+  /v1/definition:
+    post:
+      description: This endpoint allows the caller to propose a distributed key generation ceremony.The caller must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). The caller must specify the configuration of a Distributed Validator Cluster; such as the participating operators and the validator exit details. Operators invited to participate in this cluster must submit a public key (in [ENR](https://docs.obol.tech/docs/v0.12.0/int/faq/errors#enrs-keys) form) to serve as their node's identity, along with EIP712 signatures indicating their acceptance of the terms of this cluster.
+      operationId: DefinitionController_postClusterDefinition_v1
+      parameters:
+      - name: authorization
+        required: true
+        in: header
+        description: EIP712 cluster definition hash as bearer token
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterDefDto'
+      responses:
+        '201':
+          description: The cluster object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        '400':
+          description: Invalid definition data
+        '401':
+          description: 'Missing t&c signature
+
+
+            Authorization header is missing or incorrect'
+        '409':
+          description: Duplicate entry
+        '500':
+          description: An unknown error occurred
+      security:
+      - bearer: []
+      summary: Propose a new Distributed Validator Cluster
+      tags:
+      - Cluster Definition
+components:
+  schemas:
+    OperatorDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Ethereum address of Operator.
+          example: '0x000000000000000000000000000000000000dead'
+        enr:
+          type: string
+          example: enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621
+        fork_version:
+          type: string
+          enum:
+          - mainnet
+          - '0x00000000'
+          - goerli
+          - '0x00001020'
+          - gnosis
+          - '0x00000064'
+          - sepolia
+          - '0x90000069'
+          - hoodi
+          - '0x10000910'
+          example: '0x00001020'
+        version:
+          type: string
+          example: v1.8.0
+        enr_signature:
+          type: string
+          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
+        config_signature:
+          type: string
+          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
+      required:
+      - address
+      - enr
+      - fork_version
+      - version
+      - enr_signature
+      - config_signature
+    ClusterDefDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My Obol Cluster
+        operators:
+          minItems: 3
+          description: operator data.
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatorDto'
+        creator:
+          description: creator data.
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatorDto'
+        uuid:
+          type: string
+          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
+        version:
+          type: string
+          example: v1.8.0
+        num_validators:
+          type: number
+          minimum: 1
+          example: 5
+        threshold:
+          type: number
+          minimum: 1
+          example: 3
+        dkg_algorithm:
+          type: string
+          enum:
+          - frost
+          - keycast
+          - default
+          example: default
+        fork_version:
+          type: string
+          enum:
+          - mainnet
+          - '0x00000000'
+          - goerli
+          - '0x00001020'
+          - gnosis
+          - '0x00000064'
+          - sepolia
+          - '0x90000069'
+          - hoodi
+          - '0x10000910'
+          example: '0x00001020'
+        timestamp:
+          type: string
+          example: '2022-07-19T18:19:58+02:00'
+        validators:
+          description: validator withdrawal configuration.
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterDefValidator'
+        deposit_amounts:
+          description: partial deposits.
+          type: array
+          items:
+            type: string
+        consensus_protocol:
+          type: string
+          enum:
+          - qbft
+          - ''
+          example: qbft
+        target_gas_limit:
+          type: number
+          minimum: 1
+          example: 36000000
+        compounding:
+          type: boolean
+          description: Flag that enables compounding rewards for validators by using 0x02 withdrawal credentials
+        config_hash:
+          type: string
+          example: '0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c'
+      required:
+      - name
+      - operators
+      - creator
+      - uuid
+      - version
+      - num_validators
+      - threshold
+      - dkg_algorithm
+      - fork_version
+      - timestamp
+      - validators
+      - deposit_amounts
+      - consensus_protocol
+      - target_gas_limit
+      - compounding
+      - config_hash
+    ClusterDefValidator:
+      type: object
+      properties:
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+      required:
+      - fee_recipient_address
+      - withdrawal_address
+    Creator:
+      type: object
+      properties: {}
+    ClusterDefinitionResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My Obol Cluster
+        uuid:
+          type: string
+          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
+        creator:
+          $ref: '#/components/schemas/Creator'
+        version:
+          type: string
+          example: v1.8.0
+        num_validators:
+          type: number
+          example: 5
+        threshold:
+          type: number
+          example: 3
+        dkg_algorithm:
+          type: string
+          example: default
+        fork_version:
+          type: string
+          example: '0x00001020'
+        config_hash:
+          type: string
+          description: config_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
+        timestamp:
+          type: string
+          example: '2022-07-19T18:19:58+02:00'
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Validator'
+        deposit_amounts:
+          description: Partial depoists.
+          example:
+          - '8000000000'
+          - '16000000000'
+          - '8000000000'
+          type: array
+          items:
+            type: string
+        definition_hash:
+          type: string
+          description: definition_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+        operators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operator'
+        consensus_protocol:
+          type: string
+          example: qbft
+        target_gas_limit:
+          type: number
+          example: 36000000
+        compounding:
+          type: boolean
+          example: true
+      required:
+      - name
+      - uuid
+      - creator
+      - version
+      - num_validators
+      - threshold
+      - dkg_algorithm
+      - fork_version
+      - config_hash
+      - timestamp
+      - validators
+      - deposit_amounts
+      - definition_hash
+      - fee_recipient_address
+      - withdrawal_address
+      - operators
+      - consensus_protocol
+      - target_gas_limit
+      - compounding
+    CreatorDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Ethereum address of Creator.
+          example: '0x000000000000000000000000000000000000dead'
+        config_signature:
+          type: string
+          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
+      required:
+      - address
+      - config_signature
+    Validator:
+      type: object
+      properties: {}
+    Operator:
+      type: object
+      properties: {}
+    ClusterDefinitionPagedResponse:
+      type: object
+      properties:
+        cluster_definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterDefinitionResponse'
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 3
+      required:
+      - cluster_definitions
+      - total_count
+      - total_pages
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Terms And Conditions API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Terms And Conditions
+paths:
+  /v1/termsAndConditions:
+    post:
+      description: Saves user's signature to latest [Obol's terms and conditions](https://obol.tech/terms.pdf) hash and it's version
+      operationId: TermsAndConditionsController_signTermsAndConditions_v1
+      parameters:
+      - name: authorization
+        required: true
+        in: header
+        description: EIP712 terms and conditions hash as bearer token
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TermsAndConditionsDto'
+      responses:
+        '201':
+          description: success message
+        '400':
+          description: Invalid terms and conditions hash
+        '401':
+          description: Signature verification failed
+        '500':
+          description: An unknown error occurred
+      security:
+      - bearer: []
+      summary: Saves user's approval latest terms and conditions
+      tags:
+      - Terms And Conditions
+  /v1/termsAndConditions/{address}:
+    get:
+      description: This endpoint is used to check whether the Terms and Conditions has been signed by the user.
+      operationId: TermsAndConditionsController_getTermsAndConditionsSigned_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The address to check the Terms and Conditions.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: This value returns true if the Terms and Conditions have been signed; otherwise, it returns false.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/TermsAndConditions'
+        '400':
+          description: The Address provided is not valid
+        '500':
+          description: An unknown error occurred
+      summary: Verify Signature on Terms and Conditions
+      tags:
+      - Terms And Conditions
+components:
+  schemas:
+    TermsAndConditionsDto:
+      type: object
+      properties:
+        address:
+          type: string
+          example: v1.0.0
+        version:
+          type: number
+          example: 1
+        terms_and_conditions_hash:
+          type: string
+          example: ''
+        fork_version:
+          type: string
+          enum:
+          - mainnet
+          - '0x00000000'
+          - goerli
+          - '0x00001020'
+          - gnosis
+          - '0x00000064'
+          - sepolia
+          - '0x90000069'
+          - hoodi
+          - '0x10000910'
+          example: '0x00000000'
+      required:
+      - address
+      - version
+      - terms_and_conditions_hash
+    TermsAndConditions:
+      type: object
+      properties:
+        isTermsAndConditionsSigned:
+          type: boolean
+          description: Boolean Value Indicating if Terms and Conditions Have Been Signed
+      required:
+      - isTermsAndConditionsSigned
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

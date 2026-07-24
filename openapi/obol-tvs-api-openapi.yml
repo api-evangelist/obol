@@ -1,0 +1,230 @@
+openapi: 3.0.0
+info:
+  title: Obol Address tvs API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: tvs
+paths:
+  /tvs/{network}:
+    get:
+      description: Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day.
+      operationId: TVSController_getTVS[0]
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: Network name (e.g., mainnet, hoodi)
+        schema:
+          example: mainnet
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (only applies when details=true).
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: page
+        required: false
+        in: query
+        description: Page number (only applies when details=true)
+        schema:
+          type: integer
+          default: 0
+      - name: details
+        required: false
+        in: query
+        description: If true, returns detailed validator-level data
+        schema:
+          type: string
+          default: 'false'
+      - name: timestamp
+        required: false
+        in: query
+        description: ISO 8601 timestamp or date (YYYY-MM-DD). If date-only format is used, returns data for that day regardless of exact time. If not provided, returns the latest available data.
+        schema:
+          example: '2025-10-02'
+      responses:
+        '200':
+          description: TVS data retrieved successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/TVSSummaryResponse'
+                - $ref: '#/components/schemas/TVSDetailedResponse'
+        '400':
+          description: Invalid parameters
+        '404':
+          description: No data found for the specified network/timestamp
+        '500':
+          description: An unknown error occurred
+      summary: Get Total Value Staked Of Obol for a network
+      tags:
+      - tvs
+  /v1/tvs/{network}:
+    get:
+      description: Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day.
+      operationId: TVSController_getTVS[1]_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: Network name (e.g., mainnet, hoodi)
+        schema:
+          example: mainnet
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (only applies when details=true).
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: page
+        required: false
+        in: query
+        description: Page number (only applies when details=true)
+        schema:
+          type: integer
+          default: 0
+      - name: details
+        required: false
+        in: query
+        description: If true, returns detailed validator-level data
+        schema:
+          type: string
+          default: 'false'
+      - name: timestamp
+        required: false
+        in: query
+        description: ISO 8601 timestamp or date (YYYY-MM-DD). If date-only format is used, returns data for that day regardless of exact time. If not provided, returns the latest available data.
+        schema:
+          example: '2025-10-02'
+      responses:
+        '200':
+          description: TVS data retrieved successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/TVSSummaryResponse'
+                - $ref: '#/components/schemas/TVSDetailedResponse'
+        '400':
+          description: Invalid parameters
+        '404':
+          description: No data found for the specified network/timestamp
+        '500':
+          description: An unknown error occurred
+      summary: Get Total Value Staked Of Obol for a network
+      tags:
+      - tvs
+components:
+  schemas:
+    TVSDetailedResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Timestamp of the data snapshot. All data in this response (balances, counts) is for this specific timestamp.
+          example: '2025-10-02T00:00:00.000Z'
+        network:
+          type: string
+          description: Network name
+          example: mainnet
+        balances:
+          description: Array of validator balances at the snapshot timestamp
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorBalance'
+        total_count:
+          type: number
+          description: Total number of validators at the snapshot timestamp (used for pagination)
+          example: 100
+        total_pages:
+          type: number
+          description: Total number of pages based on the limit parameter and total_count at the snapshot timestamp
+          example: 4
+      required:
+      - timestamp
+      - network
+      - balances
+      - total_count
+      - total_pages
+    TVSSummaryResponse:
+      type: object
+      properties:
+        total_balance_eth:
+          type: number
+          description: Total balance in ETH across all clusters at the specified timestamp (rounded to nearest integer)
+          example: 12346
+        total_balance_usd:
+          type: number
+          description: Total balance in USD across all clusters at the specified timestamp (calculated using ETH closing price for that day, rounded to nearest integer)
+          example: 45678901
+        timestamp:
+          type: string
+          description: Timestamp of the data snapshot. All data in this response is for this specific timestamp.
+          example: '2025-10-02T00:00:00.000Z'
+        network:
+          type: string
+          description: Network name
+          example: mainnet
+        total_unclaimed_balance_eth_denominated:
+          type: number
+          description: Total unclaimed balance in ETH (from daily fees/revenue data for the snapshot date, rounded to 2 decimal places)
+          example: 67.45
+        total_claimed_balance_eth_denominated:
+          type: number
+          description: Total claimed balance in ETH (from daily fees/revenue data for the snapshot date, rounded to 2 decimal places)
+          example: 71.23
+        total_eth_transferred:
+          type: number
+          description: Total ETH transferred (from daily fees/revenue data for the snapshot date, rounded to 2 decimal places)
+          example: 4.56
+        total_revenue:
+          type: number
+          description: Total revenue (from daily fees/revenue data for the snapshot date, rounded to 2 decimal places)
+          example: 142.89
+        total_fees_eth_denominated:
+          type: number
+          description: Total fees in ETH (from daily fees/revenue data for the snapshot date, rounded to 2 decimal places)
+          example: 504.12
+      required:
+      - total_balance_eth
+      - total_balance_usd
+      - timestamp
+      - network
+    ValidatorBalance:
+      type: object
+      properties:
+        public_key:
+          type: string
+          description: Validator public key
+          example: '0xa35873f8b87560432432b5247e0d88b23602db03695722585ac7e7151efd457f91fc5e8bd949b67777e5f1cfd504a902'
+        balance_eth:
+          type: number
+          description: Balance in ETH at the snapshot timestamp
+          example: 32
+      required:
+      - public_key
+      - balance_eth
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

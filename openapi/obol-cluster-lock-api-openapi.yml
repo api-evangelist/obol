@@ -1,0 +1,1211 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Cluster Lock API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Cluster Lock
+paths:
+  /lock/{lockHash}:
+    get:
+      description: This endpoint is used to retrieve a cluster lock object.
+      operationId: LockController_getClusterLock[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster lock object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster Lock Object
+      tags:
+      - Cluster Lock
+  /v1/lock/{lockHash}:
+    get:
+      description: This endpoint is used to retrieve a cluster lock object.
+      operationId: LockController_getClusterLock[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster lock object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster Lock Object
+      tags:
+      - Cluster Lock
+  /lock/search/{network}:
+    get:
+      description: This endpoint is used to search for Cluster Lock Objects that match a substring of their `lock_hash`.
+      operationId: LockController_searchClusterLocks[0]
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: partialLockHash
+        required: true
+        in: query
+        description: A substring of the `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      - name: partialClusterName
+        required: true
+        in: query
+        description: A substring of the cluster name.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the lock hash matches.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Cluster Lock Objects
+      tags:
+      - Cluster Lock
+  /v1/lock/search/{network}:
+    get:
+      description: This endpoint is used to search for Cluster Lock Objects that match a substring of their `lock_hash`.
+      operationId: LockController_searchClusterLocks[1]_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: partialLockHash
+        required: true
+        in: query
+        description: A substring of the `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      - name: partialClusterName
+        required: true
+        in: query
+        description: A substring of the cluster name.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the lock hash matches.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Cluster Lock Objects
+      tags:
+      - Cluster Lock
+  /lock/configHash/{configHash}:
+    get:
+      description: This endpoint is used to retrieve a cluster lock object by the hash of the configuration used to create it.
+      operationId: LockController_getLockByConfigHash[0]
+      parameters:
+      - name: configHash
+        required: true
+        in: path
+        description: The `config_hash` calculated for a cluster configuration.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster lock object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster Lock Object
+      tags:
+      - Cluster Lock
+  /v1/lock/configHash/{configHash}:
+    get:
+      description: This endpoint is used to retrieve a cluster lock object by the hash of the configuration used to create it.
+      operationId: LockController_getLockByConfigHash[1]_v1
+      parameters:
+      - name: configHash
+        required: true
+        in: path
+        description: The `config_hash` calculated for a cluster configuration.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The cluster lock object
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '404':
+          description: Cluster not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a Distributed Validator Cluster Lock Object
+      tags:
+      - Cluster Lock
+  /lock/{lockHash}/launchpad:
+    get:
+      description: This endpoint is used to redirect users to the created cluster status page after DKG is completed.
+      operationId: LockController_redirectToClusterStatus[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a Distributed Validator Cluster.
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Serves a redirect to the launchpad cluster status page
+        '404':
+          description: Cluster lock not found
+        '500':
+          description: An unknown error occurred
+      summary: Redirect to the launchpad cluster status page
+      tags:
+      - Cluster Lock
+  /v1/lock/{lockHash}/launchpad:
+    get:
+      description: This endpoint is used to redirect users to the created cluster status page after DKG is completed.
+      operationId: LockController_redirectToClusterStatus[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a Distributed Validator Cluster.
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Serves a redirect to the launchpad cluster status page
+        '404':
+          description: Cluster lock not found
+        '500':
+          description: An unknown error occurred
+      summary: Redirect to the launchpad cluster status page
+      tags:
+      - Cluster Lock
+  /lock/{lockHash}/peer-scores:
+    get:
+      description: This endpoint returns the average peer_score for each operator address in a cluster lock within a specified date range. Results are sorted by peer_score in descending order.
+      operationId: LockController_getAveragePeerScores[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      - name: startDate
+        required: false
+        in: query
+        description: Start date for the range (ISO 8601 format). If not provided, defaults to endDate - 7 days.
+        schema:
+          example: '2026-01-21T00:00:00.000Z'
+          type: string
+      - name: endDate
+        required: false
+        in: query
+        description: End date for the range (ISO 8601 format). If not provided, defaults to the latest available date.
+        schema:
+          example: '2026-01-28T00:00:00.000Z'
+          type: string
+      responses:
+        '200':
+          description: Array of operator addresses with their average peer scores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    operator_address:
+                      type: string
+                      example: '0x7a82E643B0c8AE619f71d9667559180c33c92277'
+                    avg_peer_score:
+                      type: number
+                      example: 99.89
+                    peer_name:
+                      type: string
+                      example: puzzled-pen
+                      nullable: true
+                      description: Peer name shown when the peer score row has no operator address.
+                    peer_nickname:
+                      type: string
+                      example: Alice node
+                      nullable: true
+                      description: Operator-configured peer nickname, when available.
+                    last_updated:
+                      type: string
+                      format: date-time
+                      example: '2026-02-10T00:00:00.000Z'
+                      description: Latest peer_score date included in this averaged rank row.
+        '400':
+          description: 'Network error - unable to determine network from fork_version
+
+
+            Invalid date format'
+        '404':
+          description: Cluster lock not found
+        '500':
+          description: An unknown error occurred
+      summary: Get average peer scores for operators in a cluster
+      tags:
+      - Cluster Lock
+  /v1/lock/{lockHash}/peer-scores:
+    get:
+      description: This endpoint returns the average peer_score for each operator address in a cluster lock within a specified date range. Results are sorted by peer_score in descending order.
+      operationId: LockController_getAveragePeerScores[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The `lock_hash` calculated for a cluster lock.
+        schema:
+          type: string
+      - name: startDate
+        required: false
+        in: query
+        description: Start date for the range (ISO 8601 format). If not provided, defaults to endDate - 7 days.
+        schema:
+          example: '2026-01-21T00:00:00.000Z'
+          type: string
+      - name: endDate
+        required: false
+        in: query
+        description: End date for the range (ISO 8601 format). If not provided, defaults to the latest available date.
+        schema:
+          example: '2026-01-28T00:00:00.000Z'
+          type: string
+      responses:
+        '200':
+          description: Array of operator addresses with their average peer scores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    operator_address:
+                      type: string
+                      example: '0x7a82E643B0c8AE619f71d9667559180c33c92277'
+                    avg_peer_score:
+                      type: number
+                      example: 99.89
+                    peer_name:
+                      type: string
+                      example: puzzled-pen
+                      nullable: true
+                      description: Peer name shown when the peer score row has no operator address.
+                    peer_nickname:
+                      type: string
+                      example: Alice node
+                      nullable: true
+                      description: Operator-configured peer nickname, when available.
+                    last_updated:
+                      type: string
+                      format: date-time
+                      example: '2026-02-10T00:00:00.000Z'
+                      description: Latest peer_score date included in this averaged rank row.
+        '400':
+          description: 'Network error - unable to determine network from fork_version
+
+
+            Invalid date format'
+        '404':
+          description: Cluster lock not found
+        '500':
+          description: An unknown error occurred
+      summary: Get average peer scores for operators in a cluster
+      tags:
+      - Cluster Lock
+  /lock/operator:
+    get:
+      description: This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator.
+      operationId: LockController_getClusterLocksByOperator[0]
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the operator is a member of.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      tags:
+      - Cluster Lock
+  /lock/operator/{address}:
+    get:
+      description: This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator.
+      operationId: LockController_getClusterLocksByOperator[1]
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the operator is a member of.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      tags:
+      - Cluster Lock
+  /v1/lock/operator:
+    get:
+      description: This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator.
+      operationId: LockController_getClusterLocksByOperator[2]_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the operator is a member of.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      tags:
+      - Cluster Lock
+  /v1/lock/operator/{address}:
+    get:
+      description: This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator.
+      operationId: LockController_getClusterLocksByOperator[3]_v1
+      parameters:
+      - name: address
+        required: true
+        in: path
+        description: The operator address.
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: A list of Distributed Validator Clusters which the operator is a member of.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      tags:
+      - Cluster Lock
+  /lock/network/{network}:
+    get:
+      description: This endpoint fetches a number of cluster lock objects for a given network.
+      operationId: LockController_getClusterLocksByNetwork[0]
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      - name: sortBy
+        required: false
+        in: query
+        description: numerical field to sort by
+        schema:
+          type: string
+          default: avg_effectiveness
+      - name: sortOrder
+        required: false
+        in: query
+        description: order of sorting the field
+        schema:
+          type: string
+          default: desc
+      - name: pool
+        required: false
+        in: query
+        description: cluster type or pool
+        schema:
+          type: string
+      - name: details
+        required: true
+        in: query
+        description: The flag to populate cluster definition information.
+        schema:
+          type: string
+          default: 'false'
+      responses:
+        '200':
+          description: A paged list of Distributed Validator Clusters on this network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '400':
+          description: Network not spported
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for a given network
+      tags:
+      - Cluster Lock
+  /v1/lock/network/{network}:
+    get:
+      description: This endpoint fetches a number of cluster lock objects for a given network.
+      operationId: LockController_getClusterLocksByNetwork[1]_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+          sepolia:
+            summary: Sepolia Test Network
+            value: sepolia
+        schema:
+          type: string
+      - name: page
+        required: true
+        in: query
+        description: The page number to retrieve.
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        required: true
+        in: query
+        description: The number of cluster lock objects to return.
+        schema:
+          type: integer
+          default: 100
+      - name: sortBy
+        required: false
+        in: query
+        description: numerical field to sort by
+        schema:
+          type: string
+          default: avg_effectiveness
+      - name: sortOrder
+        required: false
+        in: query
+        description: order of sorting the field
+        schema:
+          type: string
+          default: desc
+      - name: pool
+        required: false
+        in: query
+        description: cluster type or pool
+        schema:
+          type: string
+      - name: details
+        required: true
+        in: query
+        description: The flag to populate cluster definition information.
+        schema:
+          type: string
+          default: 'false'
+      responses:
+        '200':
+          description: A paged list of Distributed Validator Clusters on this network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockPagedResponse'
+        '400':
+          description: Network not spported
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for a given network
+      tags:
+      - Cluster Lock
+  /lock/network/summary/{network}:
+    get:
+      description: This endpoint fetches a nsummary of the lock files stored for a given network
+      operationId: LockController_getClusterLockNetworkSummary[0]
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A summary of the Distributed Validator locks for a given network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockNetworkSummaryResponse'
+        '400':
+          description: Network not spported
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for a given network
+      tags:
+      - Cluster Lock
+  /v1/lock/network/summary/{network}:
+    get:
+      description: This endpoint fetches a nsummary of the lock files stored for a given network
+      operationId: LockController_getClusterLockNetworkSummary[1]_v1
+      parameters:
+      - name: network
+        required: true
+        in: path
+        description: The network to retrieve clusters on
+        examples:
+          mainnet:
+            summary: Ethereum Mainnet
+            value: mainnet
+          hoodi:
+            summary: Hoodi Test Network
+            value: hoodi
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A summary of the Distributed Validator locks for a given network
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockNetworkSummaryResponse'
+        '400':
+          description: Network not spported
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve a list of Distributed Validator Clusters for a given network
+      tags:
+      - Cluster Lock
+  /lock:
+    post:
+      description: This endpoint saves cluster lock objects that describe the created Distributed Validator Cluster. If the lock_hash is already stored, the existing lock is returned (idempotent; no re-validation) with the same 201 response.
+      operationId: LockController_postClusterLock[0]
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterLockDto'
+      responses:
+        '201':
+          description: The cluster lock object (new publish or idempotent retry for an existing lock_hash).
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '400':
+          description: Invalid lock data
+        '404':
+          description: The cluster definition corresponding to this lock file was not found
+        '500':
+          description: An unknown error occurred
+        '503':
+          description: Too many lock validations in progress on this instance. Retry with backoff.
+        '504':
+          description: Lock validation exceeded the time limit (typically very large locks).
+      summary: Push Distributed Validator Cluster Lock Data
+      tags:
+      - Cluster Lock
+  /v1/lock:
+    post:
+      description: This endpoint saves cluster lock objects that describe the created Distributed Validator Cluster. If the lock_hash is already stored, the existing lock is returned (idempotent; no re-validation) with the same 201 response.
+      operationId: LockController_postClusterLock[1]_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterLockDto'
+      responses:
+        '201':
+          description: The cluster lock object (new publish or idempotent retry for an existing lock_hash).
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/ClusterLockResponse'
+        '400':
+          description: Invalid lock data
+        '404':
+          description: The cluster definition corresponding to this lock file was not found
+        '500':
+          description: An unknown error occurred
+        '503':
+          description: Too many lock validations in progress on this instance. Retry with backoff.
+        '504':
+          description: Lock validation exceeded the time limit (typically very large locks).
+      summary: Push Distributed Validator Cluster Lock Data
+      tags:
+      - Cluster Lock
+  /lock/verify:
+    post:
+      description: This endpoint verifies cluster lock data including BLS public keys and signatures created during the DKG phase.
+      operationId: LockController_verifyClusterLock[0]
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterLockDto'
+      responses:
+        '200':
+          description: Lock data is valid
+        '400':
+          description: Invalid lock data
+        '500':
+          description: An unknown error occurred
+        '503':
+          description: Too many lock validations in progress on this instance. Retry with backoff.
+        '504':
+          description: Lock validation exceeded the time limit (typically very large locks).
+      summary: Verify Distributed Validator Cluster Lock Data
+      tags:
+      - Cluster Lock
+  /v1/lock/verify:
+    post:
+      description: This endpoint verifies cluster lock data including BLS public keys and signatures created during the DKG phase.
+      operationId: LockController_verifyClusterLock[1]_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterLockDto'
+      responses:
+        '200':
+          description: Lock data is valid
+        '400':
+          description: Invalid lock data
+        '500':
+          description: An unknown error occurred
+        '503':
+          description: Too many lock validations in progress on this instance. Retry with backoff.
+        '504':
+          description: Lock validation exceeded the time limit (typically very large locks).
+      summary: Verify Distributed Validator Cluster Lock Data
+      tags:
+      - Cluster Lock
+components:
+  schemas:
+    Creator:
+      type: object
+      properties: {}
+    BuilderRegistrationDto:
+      type: object
+      properties:
+        message:
+          description: builder registration information.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
+        signature:
+          type: string
+          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
+      required:
+      - message
+      - signature
+    DepositDataDto:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+        withdrawal_credentials:
+          type: string
+          example: '0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec'
+        amount:
+          type: string
+          example: '32000000000'
+        deposit_data_root:
+          type: string
+          example: 5e58a5d8f1e53479343cb6188f061f6b1a46c521c53eef0580b04f485ad62bad
+        signature:
+          type: string
+          example: '0x88fe84889608a8b2424bddae2047d2ee4b42f72c4d8201d69e732d7c3bfa1bcb00f930979770b7d00071673fde8f205108dabe8d83ec49aa6de1b7869966b555be80a159e6ad11e273c4e0234038cfa525923044d6a89a4924fdc178f333568b'
+      required:
+      - pubkey
+      - withdrawal_credentials
+      - amount
+      - deposit_data_root
+      - signature
+    ClusterDefinitionResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My Obol Cluster
+        uuid:
+          type: string
+          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
+        creator:
+          $ref: '#/components/schemas/Creator'
+        version:
+          type: string
+          example: v1.8.0
+        num_validators:
+          type: number
+          example: 5
+        threshold:
+          type: number
+          example: 3
+        dkg_algorithm:
+          type: string
+          example: default
+        fork_version:
+          type: string
+          example: '0x00001020'
+        config_hash:
+          type: string
+          description: config_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
+        timestamp:
+          type: string
+          example: '2022-07-19T18:19:58+02:00'
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Validator'
+        deposit_amounts:
+          description: Partial depoists.
+          example:
+          - '8000000000'
+          - '16000000000'
+          - '8000000000'
+          type: array
+          items:
+            type: string
+        definition_hash:
+          type: string
+          description: definition_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+        operators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operator'
+        consensus_protocol:
+          type: string
+          example: qbft
+        target_gas_limit:
+          type: number
+          example: 36000000
+        compounding:
+          type: boolean
+          example: true
+      required:
+      - name
+      - uuid
+      - creator
+      - version
+      - num_validators
+      - threshold
+      - dkg_algorithm
+      - fork_version
+      - config_hash
+      - timestamp
+      - validators
+      - deposit_amounts
+      - definition_hash
+      - fee_recipient_address
+      - withdrawal_address
+      - operators
+      - consensus_protocol
+      - target_gas_limit
+      - compounding
+    BuilderRegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
+        gas_limit:
+          type: number
+          example: 30000000
+        timestamp:
+          type: number
+          example: 1616508000
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
+    ClusterLockResponse:
+      type: object
+      properties:
+        cluster_definition:
+          description: Cluster definition data that was used in dkg to generate cluster lock.
+          allOf:
+          - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        distributed_validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DistributedValidator'
+        signature_aggregate:
+          type: string
+          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
+        lock_hash:
+          type: string
+          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
+        node_signatures:
+          type: array
+          items:
+            type: string
+      required:
+      - cluster_definition
+      - distributed_validators
+      - signature_aggregate
+      - lock_hash
+      - node_signatures
+    Validator:
+      type: object
+      properties: {}
+    DistributedValidator:
+      type: object
+      properties: {}
+    Operator:
+      type: object
+      properties: {}
+    ClusterLockNetworkSummaryResponse:
+      type: object
+      properties:
+        eth_staked:
+          type: number
+          example: 2
+        total_clusters:
+          type: number
+          example: 2
+        total_operators:
+          type: number
+          example: 4
+      required:
+      - eth_staked
+      - total_clusters
+      - total_operators
+    ClusterLockPagedResponse:
+      type: object
+      properties:
+        cluster_locks:
+          type: array
+          items:
+            type: string
+        total_active_stake_eth:
+          type: number
+          example: 128.5
+        total_active_stake_usd:
+          type: number
+          example: 128.5
+        unique_validators_count:
+          type: number
+          example: 10
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - cluster_locks
+      - total_count
+      - total_pages
+    DistributedValidatorDto:
+      type: object
+      properties:
+        distributed_public_key:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+        public_shares:
+          description: array of public shares of the distributed public key.
+          type: array
+          items:
+            type: string
+            pattern: ^(0x|0h)?[0-9A-F]+$
+        deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
+        builder_registration:
+          description: Pre-generated signed validator builder registration.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationDto'
+        partial_deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
+      required:
+      - distributed_public_key
+      - public_shares
+      - deposit_data
+      - builder_registration
+      - partial_deposit_data
+    ClusterLockDto:
+      type: object
+      properties:
+        cluster_definition:
+          description: Cluster definition data that was used in dkg to generate cluster lock.
+          allOf:
+          - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        distributed_validators:
+          description: distributed validator keys and deposit data.
+          type: array
+          items:
+            $ref: '#/components/schemas/DistributedValidatorDto'
+        signature_aggregate:
+          type: string
+          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
+        lock_hash:
+          type: string
+          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
+        node_signatures:
+          example:
+          - '0xe6e531be7bbf6cee37d80ab489ade6491469e10743d3c1496a3e66fe989eb4c100c260eaee4ef1aa08fdb79ea05bb8c12970dec1a296abe627ac25a2515373b301'
+          type: array
+          items:
+            type: string
+            pattern: ^(0x|0h)?[0-9A-F]+$
+      required:
+      - cluster_definition
+      - distributed_validators
+      - signature_aggregate
+      - lock_hash
+      - node_signatures
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

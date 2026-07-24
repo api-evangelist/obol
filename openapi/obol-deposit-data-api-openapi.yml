@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  title: Obol Address Deposit Data API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: Deposit Data
+paths:
+  /deposit_data/{lockHash}/{pubkey}:
+    get:
+      description: This endpoint returns all partial deposit data grouped by amount for a specific validator
+      operationId: DepositController_getDeposits[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash
+        schema:
+          type: string
+      - name: pubkey
+        required: true
+        in: path
+        description: The validator public key (distributed_public_key)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The deposit data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/DepositDataResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve partial deposit data for a validator
+      tags:
+      - Deposit Data
+  /v1/deposit_data/{lockHash}/{pubkey}:
+    get:
+      description: This endpoint returns all partial deposit data grouped by amount for a specific validator
+      operationId: DepositController_getDeposits[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The cluster lock hash
+        schema:
+          type: string
+      - name: pubkey
+        required: true
+        in: path
+        description: The validator public key (distributed_public_key)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The deposit data
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/DepositDataResponse'
+        '404':
+          description: Data is not found
+        '500':
+          description: An unknown error occurred
+      summary: Retrieve partial deposit data for a validator
+      tags:
+      - Deposit Data
+  /deposit_data/partial_deposits/{lockHash}/{share_index}:
+    post:
+      description: This endpoint saves partial deposit data signed by an operator
+      operationId: DepositController_submitPartialDeposits[0]
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The lock hash of the cluster
+        schema:
+          type: string
+      - name: share_index
+        required: true
+        in: path
+        description: The share index (operator index + 1)
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DepositDto'
+      responses:
+        '201':
+          description: Deposit data saved successfully
+        '400':
+          description: Invalid request format | Conflicting withdrawal address. Delete the existing deposits first. | Validator is already initialised.
+        '401':
+          description: Invalid deposit signature
+        '404':
+          description: Data or validator not found
+        '500':
+          description: An unknown error occurred
+      summary: Push partial deposit data
+      tags:
+      - Deposit Data
+  /v1/deposit_data/partial_deposits/{lockHash}/{share_index}:
+    post:
+      description: This endpoint saves partial deposit data signed by an operator
+      operationId: DepositController_submitPartialDeposits[1]_v1
+      parameters:
+      - name: lockHash
+        required: true
+        in: path
+        description: The lock hash of the cluster
+        schema:
+          type: string
+      - name: share_index
+        required: true
+        in: path
+        description: The share index (operator index + 1)
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DepositDto'
+      responses:
+        '201':
+          description: Deposit data saved successfully
+        '400':
+          description: Invalid request format | Conflicting withdrawal address. Delete the existing deposits first. | Validator is already initialised.
+        '401':
+          description: Invalid deposit signature
+        '404':
+          description: Data or validator not found
+        '500':
+          description: An unknown error occurred
+      summary: Push partial deposit data
+      tags:
+      - Deposit Data
+components:
+  schemas:
+    DepositDto:
+      type: object
+      properties:
+        partial_deposit_data:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositDataDto'
+      required:
+      - partial_deposit_data
+    DepositDataResponse:
+      type: object
+      properties:
+        lock_hash:
+          type: string
+          example: ''
+          description: ''
+        pubkey:
+          type: string
+          example: 0xFULL_1
+          description: Full public key of the validator
+        withdrawal_credentials:
+          type: string
+          example: 0xWITHDRAW_1
+          description: Withdrawal credentials
+        amounts:
+          description: Array of amounts with their partial deposits
+          type: array
+          items:
+            $ref: '#/components/schemas/AmountGroupResponse'
+      required:
+      - lock_hash
+      - pubkey
+      - withdrawal_credentials
+      - amounts
+    AmountGroupResponse:
+      type: object
+      properties:
+        amount:
+          type: string
+          example: '32000000000'
+          description: Amount in Gwei
+        partials:
+          description: Array of partial deposits for this amount
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositResponse'
+      required:
+      - amount
+      - partials
+    PartialDepositDataDto:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
+          description: Public key of the validator (should be in lock file)
+        withdrawal_credentials:
+          type: string
+          example: '0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12'
+          description: Withdrawal credentials (0x01 or 0x02)
+        amount:
+          type: string
+          pattern: ^\d+$
+          example: '32000000000'
+          description: Amount in Gwei as string (between 1 and 2048 ETH)
+        signature:
+          type: string
+          example: 0x1234...
+          description: BLS signature over (pubkey, withdrawal_credentials, amount)
+      required:
+      - pubkey
+      - withdrawal_credentials
+      - amount
+      - signature
+    PartialDepositResponse:
+      type: object
+      properties:
+        partial_public_key:
+          type: string
+          example: 0xPARTIAL_A
+          description: Partial public key of the operator
+        partial_deposit_signature:
+          type: string
+          example: 0xSIG_A1
+          description: Partial deposit signature
+      required:
+      - partial_public_key
+      - partial_deposit_signature
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

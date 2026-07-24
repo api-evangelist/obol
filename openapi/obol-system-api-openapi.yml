@@ -1,0 +1,194 @@
+openapi: 3.0.0
+info:
+  title: Obol Address System API
+  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  version: v1.0.0-local
+  contact:
+    name: Obol Labs
+    url: https://obol.tech
+    email: support@obol.tech
+servers:
+- url: https://api.obol.tech
+  description: Production environment
+- url: http://localhost:3000
+  description: Local development server
+- url: https://localhost:3000
+  description: HTTPS Local development server
+tags:
+- name: System
+  description: System related endpoints.
+paths:
+  /:
+    get:
+      description: Hitting the root of the domain redirects to /docs and a swagger deployment.
+      operationId: AppController_redirect
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      summary: Redirect to the API docs
+      tags:
+      - System
+  /v1/_health:
+    get:
+      description: This endpoint reports the API and its dependencies health.
+      operationId: HealthController_check_v1
+      parameters: []
+      responses:
+        '200':
+          description: The Health Check is successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  info:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  error:
+                    type: object
+                    example: {}
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+        '503':
+          description: The Health Check is not successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  info:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  error:
+                    type: object
+                    example:
+                      redis:
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database:
+                        status: up
+                      redis:
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      required:
+                      - status
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties: true
+      summary: Check the API health
+      tags:
+      - System
+  /eth-apr:
+    get:
+      description: Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR.
+      operationId: EthAprController_getEthApr[0]
+      parameters: []
+      responses:
+        '200':
+          description: ETH APR data from Beaconcha.in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EthAprResponse'
+      summary: Get network ETH APR
+      tags:
+      - System
+  /v1/eth-apr:
+    get:
+      description: Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR.
+      operationId: EthAprController_getEthApr[1]_v1
+      parameters: []
+      responses:
+        '200':
+          description: ETH APR data from Beaconcha.in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EthAprResponse'
+      summary: Get network ETH APR
+      tags:
+      - System
+components:
+  schemas:
+    EthAprResponse:
+      type: object
+      properties:
+        apr:
+          type: number
+          description: Network-wide ETH staking APR as a decimal (e.g. 0.029 = 2.9%). Sourced from Beaconcha.in ethstore/latest.
+          example: 0.029
+      required:
+      - apr
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
