@@ -1,0 +1,148 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/obol-openapi-original.json
+entities:
+- AddressBadgeResponse
+- AddressIncentivesResponse
+- AddressTechneResponse
+- AmountGroupResponse
+- BuilderRegistrationDto
+- BuilderRegistrationMessageDto
+- ClusterDefDto
+- ClusterDefValidator
+- ClusterDefinitionPagedResponse
+- ClusterDefinitionResponse
+- ClusterEffectivenessResponse
+- ClusterExitStatusResponse
+- ClusterExitStatusSummaryResponse
+- ClusterLockDto
+- ClusterLockNetworkSummaryResponse
+- ClusterLockPagedResponse
+- ClusterLockResponse
+- Creator
+- CreatorDto
+- DepositDataDto
+- DepositDataResponse
+- DepositDto
+- DistributedValidator
+- DistributedValidatorDto
+- DistributedValidatorStateResponse
+- EthAprResponse
+- ExitBlob
+- ExitBlobDto
+- ExitDto
+- ExitMessageDto
+- FeeRecipientDto
+- FetchQueryDto
+- MigrateableValidatorsResponse
+- MigrationStateResponse
+- OWRResponse
+- Operator
+- OperatorDto
+- OperatorsPagedResponse
+- PartialDepositDataDto
+- PartialDepositResponse
+- PartialRegistrationDto
+- PositionCluster
+- PositionValidator
+- PositionsRequestDto
+- PositionsResponse
+- RegistrationMessageDto
+- ResolvedRecipients
+- SignedExitMessageDto
+- TVSDetailedResponse
+- TVSSummaryResponse
+- TechneResponse
+- TermsAndConditions
+- TermsAndConditionsDto
+- TestCategoriesDto
+- TestCategoryDto
+- TestResultDto
+- Validator
+- ValidatorBalance
+- ValidatorDetails
+relationships:
+- from: ClusterDefinitionResponse
+  to: Creator
+  kind: has_one
+  via: creator
+- from: ClusterDefinitionResponse
+  to: Validator
+  kind: has_many
+  via: validators
+- from: ClusterDefinitionResponse
+  to: Operator
+  kind: has_many
+  via: operators
+- from: ClusterDefinitionPagedResponse
+  to: ClusterDefinitionResponse
+  kind: has_many
+  via: cluster_definitions
+- from: ClusterDefDto
+  to: OperatorDto
+  kind: has_many
+  via: operators
+- from: ClusterDefDto
+  to: CreatorDto
+  kind: has_many
+  via: creator
+- from: ClusterDefDto
+  to: ClusterDefValidator
+  kind: has_many
+  via: validators
+- from: ClusterLockResponse
+  to: DistributedValidator
+  kind: has_many
+  via: distributed_validators
+- from: ClusterLockDto
+  to: DistributedValidatorDto
+  kind: has_many
+  via: distributed_validators
+- from: SignedExitMessageDto
+  to: ExitMessageDto
+  kind: has_one
+  via: message
+- from: ExitBlobDto
+  to: SignedExitMessageDto
+  kind: has_one
+  via: signed_exit_message
+- from: ExitDto
+  to: ExitBlobDto
+  kind: has_many
+  via: partial_exits
+- from: MigrationStateResponse
+  to: ValidatorDetails
+  kind: has_many
+  via: validators
+- from: AmountGroupResponse
+  to: PartialDepositResponse
+  kind: has_many
+  via: partials
+- from: DepositDataResponse
+  to: AmountGroupResponse
+  kind: has_many
+  via: amounts
+- from: DepositDto
+  to: PartialDepositDataDto
+  kind: has_many
+  via: partial_deposit_data
+- from: PartialRegistrationDto
+  to: RegistrationMessageDto
+  kind: has_one
+  via: message
+- from: FeeRecipientDto
+  to: PartialRegistrationDto
+  kind: has_many
+  via: partial_registrations
+- from: TVSDetailedResponse
+  to: ValidatorBalance
+  kind: has_many
+  via: balances
+- from: PositionCluster
+  to: PositionValidator
+  kind: has_many
+  via: validators
+- from: PositionsResponse
+  to: PositionCluster
+  kind: has_many
+  via: positions

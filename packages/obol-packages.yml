@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: npm registry + pkg.go.dev + ObolNetwork GitHub org
+packages:
+  - language: typescript
+    registry: npm
+    name: "@obolnetwork/obol-sdk"
+    url: https://www.npmjs.com/package/@obolnetwork/obol-sdk
+    install: npm install @obolnetwork/obol-sdk
+    version: 2.13.2
+    license: ISC
+    repository: https://github.com/ObolNetwork/obol-sdk
+    description: The Obol SDK for creating Distributed Validators using the Obol API (api.obol.tech).
+    official: true
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/obolnetwork/charon
+    url: https://pkg.go.dev/github.com/obolnetwork/charon
+    install: go install github.com/obolnetwork/charon@latest
+    repository: https://github.com/ObolNetwork/charon
+    description: Charon — the Go distributed validator middleware client (also distributed as a binary/Docker image).
+    official: true

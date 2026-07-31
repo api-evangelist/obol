@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: generated
+note: >-
+  API-grounded Agent Skills generated from the Obol OpenAPI (every operationId verified
+  against openapi/obol-openapi-original.json). Obol also publishes its own Claude Code
+  skills plugin for cluster operations at https://github.com/ObolNetwork/skills
+  (skill: obol-monitoring — Grafana/Prometheus/Loki cluster diagnostics).
+provider_published_skills:
+  repo: https://github.com/ObolNetwork/skills
+  install: "/plugin marketplace add ObolNetwork/skills ; /plugin install obol@obol"
+  skills:
+    - name: obol-monitoring
+      description: Monitor and diagnose Obol DVT cluster performance using Grafana (Prometheus metrics + Loki logs).
+skills:
+  - file: obol-create-cluster.md
+    name: Create and lock a Distributed Validator cluster
+    api: openapi/obol-openapi-original.json
+    operations:
+      - TermsAndConditionsController_signTermsAndConditions_v1
+      - DefinitionController_postClusterDefinition_v1
+      - DefinitionController_updateClusterDefinition_v1
+      - LockController_postClusterLock[1]_v1
+      - LockController_getClusterLock[1]_v1
+  - file: obol-exit-validator.md
+    name: Exit a Distributed Validator
+    api: openapi/obol-openapi-original.json
+    operations:
+      - ExitController_postPartialExit[1]_v1
+      - ExitController_getClusterExitStatus[1]_v1
+      - ExitController_getClusterExitStatusSummary[1]_v1
+      - ExitController_getClusterExit[1]_v1
+  - file: obol-cluster-status.md
+    name: Inspect a Distributed Validator cluster
+    api: openapi/obol-openapi-original.json
+    operations:
+      - LockController_getClusterLock[1]_v1
+      - StateController_getDistributedValidatorStatesByLockHash_v1
+      - LockController_getAveragePeerScores[1]_v1
+      - EffectivenessController_getClusterLock_v1

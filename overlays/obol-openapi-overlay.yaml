@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Obol API
+  version: 1.0.0
+extends: openapi/obol-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-20'
+      x-api-provider: Obol
+      x-api-category: crypto-staking-infrastructure
+      x-artifacts:
+        authentication: authentication/obol-authentication.yml
+        conventions: conventions/obol-conventions.yml
+        errors: errors/obol-problem-types.yml
+        data-model: data-model/obol-data-model.yml
+        lifecycle: lifecycle/obol-lifecycle.yml
+  - target: $.info
+    update:
+      x-agentic-access: agentic-access/obol-agentic-access.yml

@@ -1,27 +1,392 @@
 aid: obol
 name: Obol
-description: 'Obol is a company surfaced as a portfolio company of pantera-capital and added to the API
-  Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Obol builds distributed validator infrastructure for Ethereum, letting a validator be
+  run across multiple independent operators and machines (a Distributed Validator, or DV)
+  instead of a single node, which removes single points of failure in proof-of-stake
+  staking. Its core software is Charon, a Go middleware client that coordinates the
+  operators, plus the DV Launchpad dapp, the Obol Splits smart contracts, and the Obol
+  API (api.obol.tech) with a TypeScript SDK for creating and managing clusters. The Obol
+  API exposes cluster definitions, cluster locks, validator states, exits, deposits, fee
+  recipients, effectiveness, peer scores, Techne credentials, and network staking metrics.
 url: https://raw.githubusercontent.com/api-evangelist/obol/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - pantera-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: enriched-has-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://obol.org/obolnetwork.png
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Crypto
-apis: []
+- Ethereum
+- Staking
+- Distributed Validators
+- Blockchain Infrastructure
+- Web3
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: obol:obol-address-api
+  name: Obol Address API
+  description: The Address API from Obol — 7 operation(s) for address.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Address
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-address-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-cluster-definition-api
+  name: Obol Cluster Definition API
+  description: The Cluster Definition API from Obol — 4 operation(s) for cluster definition.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Cluster Definition
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-cluster-definition-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-cluster-effectiveness-api
+  name: Obol Cluster Effectiveness API
+  description: The Cluster Effectiveness API from Obol — 1 operation(s) for cluster effectiveness.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Cluster Effectiveness
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-cluster-effectiveness-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-cluster-lock-api
+  name: Obol Cluster Lock API
+  description: The Cluster Lock API from Obol — 22 operation(s) for cluster lock.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Cluster Lock
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-cluster-lock-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-deposit-data-api
+  name: Obol Deposit Data API
+  description: The Deposit Data API from Obol — 4 operation(s) for deposit data.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Deposit Data
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-deposit-data-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-dv-exit-api
+  name: Obol DV Exit API
+  description: The DV Exit API from Obol — 8 operation(s) for dv exit.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - DV Exit
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-dv-exit-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-dv-migrate-api
+  name: Obol DV Migrate API
+  description: The DV Migrate API from Obol — 1 operation(s) for dv migrate.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - DV Migrate
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-dv-migrate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-fee-recipient-api
+  name: Obol Fee Recipient API
+  description: The Fee Recipient API from Obol — 4 operation(s) for fee recipient.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Fee Recipient
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-fee-recipient-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-metrics-api
+  name: Obol Metrics API
+  description: The Metrics API from Obol — 1 operation(s) for metrics.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-owr-information-api
+  name: Obol OWR Information API
+  description: The OWR Information API from Obol — 1 operation(s) for owr information.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - OWR Information
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-owr-information-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-positions-api
+  name: Obol Positions API
+  description: The Positions API from Obol — 2 operation(s) for positions.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Positions
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-positions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-state-api
+  name: Obol State API
+  description: The State API from Obol — 1 operation(s) for state.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - State
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-state-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-system-api
+  name: Obol System API
+  description: System related endpoints.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-system-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-techne-credentials-api
+  name: Obol Techne Credentials API
+  description: The Techne Credentials API from Obol — 4 operation(s) for techne credentials.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Techne Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-techne-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-terms-and-conditions-api
+  name: Obol Terms And Conditions API
+  description: The Terms And Conditions API from Obol — 2 operation(s) for terms and conditions.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Terms And Conditions
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-terms-and-conditions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-test-api
+  name: Obol Test API
+  description: The Test API from Obol — 2 operation(s) for test.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - Test
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-test-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
+- aid: obol:obol-tvs-api
+  name: Obol tvs API
+  description: The tvs API from Obol — 2 operation(s) for tvs.
+  humanURL: https://docs.obol.org/api
+  baseURL: https://api.obol.tech
+  tags:
+  - tvs
+  properties:
+  - type: OpenAPI
+    url: openapi/obol-tvs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.obol.org/
+  - type: APIReference
+    url: https://docs.obol.org/api
+  - type: GettingStarted
+    url: https://docs.obol.org/next/run-a-dv/start
 common:
+- type: DeveloperPortal
+  url: https://docs.obol.org/
+- type: Documentation
+  url: https://docs.obol.org/
+- type: APIReference
+  url: https://docs.obol.org/api
+- type: GettingStarted
+  url: https://docs.obol.org/next/run-a-dv/start
+- type: Blog
+  url: https://blog.obol.org/
+- type: GitHubOrganization
+  url: https://github.com/ObolNetwork
+- type: Support
+  url: https://community.obol.org/
+- type: TermsOfService
+  url: https://obol.org/terms.pdf
+- type: PrivacyPolicy
+  url: https://obol.org/privacy-policy
+- type: StatusPage
+  url: https://status.obol.tech
+- type: Authentication
+  url: authentication/obol-authentication.yml
+- type: OpenAPI
+  url: openapi/obol-openapi-original.json
+- type: Overlay
+  url: overlays/obol-openapi-overlay.yaml
+- type: MCPServer
+  url: mcp/obol-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/obol-agentic-access.yml
+- type: Packages
+  url: packages/obol-packages.yml
+- type: SDKs
+  url: packages/obol-packages.yml
+- type: CLI
+  url: cli/obol-cli.yml
+- type: LLMsTxt
+  url: llms/obol-llms.txt
+- type: Conventions
+  url: conventions/obol-conventions.yml
+- type: ErrorCatalog
+  url: errors/obol-problem-types.yml
+- type: DataModel
+  url: data-model/obol-data-model.yml
+- type: Conformance
+  url: conformance/obol-conformance.yml
+- type: Lifecycle
+  url: lifecycle/obol-lifecycle.yml
+- type: ChangeLog
+  url: changelog/obol-changelog.yml
+- type: Sandbox
+  url: sandbox/obol-sandbox.yml
+- type: WellKnown
+  url: well-known/obol-well-known.yml
+- type: SecurityTxt
+  url: well-known/obol-security.txt
+- type: VulnerabilityDisclosure
+  url: security/obol-vulnerability-disclosure.yml
+- type: Security
+  url: https://docs.obol.org/adv/security/overview
+- type: DomainSecurity
+  url: security/obol-domain-security.yml
 - type: Website
-  url: https://obol.tech/
+  url: https://obol.org/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

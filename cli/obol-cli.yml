@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.obol.org/next/learn/charon/charon-cli-reference
+name: charon
+description: >-
+  Charon is the Go-based distributed validator middleware client. Its CLI creates and
+  runs Distributed Validator (DV) clusters, participates in distributed key generation,
+  and manages validator lifecycle operations.
+binary_package: packages/obol-packages.yml
+releases: https://github.com/ObolNetwork/charon/releases
+install:
+  - method: docker
+    command: docker run obolnetwork/charon:latest version
+  - method: go
+    command: go install github.com/obolnetwork/charon@latest
+commands:
+  - name: create
+    group: cluster-setup
+    description: Create artifacts for a distributed validator cluster.
+    subcommands: [cluster, dkg, enr]
+  - name: dkg
+    group: cluster-setup
+    description: Participate in a distributed key generation ceremony.
+  - name: combine
+    group: cluster-setup
+    description: Merge validator key shares back into standard validator keys.
+  - name: run
+    group: validator-operations
+    description: Start the long-running Charon middleware process to perform DV duties.
+  - name: exit
+    group: validator-operations
+    description: Pre-sign and manage validator exit messages.
+    subcommands: [sign, fetch, broadcast, delete, active-validator-list]
+  - name: deposit
+    group: validator-operations
+    description: Manage alternative deposit data for inactive validators.
+    subcommands: [sign, fetch]
+  - name: feerecipient
+    group: validator-operations
+    description: Manage the preferred fee recipient addresses for the cluster.
+    subcommands: [sign, fetch, list]
+  - name: enr
+    group: network
+    description: Print the Ethereum Node Record (ENR) identifying this client.
+  - name: relay
+    group: network
+    description: Start a libp2p circuit relay that charon clients can use.
+  - name: alpha
+    group: experimental
+    description: Early-access experimental features.
+    subcommands: [edit, test]
+  - name: completion
+    group: utility
+    description: Generate shell autocompletion scripts.
+  - name: version
+    group: utility
+    description: Display version information.

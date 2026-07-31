@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/obol-openapi-original.json + https://docs.obol.org
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: Provider publishes OpenAPI 3.0.0 at https://api.obol.tech/docs-json
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme; auth is http bearer (JWT).
+  - id: jwt-bearer
+    conforms: true
+    evidence: securitySchemes.bearer type http scheme bearer bearerFormat JWT
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error responses use application/json, not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: List endpoints expose page/limit/offset/sortBy/sortOrder query parameters.
+  - id: idempotency
+    conforms: false

@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.obol.org + https://github.com/ObolNetwork/charon/releases + https://status.obol.tech
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.obol.org/api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/Sunset-header policy documented for the API.
+sla:
+  url: null
+status_page: https://status.obol.tech
+health_endpoint: https://api.obol.tech/v1/_health
+charon_releases: https://github.com/ObolNetwork/charon/releases
+deprecated_operations: []

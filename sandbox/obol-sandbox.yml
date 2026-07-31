@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/ObolNetwork/obol-sdk README + https://docs.obol.org
+note: >-
+  Obol separates production from non-production via distinct API hosts (the SDK enforces
+  an allow-list of baseUrl values) and via Ethereum testnet support in the DV Launchpad
+  and Charon. No secret test credentials/cards are published (this is not a payments API).
+api_hosts:
+  production: https://api.obol.tech
+  non_prod:
+    - https://obol-api-nonprod-dev.dev.obol.tech
+    - https://obol-api-nonprod-qa.dev.obol.tech
+  enforcement: >-
+    The obol-sdk throws InvalidBaseUrlError for any baseUrl outside the allow-list above.
+testnets:
+  detail: >-
+    Distributed Validators can be created and run against public Ethereum testnets via the
+    DV Launchpad (https://launchpad.obol.org) and Charon before mainnet deployment.
+launchpad: https://launchpad.obol.org

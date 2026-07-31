@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: live /.well-known/ probes
+hosts:
+  - host: https://obol.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: obol-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://docs.obol.org
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+  - host: https://api.obol.tech
+    documents:
+      - path: /.well-known/security.txt
+        status: 200

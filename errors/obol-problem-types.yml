@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/obol-openapi-original.json
+format: json
+envelope: application/json error body (not RFC 9457 problem+json)
+note: Derived from OpenAPI 4xx/5xx responses across the Obol API.
+problems:
+- status: 400
+  title: Invalid payload data
+  example_operations:
+  - openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_postClusterDefinition_v1
+  - openapi/obol-openapi-original.json#LockController_getAveragePeerScores[0]
+  - openapi/obol-openapi-original.json#LockController_getAveragePeerScores[1]_v1
+- status: 401
+  title: 'Missing t&c signature
+
+
+    Authorization header is missing or incorrect'
+  example_operations:
+  - openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_postClusterDefinition_v1
+  - openapi/obol-openapi-original.json#ExitController_getClusterExit[0]
+  - openapi/obol-openapi-original.json#ExitController_getClusterExit[1]_v1
+- status: 403
+  title: Returned when `enr` or `sig` is missing from the body (guard rejects the
+    request before verification)
+  example_operations:
+  - openapi/obol-openapi-original.json#TestController_postTestResult_v1
+- status: 404
+  title: Cluster definition not found
+  example_operations:
+  - openapi/obol-openapi-original.json#DefinitionController_getClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+  - openapi/obol-openapi-original.json#LockController_getClusterLock[0]
+  - openapi/obol-openapi-original.json#LockController_getClusterLock[1]_v1
+- status: 409
+  title: Duplicate entry
+  example_operations:
+  - openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_postClusterDefinition_v1
+  - openapi/obol-openapi-original.json#ExitController_postPartialExit[0]
+  - openapi/obol-openapi-original.json#ExitController_postPartialExit[1]_v1
+- status: 500
+  title: An unknown error occurred
+  example_operations:
+  - openapi/obol-openapi-original.json#DefinitionController_getClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+  - openapi/obol-openapi-original.json#DefinitionController_getClusterDefinitionWithOperator[0]_v1
+  - openapi/obol-openapi-original.json#DefinitionController_getClusterDefinitionWithOperator[1]_v1
+- status: 503
+  title: The Health Check is not successful
+  example_operations:
+  - openapi/obol-openapi-original.json#HealthController_check_v1
+  - openapi/obol-openapi-original.json#LockController_postClusterLock[0]
+  - openapi/obol-openapi-original.json#LockController_postClusterLock[1]_v1
+  - openapi/obol-openapi-original.json#LockController_verifyClusterLock[0]
+- status: 504
+  title: Lock validation exceeded the time limit (typically very large locks).
+  example_operations:
+  - openapi/obol-openapi-original.json#LockController_postClusterLock[0]
+  - openapi/obol-openapi-original.json#LockController_postClusterLock[1]_v1
+  - openapi/obol-openapi-original.json#LockController_verifyClusterLock[0]
+  - openapi/obol-openapi-original.json#LockController_verifyClusterLock[1]_v1

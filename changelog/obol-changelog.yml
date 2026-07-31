@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/ObolNetwork/charon/releases
+note: >-
+  Obol versions its distributed-validator client, Charon, via dated GitHub releases
+  (semantic versioning). The API itself is served under a /v1/ path prefix.
+scheme: semver
+current_version: v1.10.3
+entries:
+  - version: v1.10.3
+    date: '2026-06-24'
+  - version: v1.10.2
+    date: '2026-06-10'
+  - version: v1.10.1
+    date: '2026-05-20'
+  - version: v1.9.5
+    date: '2026-05-20'
+  - version: v1.10.0
+    date: '2026-04-27'
+  - version: v1.9.4
+    date: '2026-04-22'

@@ -1,0 +1,217 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+note: Candidate tool list derived from Obol API operations; Obol publishes a Claude
+  Code skills plugin (ObolNetwork/skills) but no hosted MCP server was found.
+server:
+  name: obol
+  transport: http
+tools:
+- name: HealthController_check_v1
+  description: Check the API health
+  source_operation: openapi/obol-openapi-original.json#HealthController_check_v1
+- name: MetricsController_metrics
+  description: MetricsController_metrics
+  source_operation: openapi/obol-openapi-original.json#MetricsController_metrics
+- name: DefinitionController_getClusterDefinition_v1
+  description: Retrieve a Distributed Validator Cluster proposal
+  source_operation: openapi/obol-openapi-original.json#DefinitionController_getClusterDefinition_v1
+- name: DefinitionController_updateClusterDefinition_v1
+  description: Accept a proposed Distributed Validator Cluster
+  source_operation: openapi/obol-openapi-original.json#DefinitionController_updateClusterDefinition_v1
+- name: DefinitionController_getClusterDefinitionWithOperator[0]_v1
+  description: Retrieve a list of cluster definitions which the address belongs to.
+  source_operation: openapi/obol-openapi-original.json#DefinitionController_getClusterDefinitionWithOperator[0]_v1
+- name: DefinitionController_getClusterDefinitionWithOperator[1]_v1
+  description: Retrieve a list of cluster definitions which the address belongs to.
+  source_operation: openapi/obol-openapi-original.json#DefinitionController_getClusterDefinitionWithOperator[1]_v1
+- name: DefinitionController_postClusterDefinition_v1
+  description: Propose a new Distributed Validator Cluster
+  source_operation: openapi/obol-openapi-original.json#DefinitionController_postClusterDefinition_v1
+- name: LockController_getClusterLock[0]
+  description: Retrieve a Distributed Validator Cluster Lock Object
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLock[0]
+- name: LockController_getClusterLock[1]_v1
+  description: Retrieve a Distributed Validator Cluster Lock Object
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLock[1]_v1
+- name: LockController_searchClusterLocks[0]
+  description: Retrieve a list of Distributed Validator Cluster Lock Objects
+  source_operation: openapi/obol-openapi-original.json#LockController_searchClusterLocks[0]
+- name: LockController_searchClusterLocks[1]_v1
+  description: Retrieve a list of Distributed Validator Cluster Lock Objects
+  source_operation: openapi/obol-openapi-original.json#LockController_searchClusterLocks[1]_v1
+- name: LockController_getLockByConfigHash[0]
+  description: Retrieve a Distributed Validator Cluster Lock Object
+  source_operation: openapi/obol-openapi-original.json#LockController_getLockByConfigHash[0]
+- name: LockController_getLockByConfigHash[1]_v1
+  description: Retrieve a Distributed Validator Cluster Lock Object
+  source_operation: openapi/obol-openapi-original.json#LockController_getLockByConfigHash[1]_v1
+- name: LockController_getAveragePeerScores[0]
+  description: Get average peer scores for operators in a cluster
+  source_operation: openapi/obol-openapi-original.json#LockController_getAveragePeerScores[0]
+- name: LockController_getAveragePeerScores[1]_v1
+  description: Get average peer scores for operators in a cluster
+  source_operation: openapi/obol-openapi-original.json#LockController_getAveragePeerScores[1]_v1
+- name: LockController_getClusterLocksByOperator[0]
+  description: Retrieve a list of Distributed Validator Clusters for which this address
+    is an operator
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[0]
+- name: LockController_getClusterLocksByOperator[1]
+  description: Retrieve a list of Distributed Validator Clusters for which this address
+    is an operator
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[1]
+- name: LockController_getClusterLocksByOperator[2]_v1
+  description: Retrieve a list of Distributed Validator Clusters for which this address
+    is an operator
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[2]_v1
+- name: LockController_getClusterLocksByOperator[3]_v1
+  description: Retrieve a list of Distributed Validator Clusters for which this address
+    is an operator
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[3]_v1
+- name: LockController_getClusterLocksByNetwork[0]
+  description: Retrieve a list of Distributed Validator Clusters for a given network
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByNetwork[0]
+- name: LockController_getClusterLocksByNetwork[1]_v1
+  description: Retrieve a list of Distributed Validator Clusters for a given network
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByNetwork[1]_v1
+- name: LockController_getClusterLockNetworkSummary[0]
+  description: Retrieve a list of Distributed Validator Clusters for a given network
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLockNetworkSummary[0]
+- name: LockController_getClusterLockNetworkSummary[1]_v1
+  description: Retrieve a list of Distributed Validator Clusters for a given network
+  source_operation: openapi/obol-openapi-original.json#LockController_getClusterLockNetworkSummary[1]_v1
+- name: LockController_postClusterLock[0]
+  description: Push Distributed Validator Cluster Lock Data
+  source_operation: openapi/obol-openapi-original.json#LockController_postClusterLock[0]
+- name: LockController_postClusterLock[1]_v1
+  description: Push Distributed Validator Cluster Lock Data
+  source_operation: openapi/obol-openapi-original.json#LockController_postClusterLock[1]_v1
+- name: LockController_verifyClusterLock[0]
+  description: Verify Distributed Validator Cluster Lock Data
+  source_operation: openapi/obol-openapi-original.json#LockController_verifyClusterLock[0]
+- name: LockController_verifyClusterLock[1]_v1
+  description: Verify Distributed Validator Cluster Lock Data
+  source_operation: openapi/obol-openapi-original.json#LockController_verifyClusterLock[1]_v1
+- name: StateController_getDistributedValidatorStatesByLockHash_v1
+  description: Retrieve the Validator states for a cluster
+  source_operation: openapi/obol-openapi-original.json#StateController_getDistributedValidatorStatesByLockHash_v1
+- name: ExitController_getClusterExitStatusSummary[0]
+  description: Retrieve validators exit status summary
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExitStatusSummary[0]
+- name: ExitController_getClusterExitStatusSummary[1]_v1
+  description: Retrieve validators exit status summary
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExitStatusSummary[1]_v1
+- name: ExitController_getClusterExitStatus[0]
+  description: Retrieve validators exit status
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExitStatus[0]
+- name: ExitController_getClusterExitStatus[1]_v1
+  description: Retrieve validators exit status
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExitStatus[1]_v1
+- name: ExitController_getClusterExit[0]
+  description: Retrieve Distributed Validator threshold aggregated signed exit msg
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExit[0]
+- name: ExitController_getClusterExit[1]_v1
+  description: Retrieve Distributed Validator threshold aggregated signed exit msg
+  source_operation: openapi/obol-openapi-original.json#ExitController_getClusterExit[1]_v1
+- name: ExitController_postPartialExit[0]
+  description: Push Distributed Validator partial signed exit message
+  source_operation: openapi/obol-openapi-original.json#ExitController_postPartialExit[0]
+- name: ExitController_postPartialExit[1]_v1
+  description: Push Distributed Validator partial signed exit message
+  source_operation: openapi/obol-openapi-original.json#ExitController_postPartialExit[1]_v1
+- name: EffectivenessController_getClusterLock_v1
+  description: Retrieve a Distributed Validator Cluster Effectiveness Object
+  source_operation: openapi/obol-openapi-original.json#EffectivenessController_getClusterLock_v1
+- name: TermsAndConditionsController_signTermsAndConditions_v1
+  description: Saves user's approval latest terms and conditions
+  source_operation: openapi/obol-openapi-original.json#TermsAndConditionsController_signTermsAndConditions_v1
+- name: TermsAndConditionsController_getTermsAndConditionsSigned_v1
+  description: Verify Signature on Terms and Conditions
+  source_operation: openapi/obol-openapi-original.json#TermsAndConditionsController_getTermsAndConditionsSigned_v1
+- name: TechneController_getBaseCred_v1
+  description: Retrieve Base techne credential metadata
+  source_operation: openapi/obol-openapi-original.json#TechneController_getBaseCred_v1
+- name: TechneController_getBronzeCred_v1
+  description: Retrieve Bronze techne credential metadata
+  source_operation: openapi/obol-openapi-original.json#TechneController_getBronzeCred_v1
+- name: TechneController_getSilverCred_v1
+  description: Retrieve Silver techne credential metadata
+  source_operation: openapi/obol-openapi-original.json#TechneController_getSilverCred_v1
+- name: TechneController_getGoldCred_v1
+  description: Retrieve Gold techne credential metadata
+  source_operation: openapi/obol-openapi-original.json#TechneController_getGoldCred_v1
+- name: AddressController_getAddressTechneCredentials_v1
+  description: Retrieve obol techne credentials of an address
+  source_operation: openapi/obol-openapi-original.json#AddressController_getAddressTechneCredentials_v1
+- name: AddressController_getAddressBadgess_v1
+  description: Retrieve badges for an address
+  source_operation: openapi/obol-openapi-original.json#AddressController_getAddressBadgess_v1
+- name: AddressController_getAddressIncentives_v1
+  description: Retrieve obol incentives of an address
+  source_operation: openapi/obol-openapi-original.json#AddressController_getAddressIncentives_v1
+- name: AddressController_getHistoricalAddressContributions_v1
+  description: Retrieve the historical incentives of an address
+  source_operation: openapi/obol-openapi-original.json#AddressController_getHistoricalAddressContributions_v1
+- name: AddressController_getOperatorsByNetwork_v1
+  description: Retrieve operators on a given network
+  source_operation: openapi/obol-openapi-original.json#AddressController_getOperatorsByNetwork_v1
+- name: AddressController_searchOperators_v1
+  description: Retrieve a list operators on a given network
+  source_operation: openapi/obol-openapi-original.json#AddressController_searchOperators_v1
+- name: AddressController_getMigrateableValidators_v1
+  description: Retrieve migrateable validators for withdrawal address
+  source_operation: openapi/obol-openapi-original.json#AddressController_getMigrateableValidators_v1
+- name: OWRController_get_v1
+  description: Retrieve OWR tranch information
+  source_operation: openapi/obol-openapi-original.json#OWRController_get_v1
+- name: MigrateController_getValidatorsMigrateStatus_v1
+  description: Retrieve validators migrate status
+  source_operation: openapi/obol-openapi-original.json#MigrateController_getValidatorsMigrateStatus_v1
+- name: TestController_postTestResult_v1
+  description: Store test result data
+  source_operation: openapi/obol-openapi-original.json#TestController_postTestResult_v1
+- name: TestController_getTestResultByEnr_v1
+  description: Get test results by ENR
+  source_operation: openapi/obol-openapi-original.json#TestController_getTestResultByEnr_v1
+- name: DepositController_getDeposits[0]
+  description: Retrieve partial deposit data for a validator
+  source_operation: openapi/obol-openapi-original.json#DepositController_getDeposits[0]
+- name: DepositController_getDeposits[1]_v1
+  description: Retrieve partial deposit data for a validator
+  source_operation: openapi/obol-openapi-original.json#DepositController_getDeposits[1]_v1
+- name: DepositController_submitPartialDeposits[0]
+  description: Push partial deposit data
+  source_operation: openapi/obol-openapi-original.json#DepositController_submitPartialDeposits[0]
+- name: DepositController_submitPartialDeposits[1]_v1
+  description: Push partial deposit data
+  source_operation: openapi/obol-openapi-original.json#DepositController_submitPartialDeposits[1]_v1
+- name: FeeRecipientController_postPartialFeeRecipients[0]
+  description: Submit partial fee recipient registrations
+  source_operation: openapi/obol-openapi-original.json#FeeRecipientController_postPartialFeeRecipients[0]
+- name: FeeRecipientController_postPartialFeeRecipients[1]_v1
+  description: Submit partial fee recipient registrations
+  source_operation: openapi/obol-openapi-original.json#FeeRecipientController_postPartialFeeRecipients[1]_v1
+- name: FeeRecipientController_getPartialFeeRecipients[0]
+  description: Fetch partial fee recipient registrations
+  source_operation: openapi/obol-openapi-original.json#FeeRecipientController_getPartialFeeRecipients[0]
+- name: FeeRecipientController_getPartialFeeRecipients[1]_v1
+  description: Fetch partial fee recipient registrations
+  source_operation: openapi/obol-openapi-original.json#FeeRecipientController_getPartialFeeRecipients[1]_v1
+- name: TVSController_getTVS[0]
+  description: Get Total Value Staked Of Obol for a network
+  source_operation: openapi/obol-openapi-original.json#TVSController_getTVS[0]
+- name: TVSController_getTVS[1]_v1
+  description: Get Total Value Staked Of Obol for a network
+  source_operation: openapi/obol-openapi-original.json#TVSController_getTVS[1]_v1
+- name: PositionsController_getPositions[0]
+  description: Get positions for an address
+  source_operation: openapi/obol-openapi-original.json#PositionsController_getPositions[0]
+- name: PositionsController_getPositions[1]_v1
+  description: Get positions for an address
+  source_operation: openapi/obol-openapi-original.json#PositionsController_getPositions[1]_v1
+- name: EthAprController_getEthApr[0]
+  description: Get network ETH APR
+  source_operation: openapi/obol-openapi-original.json#EthAprController_getEthApr[0]
+- name: EthAprController_getEthApr[1]_v1
+  description: Get network ETH APR
+  source_operation: openapi/obol-openapi-original.json#EthAprController_getEthApr[1]_v1

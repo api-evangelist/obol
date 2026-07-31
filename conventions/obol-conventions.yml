@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/obol-openapi-original.json + https://docs.obol.org/api
+note: >-
+  Cross-cutting request/response semantics for the Obol API, derived from the OpenAPI
+  and the developer docs. No idempotency-key contract is documented, so no Idempotency
+  pointer is emitted.
+authentication:
+  style: http-bearer
+  scheme: Bearer JWT
+  header: Authorization
+  detail: >-
+    Most read endpoints are public; write endpoints and Techne/OWR/exit-threshold
+    endpoints require a Bearer JWT (see authentication/obol-authentication.yml).
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: >-
+    Endpoints are exposed both unversioned and under a /v1/ prefix; the SDK calls the
+    /v1/ paths against baseUrl https://api.obol.tech.
+pagination:
+  style: page-offset
+  params: [page, limit, offset, sortBy, sortOrder]
+  detail: List endpoints (e.g. cluster-lock searches) accept page/limit/offset and sortBy/sortOrder query parameters.
+idempotency:
+  supported: false
+  detail: No Idempotency-Key header or documented idempotency contract was found in the OpenAPI or docs.
+error_envelope:
+  media_type: application/json
+  detail: Errors return an application/json body (not RFC 9457 problem+json). See errors/obol-problem-types.yml.
+rate_limiting:
+  documented: false
+cross_links:
+  authentication: authentication/obol-authentication.yml
+  errors: errors/obol-problem-types.yml
+  lifecycle: lifecycle/obol-lifecycle.yml
+  data_model: data-model/obol-data-model.yml
