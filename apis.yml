@@ -342,7 +342,7 @@ common:
 - type: Authentication
   url: authentication/obol-authentication.yml
 - type: OpenAPI
-  url: openapi/obol-openapi-original.json
+  url: openapi/_original/obol-openapi-original.json
 - type: Overlay
   url: overlays/obol-openapi-overlay.yaml
 - type: MCPServer
