@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "e053f19b-ecb4-4aa7-946b-c2034e53b0a1",
+      "name": "Terms And Conditions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18ae9ebe-cc7b-4673-8f2b-dcac2e5425fe",
+          "name": "Saves user's approval latest terms and conditions",
+          "request": {
+            "name": "Saves user's approval latest terms and conditions",
+            "description": {
+              "content": "Saves user's signature to latest [Obol's terms and conditions](https://obol.tech/terms.pdf) hash and it's version",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "termsAndConditions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<string>\",\n  \"version\": \"<number>\",\n  \"terms_and_conditions_hash\": \"<string>\",\n  \"fork_version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d3c3f8f-f4cc-4a77-a824-c9b71db07f8b",
+              "name": "success message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 terms and conditions hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"v1.0.0\",\n  \"version\": 1,\n  \"terms_and_conditions_hash\": \"\",\n  \"fork_version\": \"0x00000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02f7e5b5-1cf0-409e-82bf-9bcf8029fd5b",
+              "name": "Invalid terms and conditions hash",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 terms and conditions hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"v1.0.0\",\n  \"version\": 1,\n  \"terms_and_conditions_hash\": \"\",\n  \"fork_version\": \"0x00000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d67baa26-ba07-4fc3-a768-65c134c3beea",
+              "name": "Signature verification failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 terms and conditions hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"v1.0.0\",\n  \"version\": 1,\n  \"terms_and_conditions_hash\": \"\",\n  \"fork_version\": \"0x00000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a1ff06e-72eb-4d57-adee-e1cee9c5a481",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 terms and conditions hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"v1.0.0\",\n  \"version\": 1,\n  \"terms_and_conditions_hash\": \"\",\n  \"fork_version\": \"0x00000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5661bdfc-ea18-428b-812f-5aacf8bcc42c",
+          "name": "Verify Signature on Terms and Conditions",
+          "request": {
+            "name": "Verify Signature on Terms and Conditions",
+            "description": {
+              "content": "This endpoint is used to check whether the Terms and Conditions has been signed by the user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "termsAndConditions",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to check the Terms and Conditions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97018f09-08bb-4e38-a7af-cbb5fd2ddbf1",
+              "name": "This value returns true if the Terms and Conditions have been signed; otherwise, it returns false.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the Terms and Conditions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isTermsAndConditionsSigned\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0bc00db-3519-4361-abce-f5d79a84436c",
+              "name": "The Address provided is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the Terms and Conditions."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "659f756a-28bc-43bd-96b6-9f49e735a1a9",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "termsAndConditions",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the Terms and Conditions."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7b79eeaa-79f6-48a8-938e-175a2187f231",
+    "name": "Obol Address Terms And Conditions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

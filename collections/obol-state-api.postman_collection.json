@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "008caf9b-45e1-4eca-9d6d-9ad84cd85c91",
+      "name": "State",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d240a9c7-a83d-45c8-a390-03ca3bb31326",
+          "name": "Retrieve the Validator states for a cluster",
+          "request": {
+            "name": "Retrieve the Validator states for a cluster",
+            "description": {
+              "content": "This endpoint is used to retrieve the states of all validators in a DV Cluster",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "state",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac089550-aaf2-4c7a-8616-7e29ca689be4",
+              "name": "A map of pubkeys to DVState",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "state",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"index\": \"12345\",\n  \"status\": \"active_ongoing\",\n  \"balance\": \"32\",\n  \"effective_balance\": \"32\",\n  \"withdrawal_credentials\": \"0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec\",\n  \"pending_partial_withdrawals\": \"3\",\n  \"pending_partial_deposits\": \"3\",\n  \"is_not_within_committee\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2787591c-bdf5-48df-adfb-0ccad935583e",
+              "name": "Bad request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "state",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c0cb2a6-7ff4-468f-9cf6-39b54713a69f",
+              "name": "Lock Hash not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "state",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24c52c79-5099-4cab-a5f4-9865b126659c",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "state",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47776d73-06df-465e-b067-cda03e18c458",
+    "name": "Obol Address State API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

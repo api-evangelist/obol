@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address tvs API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tvs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Total Value Staked Of Obol for a network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/tvs/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "Network name (e.g., mainnet, hoodi)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (only applies when details=true)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (only applies when details=true)"
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns detailed validator-level data"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 timestamp or date (YYYY-MM-DD). If date-only format is used, returns data for that day regardless of exact time. If not provided, returns the latest available data."
+              }
+            ]
+          },
+          "docs": "Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day."
+        },
+        {
+          "info": {
+            "name": "Get Total Value Staked Of Obol for a network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/tvs/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "Network name (e.g., mainnet, hoodi)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (only applies when details=true)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (only applies when details=true)"
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns detailed validator-level data"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query",
+                "description": "ISO 8601 timestamp or date (YYYY-MM-DD). If date-only format is used, returns data for that day regardless of exact time. If not provided, returns the latest available data."
+              }
+            ]
+          },
+          "docs": "Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

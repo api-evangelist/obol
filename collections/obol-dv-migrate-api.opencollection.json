@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address DV Migrate API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DV Migrate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve validators migrate status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/migrate/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of validators to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "withdrawalAddress",
+                "value": "",
+                "type": "query",
+                "description": "Withdrawal address of target validators."
+              },
+              {
+                "name": "targetPubKey",
+                "value": "",
+                "type": "query",
+                "description": "The `pubkey` of target validator."
+              }
+            ]
+          },
+          "docs": "It shows data of validators status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

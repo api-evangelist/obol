@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Cluster Effectiveness API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster Effectiveness",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster Effectiveness Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/effectiveness/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a cluster lock."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve the effectiveness of a cluster by pubkey"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

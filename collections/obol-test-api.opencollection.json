@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Test API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Test",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Store test result data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accepts the JSON body produced by Charon when running `charon test … --publish`: **`enr`**, **`sig`**, and **`data`**. Authentication is **not** a Bearer token: `TestEnrGuard` verifies that `sig` is a valid secp256k1 ECDSA signature (base64, as emitted by Go `json.Marshal` on the signature bytes) over the SSZ hash of `JSON.stringify(data)` for the public key embedded in `enr`. Only `Content-Type: application/json` is required."
+        },
+        {
+          "info": {
+            "name": "Get test results by ENR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/test/enr/:enr",
+            "params": [
+              {
+                "name": "enr",
+                "value": "",
+                "type": "path",
+                "description": "ENR to search for"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves test results for a specific ENR."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

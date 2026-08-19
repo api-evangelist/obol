@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Cluster Definition API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster Definition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster proposal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/definition/:configHash",
+            "params": [
+              {
+                "name": "configHash",
+                "value": "",
+                "type": "path",
+                "description": "The `config_hash` calculated for a cluster definition."
+              }
+            ]
+          },
+          "docs": "This endpoint allows a charon client or launchpad interface to retrieve the terms of a proposed DKG. Once all operators listed in the DKG have submitted signed approvals to the terms, this object will be ready for a cluster of operators to use as part of a DKG ceremony. If the objects in the `operators` array are not fully populated, these operators need to use the [PUT request](#/Distributed%20Validators/DefinitionController_updateClusterDefinition) to upload their charon client's public key an"
+        },
+        {
+          "info": {
+            "name": "Accept a proposed Distributed Validator Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.obol.tech/v1/definition/:configHash",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configHash",
+                "value": "",
+                "type": "path",
+                "description": "The `config_hash` calculated for a cluster definition."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint is used by the operators present in the `operators` array of a cluster definition. The operator must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). These operators must submit a public key (in ENR form) to serve as their identity during the DKG, along with EIP712 signatures indicating their acceptance of the terms of this DKG."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of cluster definitions which the address belongs to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/definition/operator",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of cluster definitions which the address belongs to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/definition/operator/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page."
+        },
+        {
+          "info": {
+            "name": "Propose a new Distributed Validator Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/definition",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows the caller to propose a distributed key generation ceremony.The caller must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). The caller must specify the configuration of a Distributed Validator Cluster; such as the participating operators and the validator exit details. Operators invited to participate in this cluster must submit a public key (in [ENR](https://docs.obol.tech/docs/v0.12.0/int/faq/errors#enrs-keys) form) to serve "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,246 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Address",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve obol techne credentials of an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/techne/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to check the techne credentials for."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve obol techne credentials an address owns"
+        },
+        {
+          "info": {
+            "name": "Retrieve badges for an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/badges/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to check the techne credentials for."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve the badges an address owns"
+        },
+        {
+          "info": {
+            "name": "Retrieve obol incentives of an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/incentives/:network/:address",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve operators on"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to check the incentives for."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve incentives an address owns"
+        },
+        {
+          "info": {
+            "name": "Retrieve the historical incentives of an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/incentives/historical/:network/:address",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve operators on"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to check the incentives for."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve the inventives given to Obol Public Goods by an address."
+        },
+        {
+          "info": {
+            "name": "Retrieve operators on a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/network/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve operators on"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of operators to return."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "numerical field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "order of sorting the field"
+              },
+              {
+                "name": "techne",
+                "value": "",
+                "type": "query",
+                "description": "techne to filter by"
+              },
+              {
+                "name": "badges",
+                "value": "",
+                "type": "query",
+                "description": "badges to filter by"
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "The flag to populate operators information."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of operators for a given network."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list operators on a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/search/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve operators on"
+              },
+              {
+                "name": "partialAddress",
+                "value": "",
+                "type": "query",
+                "description": "A substring of the `address` of Operator."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of operators to return."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to search for operators that match a substring of their `address`."
+        },
+        {
+          "info": {
+            "name": "Retrieve migrateable validators for withdrawal address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/address/migrateable-validators/:network/:withdrawalAddress",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve active validators on"
+              },
+              {
+                "name": "withdrawalAddress",
+                "value": "",
+                "type": "path",
+                "description": "Withdrawal address of source validators."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of validators to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              }
+            ]
+          },
+          "docs": "This endpoint is used fetch eligible validators for migration ."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

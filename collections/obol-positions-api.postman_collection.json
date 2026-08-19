@@ -1,0 +1,502 @@
+{
+  "item": [
+    {
+      "id": "84a2c7cc-22bd-4354-8561-280434404c34",
+      "name": "Positions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "065067e7-32e5-4087-b02d-839a505e2509",
+          "name": "Get positions for an address",
+          "request": {
+            "name": "Get positions for an address",
+            "description": {
+              "content": "Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "positions",
+                ":network",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to look up positions for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e32e055c-dfdc-4f55-8dc3-a7307c1585cf",
+              "name": "Positions found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"positions\": [\n    {\n      \"lock_hash\": \"string\",\n      \"cluster_name\": \"string\",\n      \"num_validators_total\": 5921.753692904888,\n      \"validators\": [\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"splitter\",\n          \"fee_recipient_type\": \"splitter\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"owr\",\n          \"fee_recipient_type\": \"splitter\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"total_balance_eth\": 6616.304963910021,\n      \"avg_effectiveness\": 7940.974897453447,\n      \"cluster_apr\": 6262.865134932477\n    },\n    {\n      \"lock_hash\": \"string\",\n      \"cluster_name\": \"string\",\n      \"num_validators_total\": 1646.8515275452323,\n      \"validators\": [\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"ovm\",\n          \"fee_recipient_type\": \"eoa\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"splitter\",\n          \"fee_recipient_type\": \"splitter\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"total_balance_eth\": 9286.70656849437,\n      \"avg_effectiveness\": 4829.300327054437,\n      \"cluster_apr\": 3240.5498859113222\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdb43d72-ad4d-41e1-951f-0dbec9becfd6",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e55a0d6-44d4-4b85-b2db-8595ca97ed7d",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bb58ca1-da9c-4376-8a4b-9942f7bd88e9",
+          "name": "Get positions for an address",
+          "request": {
+            "name": "Get positions for an address",
+            "description": {
+              "content": "Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "positions",
+                ":network",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to look up positions for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "508db29c-b5a8-4442-940d-6bd7c5c12657",
+              "name": "Positions found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"positions\": [\n    {\n      \"lock_hash\": \"string\",\n      \"cluster_name\": \"string\",\n      \"num_validators_total\": 4667.561236541361,\n      \"validators\": [\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"owr\",\n          \"fee_recipient_type\": \"ovm\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"eoa\",\n          \"fee_recipient_type\": \"eoa\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"total_balance_eth\": 5600.55440653681,\n      \"avg_effectiveness\": 3839.400942152682,\n      \"cluster_apr\": 2531.299559427365\n    },\n    {\n      \"lock_hash\": \"string\",\n      \"cluster_name\": \"string\",\n      \"num_validators_total\": 6286.586173182477,\n      \"validators\": [\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"owr\",\n          \"fee_recipient_type\": \"ovm\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"pubkey\": \"string\",\n          \"withdrawal_address\": \"string\",\n          \"fee_recipient_address\": \"string\",\n          \"withdrawal_type\": \"splitter\",\n          \"fee_recipient_type\": \"eoa\",\n          \"withdrawal_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"fee_recipient_resolved\": {\n            \"principal_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reward_recipient\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"split_recipients\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"total_balance_eth\": 2612.190884250516,\n      \"avg_effectiveness\": 5431.1494380107,\n      \"cluster_apr\": 5880.539908783442\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfba9f03-2119-4b84-a4f7-adad3a3d47ba",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17c3b036-b63c-49c2-a0f9-bd22877720a2",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "positions",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (mainnet, hoodi, etc.)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to look up positions for"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"additionalAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b74ef3dd-b8f7-4c0c-98ea-2b644b53d047",
+    "name": "Obol Address Positions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

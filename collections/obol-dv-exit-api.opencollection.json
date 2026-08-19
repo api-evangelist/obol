@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address DV Exit API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DV Exit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve validators exit status summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/exp/exit/status/summary/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              }
+            ]
+          },
+          "docs": "It shows data of operators who have signed and the count of validators ready to exit"
+        },
+        {
+          "info": {
+            "name": "Retrieve validators exit status summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/exp/exit/status/summary/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              }
+            ]
+          },
+          "docs": "It shows data of operators who have signed and the count of validators ready to exit"
+        },
+        {
+          "info": {
+            "name": "Retrieve validators exit status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/exp/exit/status/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lockHash."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "operatorAddress",
+                "value": "",
+                "type": "query",
+                "description": "The operatorAddress."
+              },
+              {
+                "name": "validatorPubkey",
+                "value": "",
+                "type": "query",
+                "description": "The `pubkey` in a cluster lock."
+              }
+            ]
+          },
+          "docs": "It shows data of operators who have signed and who have not"
+        },
+        {
+          "info": {
+            "name": "Retrieve validators exit status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/exp/exit/status/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lockHash."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "operatorAddress",
+                "value": "",
+                "type": "query",
+                "description": "The operatorAddress."
+              },
+              {
+                "name": "validatorPubkey",
+                "value": "",
+                "type": "query",
+                "description": "The `pubkey` in a cluster lock."
+              }
+            ]
+          },
+          "docs": "It shows data of operators who have signed and who have not"
+        },
+        {
+          "info": {
+            "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/exp/exit/:lockHash/:shareIdx/:validatorPubkey",
+            "params": [
+              {
+                "name": "validatorPubkey",
+                "value": "",
+                "type": "path",
+                "description": "The `distributed_public_key` in a cluster lock."
+              },
+              {
+                "name": "shareIdx",
+                "value": "",
+                "type": "path",
+                "description": "Represents the cluster operatorIndex+1."
+              },
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lockHash."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint is used to retrieve validator exit message"
+        },
+        {
+          "info": {
+            "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/exp/exit/:lockHash/:shareIdx/:validatorPubkey",
+            "params": [
+              {
+                "name": "validatorPubkey",
+                "value": "",
+                "type": "path",
+                "description": "The `distributed_public_key` in a cluster lock."
+              },
+              {
+                "name": "shareIdx",
+                "value": "",
+                "type": "path",
+                "description": "Represents the cluster operatorIndex+1."
+              },
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lockHash."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint is used to retrieve validator exit message"
+        },
+        {
+          "info": {
+            "name": "Push Distributed Validator partial signed exit message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/exp/partial_exits/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lockHash` of the cluster which the validator belongs to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves partial signed exit messages."
+        },
+        {
+          "info": {
+            "name": "Push Distributed Validator partial signed exit message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/exp/partial_exits/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lockHash` of the cluster which the validator belongs to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves partial signed exit messages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

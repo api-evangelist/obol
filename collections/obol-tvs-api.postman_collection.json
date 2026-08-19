@@ -1,0 +1,583 @@
+{
+  "item": [
+    {
+      "id": "9ad2ba91-bed1-4b1a-b1bc-1310d66fa8e3",
+      "name": "tvs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f56c4b13-d06d-444c-abd4-d3ea8f15967b",
+          "name": "Get Total Value Staked Of Obol for a network",
+          "request": {
+            "name": "Get Total Value Staked Of Obol for a network",
+            "description": {
+              "content": "Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tvs",
+                ":network"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of results per page (only applies when details=true)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (only applies when details=true)"
+                },
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "false",
+                  "description": "If true, returns detailed validator-level data"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70f9bd61-16f7-42a2-a163-c5f5804ace0e",
+              "name": "TVS data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_balance_eth\": 12346,\n  \"total_balance_usd\": 45678901,\n  \"timestamp\": \"2025-10-02T00:00:00.000Z\",\n  \"network\": \"mainnet\",\n  \"total_unclaimed_balance_eth_denominated\": 67.45,\n  \"total_claimed_balance_eth_denominated\": 71.23,\n  \"total_eth_transferred\": 4.56,\n  \"total_revenue\": 142.89,\n  \"total_fees_eth_denominated\": 504.12\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fda8517-be68-4bfc-84f2-8713838ba00c",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b0ea885-06d0-4f86-9a04-9efee35bb304",
+              "name": "No data found for the specified network/timestamp",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75d1250b-7072-4362-b534-21e3fcf2fc96",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2c46dbf-6fe0-4f33-8952-c09c8fddf448",
+          "name": "Get Total Value Staked Of Obol for a network",
+          "request": {
+            "name": "Get Total Value Staked Of Obol for a network",
+            "description": {
+              "content": "Returns either summary (total balance) or detailed (validator-level) TVS data for a specific timestamp. All returned data (balances, counts, totals) corresponds to the timestamp shown in the response. Each network has one data snapshot per day.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "tvs",
+                ":network"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of results per page (only applies when details=true)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page number (only applies when details=true)"
+                },
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "false",
+                  "description": "If true, returns detailed validator-level data"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "feeb03fe-865d-493c-8acf-623822609fda",
+              "name": "TVS data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_balance_eth\": 12346,\n  \"total_balance_usd\": 45678901,\n  \"timestamp\": \"2025-10-02T00:00:00.000Z\",\n  \"network\": \"mainnet\",\n  \"total_unclaimed_balance_eth_denominated\": 67.45,\n  \"total_claimed_balance_eth_denominated\": 71.23,\n  \"total_eth_transferred\": 4.56,\n  \"total_revenue\": 142.89,\n  \"total_fees_eth_denominated\": 504.12\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1db665ce-0764-4838-a652-387fb3a88228",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cd167d7-e599-4ebb-b7b3-2e1010c764f6",
+              "name": "No data found for the specified network/timestamp",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f51d3dc8-a399-4d78-a998-11276d0236ba",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tvs",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) Network name (e.g., mainnet, hoodi)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "74004c96-b9e0-49e4-93b4-09ae9f9c13d8",
+    "name": "Obol Address tvs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

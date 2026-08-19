@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Deposit Data API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deposit Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve partial deposit data for a validator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/deposit_data/:lockHash/:pubkey",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash"
+              },
+              {
+                "name": "pubkey",
+                "value": "",
+                "type": "path",
+                "description": "The validator public key (distributed_public_key)"
+              }
+            ]
+          },
+          "docs": "This endpoint returns all partial deposit data grouped by amount for a specific validator"
+        },
+        {
+          "info": {
+            "name": "Retrieve partial deposit data for a validator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/deposit_data/:lockHash/:pubkey",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash"
+              },
+              {
+                "name": "pubkey",
+                "value": "",
+                "type": "path",
+                "description": "The validator public key (distributed_public_key)"
+              }
+            ]
+          },
+          "docs": "This endpoint returns all partial deposit data grouped by amount for a specific validator"
+        },
+        {
+          "info": {
+            "name": "Push partial deposit data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/deposit_data/partial_deposits/:lockHash/:share_index",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The lock hash of the cluster"
+              },
+              {
+                "name": "share_index",
+                "value": "",
+                "type": "path",
+                "description": "The share index (operator index + 1)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves partial deposit data signed by an operator"
+        },
+        {
+          "info": {
+            "name": "Push partial deposit data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/deposit_data/partial_deposits/:lockHash/:share_index",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The lock hash of the cluster"
+              },
+              {
+                "name": "share_index",
+                "value": "",
+                "type": "path",
+                "description": "The share index (operator index + 1)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves partial deposit data signed by an operator"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

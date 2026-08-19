@@ -1,0 +1,210 @@
+{
+  "item": [
+    {
+      "id": "6430f1ae-b39e-41e6-8df3-55788c5439df",
+      "name": "OWR Information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c253c2e-97c0-4d82-8084-b67e2f78f9ed",
+          "name": "Retrieve OWR tranch information",
+          "request": {
+            "name": "Retrieve OWR tranch information",
+            "description": {
+              "content": "This endpoint is used to retrieve information on the tranches of an OWR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "owr",
+                ":network",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network of the OWR."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address of the OWR."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db83d8eb-ea0e-41ae-8950-01e92282dee9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "owr",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network of the OWR."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address of the OWR."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reward_recipient\": \"0xA\",\n  \"principal_recipient\": \"0xA\",\n  \"threshold\": \"32000000000000000000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf61abeb-a00d-43e4-a6fc-bdc5881ccc74",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "owr",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network of the OWR."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address of the OWR."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d32c82e2-14ac-49c0-9c60-e47b33143351",
+    "name": "Obol Address OWR Information API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

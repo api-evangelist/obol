@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Positions API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Positions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get positions for an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/positions/:network/:address",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "Network name (mainnet, hoodi, etc.)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to look up positions for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters."
+        },
+        {
+          "info": {
+            "name": "Get positions for an address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/positions/:network/:address",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "Network name (mainnet, hoodi, etc.)"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to look up positions for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns all DV clusters where the address (or any additional address) appears as withdrawal_address or fee_recipient. Also checks Lido protocol_fee_splitters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

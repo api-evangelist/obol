@@ -1,0 +1,351 @@
+{
+  "item": [
+    {
+      "id": "21a54200-061a-48f1-b25a-d96ee7c9b8bd",
+      "name": "System",
+      "description": {
+        "content": "System related endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07ac4bcf-67be-4089-9b93-33d86e00bcb5",
+          "name": "Redirect to the API docs",
+          "request": {
+            "name": "Redirect to the API docs",
+            "description": {
+              "content": "Hitting the root of the domain redirects to /docs and a swagger deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef34ab67-a772-4946-8f5f-75c71eebb5a6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f10bf751-3bb9-4dad-812d-013ba5bcdf02",
+          "name": "Check the API health",
+          "request": {
+            "name": "Check the API health",
+            "description": {
+              "content": "This endpoint reports the API and its dependencies health.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "_health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff623567-0213-4ad8-9a29-db536173ab9d",
+              "name": "The Health Check is successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"info\": {\n    \"database\": {\n      \"status\": \"up\"\n    }\n  },\n  \"error\": {},\n  \"details\": {\n    \"database\": {\n      \"status\": \"up\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f257853a-f384-4efc-8c83-90fd08036f80",
+              "name": "The Health Check is not successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"info\": {\n    \"database\": {\n      \"status\": \"up\"\n    }\n  },\n  \"error\": {\n    \"redis\": {\n      \"status\": \"down\",\n      \"message\": \"Could not connect\"\n    }\n  },\n  \"details\": {\n    \"database\": {\n      \"status\": \"up\"\n    },\n    \"redis\": {\n      \"status\": \"down\",\n      \"message\": \"Could not connect\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a8ac7c9-44a3-43d6-ab12-658884c572eb",
+          "name": "Get network ETH APR",
+          "request": {
+            "name": "Get network ETH APR",
+            "description": {
+              "content": "Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eth-apr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57b78c67-2902-4335-b649-f5677d64100c",
+              "name": "ETH APR data from Beaconcha.in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eth-apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apr\": 0.029\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d3bd56d-397c-41af-b526-ec0de09bdd5c",
+          "name": "Get network ETH APR",
+          "request": {
+            "name": "Get network ETH APR",
+            "description": {
+              "content": "Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "eth-apr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1f429af-eb96-433d-8997-ca6970d97f59",
+              "name": "ETH APR data from Beaconcha.in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "eth-apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apr\": 0.029\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "25cc2dfc-5334-4de2-9506-30f7a2faeb33",
+    "name": "Obol Address System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

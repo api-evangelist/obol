@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "d6443660-9b57-4568-ab37-9a40a4991779",
+      "name": "DV Migrate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12a4667d-b377-4179-ba57-d10c2ab1aa94",
+          "name": "Retrieve validators migrate status",
+          "request": {
+            "name": "Retrieve validators migrate status",
+            "description": {
+              "content": "It shows data of validators status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "migrate",
+                ":network"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "(Required) The number of validators to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) The page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "withdrawalAddress",
+                  "value": "<string>",
+                  "description": "(Required) Withdrawal address of target validators."
+                },
+                {
+                  "disabled": false,
+                  "key": "targetPubKey",
+                  "value": "<string>",
+                  "description": "(Required) The `pubkey` of target validator."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve clusters on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3eca6b66-7b9f-4dfe-9703-19a9d5a83b0e",
+              "name": "The migration status data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "migrate",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "withdrawalAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetPubKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve clusters on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validators\": [\n    {\n      \"pubkey\": \"12345\",\n      \"status\": \"fully_migrated\",\n      \"effective_balance\": \"32000000000\",\n      \"lock_hash\": \"0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048\"\n    },\n    {\n      \"pubkey\": \"12345\",\n      \"status\": \"fully_migrated\",\n      \"effective_balance\": \"32000000000\",\n      \"lock_hash\": \"0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c7079a1-fa9b-4b96-8bff-3cd7f0feab92",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "migrate",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "withdrawalAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetPubKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve clusters on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02a4893f-7e6a-4f9d-ab0b-a12138455a99",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "migrate",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "withdrawalAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetPubKey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve clusters on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0c6febfe-18a8-41a6-97d0-8e23b44d2cf6",
+    "name": "Obol Address DV Migrate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

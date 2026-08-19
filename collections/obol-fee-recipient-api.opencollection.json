@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Fee Recipient API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fee Recipient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit partial fee recipient registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/fee_recipient/partial/:lockHash/:shareIdx",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              },
+              {
+                "name": "shareIdx",
+                "value": "",
+                "type": "path",
+                "description": "The operator share index (1-based)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group."
+        },
+        {
+          "info": {
+            "name": "Submit partial fee recipient registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/fee_recipient/partial/:lockHash/:shareIdx",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              },
+              {
+                "name": "shareIdx",
+                "value": "",
+                "type": "path",
+                "description": "The operator share index (1-based)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group."
+        },
+        {
+          "info": {
+            "name": "Fetch partial fee recipient registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/fee_recipient/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results."
+        },
+        {
+          "info": {
+            "name": "Fetch partial fee recipient registrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/fee_recipient/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The cluster lock hash."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

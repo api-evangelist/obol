@@ -1,0 +1,1622 @@
+{
+  "item": [
+    {
+      "id": "ae390f1d-1d51-475a-a713-bc35793d5ec9",
+      "name": "Address",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5ad808f-eff5-42d5-9b4b-2ca5b8ce69f7",
+          "name": "Retrieve obol techne credentials of an address",
+          "request": {
+            "name": "Retrieve obol techne credentials of an address",
+            "description": {
+              "content": "This endpoint is used to retrieve obol techne credentials an address owns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "techne",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to check the techne credentials for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c04fbc67-2d6c-4f85-a37d-1d22e33dbfb9",
+              "name": "The address techne credentials object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "techne",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"base\": [\n    \"string\",\n    \"string\"\n  ],\n  \"bronze\": [\n    \"string\",\n    \"string\"\n  ],\n  \"silver\": [\n    \"string\",\n    \"string\"\n  ],\n  \"gold\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "768b6f44-669f-4e95-a1ea-d71eea842037",
+              "name": "The Address provided is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "techne",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2d91b76-60d3-43fc-a7a2-2e6d2b569b9d",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "techne",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccdc3b51-1b2b-4d77-8529-c4fe223fcb52",
+          "name": "Retrieve badges for an address",
+          "request": {
+            "name": "Retrieve badges for an address",
+            "description": {
+              "content": "This endpoint is used to retrieve the badges an address owns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "badges",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to check the techne credentials for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc905277-c70e-4852-8799-62277e6a1bb3",
+              "name": "The address techne credentials object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "badges",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"badges\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a3707d1-7570-4440-bfaf-c650ce36037e",
+              "name": "The Address provided is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "badges",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d0cc38e-57e8-46d5-91c9-97f29f96a709",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "badges",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the techne credentials for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "367b6954-8b4a-429e-ace7-5d4f6bf7e51c",
+          "name": "Retrieve obol incentives of an address",
+          "request": {
+            "name": "Retrieve obol incentives of an address",
+            "description": {
+              "content": "This endpoint is used to retrieve incentives an address owns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "incentives",
+                ":network",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve operators on"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to check the incentives for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4106a0b-ce36-41e7-a501-dd103789179d",
+              "name": "The address incentives object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator_address\": \"string\",\n  \"amount\": \"string\",\n  \"index\": 7756.173541596302,\n  \"merkle_proof\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contract_address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7554b01-1b8c-4773-a269-bf3aaaaf2059",
+              "name": "The Address provided is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6911cc2b-905e-4e49-abc4-5689cd38eef3",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6643243d-4c28-4d70-b468-fd0888d4eab3",
+          "name": "Retrieve the historical incentives of an address",
+          "request": {
+            "name": "Retrieve the historical incentives of an address",
+            "description": {
+              "content": "This endpoint is used to retrieve the inventives given to Obol Public Goods by an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "incentives",
+                "historical",
+                ":network",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve operators on"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The address to check the incentives for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4054c81c-aca1-43cf-9ed3-17077f7a2cc4",
+              "name": "The address contributions object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    "historical",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator_address\": \"string\",\n  \"amount\": \"string\",\n  \"index\": 1533.653132604741,\n  \"merkle_proof\": [\n    \"string\",\n    \"string\"\n  ],\n  \"contract_address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f39786e-d4d4-4105-bb48-0980f12e25d7",
+              "name": "The Address provided is not valid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    "historical",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa17bf6f-26c3-4b2d-93e0-ab5a4e1f956d",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "incentives",
+                    "historical",
+                    ":network",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The address to check the incentives for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2685288d-7513-44c6-b0d2-da6373c655d6",
+          "name": "Retrieve operators on a given network",
+          "request": {
+            "name": "Retrieve operators on a given network",
+            "description": {
+              "content": "This endpoint fetches a number of operators for a given network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "network",
+                ":network"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) The page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) The number of operators to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "active_validators_count",
+                  "description": "numerical field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "desc",
+                  "description": "order of sorting the field"
+                },
+                {
+                  "disabled": false,
+                  "key": "bronze",
+                  "value": "<boolean>",
+                  "description": "techne to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "silver",
+                  "value": "<boolean>",
+                  "description": "techne to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "lido",
+                  "value": "<boolean>",
+                  "description": "badges to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "etherfi",
+                  "value": "<boolean>",
+                  "description": "badges to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "false",
+                  "description": "(Required) The flag to populate operators information."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve operators on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a569079d-612a-4138-9b3f-e35b406b9b81",
+              "name": "A paged list of Operators on this network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "network",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "active_validators_count"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "bronze",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "silver",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "lido",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "etherfi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operators\": [\n    \"string\",\n    \"string\"\n  ],\n  \"total_count\": 2,\n  \"total_pages\": 4\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd0bdb4e-1a6a-49b6-8f2f-3b7b2ad4a1da",
+              "name": "Network not spported",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "network",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "active_validators_count"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "bronze",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "silver",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "lido",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "etherfi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d73dde8-aa3f-4367-953e-906a13e51920",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "network",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "active_validators_count"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "bronze",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "silver",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "lido",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "etherfi",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "details",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7abef6ee-ec76-456e-a4bc-059d85736d8e",
+          "name": "Retrieve a list operators on a given network",
+          "request": {
+            "name": "Retrieve a list operators on a given network",
+            "description": {
+              "content": "This endpoint is used to search for operators that match a substring of their `address`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "search",
+                ":network"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "partialAddress",
+                  "value": "<string>",
+                  "description": "(Required) A substring of the `address` of Operator."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) The page number to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) The number of operators to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve operators on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ceb0a97-37ea-4ecb-91fd-9424ca2b00a3",
+              "name": "A paged list of Operators on this network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "search",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partialAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operators\": [\n    \"string\",\n    \"string\"\n  ],\n  \"total_count\": 2,\n  \"total_pages\": 4\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7174ae6b-f482-4db0-b447-f9695976f0f8",
+              "name": "Operators not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "search",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partialAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2dad32f1-5564-4651-aa1c-732d6d475fe1",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "search",
+                    ":network"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "partialAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve operators on"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b513f6d-44cd-4f8a-9ae4-c483ab82317c",
+          "name": "Retrieve migrateable validators for withdrawal address",
+          "request": {
+            "name": "Retrieve migrateable validators for withdrawal address",
+            "description": {
+              "content": "This endpoint is used fetch eligible validators for migration .",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "address",
+                "migrateable-validators",
+                ":network",
+                ":withdrawalAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "(Required) The number of validators to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "(Required) The number of items to skip before starting to collect the result set"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "network",
+                  "description": "(Required) The network to retrieve active validators on"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "withdrawalAddress",
+                  "description": "(Required) Withdrawal address of source validators."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c15e9a06-0574-41fa-8a31-031e1ba36a72",
+              "name": "A list of source validators the withdrawal address can migrate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "migrateable-validators",
+                    ":network",
+                    ":withdrawalAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve active validators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "withdrawalAddress",
+                      "description": "(Required) Withdrawal address of source validators."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validators\": [\n    \"string\",\n    \"string\"\n  ],\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f63c84d6-aa91-4860-bae6-8fb5edb1e25c",
+              "name": "Beaconchain error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "migrateable-validators",
+                    ":network",
+                    ":withdrawalAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve active validators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "withdrawalAddress",
+                      "description": "(Required) Withdrawal address of source validators."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bfc7997e-78de-4ce1-9553-16a28fef89a9",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "address",
+                    "migrateable-validators",
+                    ":network",
+                    ":withdrawalAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "network",
+                      "description": "(Required) The network to retrieve active validators on"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "withdrawalAddress",
+                      "description": "(Required) Withdrawal address of source validators."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04b87406-05a6-49a5-a017-8dff2a4ae938",
+    "name": "Obol Address API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

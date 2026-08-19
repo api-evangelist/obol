@@ -1,0 +1,439 @@
+{
+  "item": [
+    {
+      "id": "0bf69774-1bc9-4c04-9220-38c68e5fdf91",
+      "name": "Test",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee1d0a46-f475-4bae-8821-7fecec31f1d6",
+          "name": "Store test result data",
+          "request": {
+            "name": "Store test result data",
+            "description": {
+              "content": "Accepts the JSON body produced by Charon when running `charon test … --publish`: **`enr`**, **`sig`**, and **`data`**. Authentication is **not** a Bearer token: `TestEnrGuard` verifies that `sig` is a valid secp256k1 ECDSA signature (base64, as emitted by Go `json.Marshal` on the signature bytes) over the SSZ hash of `JSON.stringify(data)` for the public key embedded in `enr`. Only `Content-Type: application/json` is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"<string>\",\n      \"execution_time\": \"<string>\",\n      \"score\": \"<string>\",\n      \"targets\": \"<object>\"\n    },\n    \"beacon_node\": {\n      \"category_name\": \"<string>\",\n      \"execution_time\": \"<string>\",\n      \"score\": \"<string>\",\n      \"targets\": \"<object>\"\n    },\n    \"validator_client\": {\n      \"category_name\": \"<string>\",\n      \"execution_time\": \"<string>\",\n      \"score\": \"<string>\",\n      \"targets\": \"<object>\"\n    },\n    \"mev\": {\n      \"category_name\": \"<string>\",\n      \"execution_time\": \"<string>\",\n      \"score\": \"<string>\",\n      \"targets\": \"<object>\"\n    },\n    \"infra\": {\n      \"category_name\": \"<string>\",\n      \"execution_time\": \"<string>\",\n      \"score\": \"<string>\",\n      \"targets\": \"<object>\"\n    }\n  },\n  \"enr\": \"<string>\",\n  \"sig\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c649bb2-9cf0-40d1-874c-eb303480c167",
+              "name": "Test result data stored successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"beacon_node\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"validator_client\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"mev\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"infra\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    }\n  },\n  \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n  \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd8ab520-a8b3-4556-813b-302a73e95e76",
+              "name": "Invalid test result data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"beacon_node\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"validator_client\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"mev\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"infra\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    }\n  },\n  \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n  \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f247e701-a1b4-43bd-b704-8f7ec8a4cb18",
+              "name": "Signature verification failed for the supplied `enr` and `sig`",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"beacon_node\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"validator_client\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"mev\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"infra\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    }\n  },\n  \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n  \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8994c71-0bfb-4ccf-88be-97f8d9878499",
+              "name": "Returned when `enr` or `sig` is missing from the body (guard rejects the request before verification)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"beacon_node\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"validator_client\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"mev\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"infra\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    }\n  },\n  \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n  \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53db1d8e-a8d8-4b32-a3e2-24d7424b94fb",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"charon_peers\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"beacon_node\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"validator_client\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"mev\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    },\n    \"infra\": {\n      \"category_name\": \"mev\",\n      \"execution_time\": \"636.089125ms\",\n      \"score\": \"A\",\n      \"targets\": {}\n    }\n  },\n  \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n  \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dce83ba-894d-4582-9b95-384a08178885",
+          "name": "Get test results by ENR",
+          "request": {
+            "name": "Get test results by ENR",
+            "description": {
+              "content": "This endpoint retrieves test results for a specific ENR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "test",
+                "enr",
+                ":enr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enr",
+                  "description": "(Required) ENR to search for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "776874ad-0de2-4f0b-9883-ffb5a9da78e9",
+              "name": "Test results found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test",
+                    "enr",
+                    ":enr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enr",
+                      "description": "(Required) ENR to search for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"data\": {\n      \"charon_peers\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"beacon_node\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"validator_client\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"mev\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"infra\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      }\n    },\n    \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n    \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n  },\n  {\n    \"data\": {\n      \"charon_peers\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"beacon_node\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"validator_client\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"mev\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      },\n      \"infra\": {\n        \"category_name\": \"mev\",\n        \"execution_time\": \"636.089125ms\",\n        \"score\": \"A\",\n        \"targets\": {}\n      }\n    },\n    \"enr\": \"enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon\",\n    \"sig\": \"AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46243aa2-28f4-49b0-b3c1-fc27ba9c9d4e",
+              "name": "No test results found for this ENR",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test",
+                    "enr",
+                    ":enr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enr",
+                      "description": "(Required) ENR to search for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cab5a3fc-2d81-4f53-98a9-f346013ff7b8",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "test",
+                    "enr",
+                    ":enr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enr",
+                      "description": "(Required) ENR to search for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c45d47f6-b158-4d78-aba3-f7159674ad49",
+    "name": "Obol Address Test API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

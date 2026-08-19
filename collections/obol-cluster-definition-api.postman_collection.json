@@ -1,0 +1,1302 @@
+{
+  "item": [
+    {
+      "id": "f715053f-6606-4f14-9bed-782be10a248c",
+      "name": "Cluster Definition",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32120f01-b585-4bc3-b65a-3f546f1e820c",
+          "name": "Retrieve a Distributed Validator Cluster proposal",
+          "request": {
+            "name": "Retrieve a Distributed Validator Cluster proposal",
+            "description": {
+              "content": "This endpoint allows a charon client or launchpad interface to retrieve the terms of a proposed DKG. Once all operators listed in the DKG have submitted signed approvals to the terms, this object will be ready for a cluster of operators to use as part of a DKG ceremony. If the objects in the `operators` array are not fully populated, these operators need to use the [PUT request](#/Distributed%20Validators/DefinitionController_updateClusterDefinition) to upload their charon client's public key and a signature from their address to indicate their acceptance of the terms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "definition",
+                ":configHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "configHash",
+                  "description": "(Required) The `config_hash` calculated for a cluster definition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9d1128d-29d0-4e09-889f-e3ad7d391a7e",
+              "name": "The cluster object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Obol Cluster\",\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"creator\": {},\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [],\n  \"deposit_amounts\": [\n    \"8000000000\",\n    \"16000000000\",\n    \"8000000000\"\n  ],\n  \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n  \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n  \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n  \"operators\": [],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f75bc874-495d-497e-8fba-8e78eba853ad",
+              "name": "Cluster definition not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b62b3f82-b8a7-43e6-beb7-928a1774dcd8",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a21d336-b467-4d13-975e-abf9e9c5184f",
+          "name": "Accept a proposed Distributed Validator Cluster",
+          "request": {
+            "name": "Accept a proposed Distributed Validator Cluster",
+            "description": {
+              "content": "This endpoint is used by the operators present in the `operators` array of a cluster definition. The operator must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). These operators must submit a public key (in ENR form) to serve as their identity during the DKG, along with EIP712 signatures indicating their acceptance of the terms of this DKG.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "definition",
+                ":configHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "configHash",
+                  "description": "(Required) The `config_hash` calculated for a cluster definition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<string>\",\n  \"enr\": \"<string>\",\n  \"fork_version\": \"<string>\",\n  \"version\": \"<string>\",\n  \"enr_signature\": \"<string>\",\n  \"config_signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52da5edc-6559-4633-ab91-e3f12d3b57ca",
+              "name": "The cluster object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Obol Cluster\",\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"creator\": {},\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [],\n  \"deposit_amounts\": [\n    \"8000000000\",\n    \"16000000000\",\n    \"8000000000\"\n  ],\n  \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n  \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n  \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n  \"operators\": [],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d529cb9-9e8b-424b-ae9e-d44d4598437d",
+              "name": "Invalid payload data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ada8967a-3dd9-47bc-9d96-6804a39ae508",
+              "name": "Missing t&c signature\n\nAuthorization header is missing or incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12ceaeab-8909-4f3a-afe0-9f1603b8b29e",
+              "name": "Data not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1ff9d0d-593b-4467-827b-42b9168aef6d",
+              "name": "Duplicate entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "188a8558-4c80-4e69-bd44-2e42b954fffe",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    ":configHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configHash",
+                      "description": "(Required) The `config_hash` calculated for a cluster definition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 operator hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"0x000000000000000000000000000000000000dead\",\n  \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n  \"fork_version\": \"0x00001020\",\n  \"version\": \"v1.8.0\",\n  \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n  \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "512a1338-1472-4e39-93c4-ff76e08269fd",
+          "name": "Retrieve a list of cluster definitions which the address belongs to.",
+          "request": {
+            "name": "Retrieve a list of cluster definitions which the address belongs to.",
+            "description": {
+              "content": "This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "definition",
+                "operator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The operator address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a58ba786-53dc-4899-a829-c37cb52c49ef",
+              "name": "A list of cluster definitions which the operator is part of",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    "operator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The operator address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster_definitions\": [\n    {\n      \"name\": \"My Obol Cluster\",\n      \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n      \"creator\": {},\n      \"version\": \"v1.8.0\",\n      \"num_validators\": 5,\n      \"threshold\": 3,\n      \"dkg_algorithm\": \"default\",\n      \"fork_version\": \"0x00001020\",\n      \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n      \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n      \"deposit_amounts\": [\n        \"8000000000\",\n        \"16000000000\",\n        \"8000000000\"\n      ],\n      \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n      \"consensus_protocol\": \"qbft\",\n      \"target_gas_limit\": 36000000,\n      \"compounding\": true\n    },\n    {\n      \"name\": \"My Obol Cluster\",\n      \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n      \"creator\": {},\n      \"version\": \"v1.8.0\",\n      \"num_validators\": 5,\n      \"threshold\": 3,\n      \"dkg_algorithm\": \"default\",\n      \"fork_version\": \"0x00001020\",\n      \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n      \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n      \"deposit_amounts\": [\n        \"8000000000\",\n        \"16000000000\",\n        \"8000000000\"\n      ],\n      \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n      \"consensus_protocol\": \"qbft\",\n      \"target_gas_limit\": 36000000,\n      \"compounding\": true\n    }\n  ],\n  \"total_count\": 2,\n  \"total_pages\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32d2721b-e40d-4301-ae88-374cb4270ff4",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    "operator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The operator address"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76e49bf1-f73e-4cc7-bd20-d1ac6e205b93",
+          "name": "Retrieve a list of cluster definitions which the address belongs to.",
+          "request": {
+            "name": "Retrieve a list of cluster definitions which the address belongs to.",
+            "description": {
+              "content": "This endpoint allows a charon client or launchpad interface to fetch a specific number of cluster definitions which the address is part of for each page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "definition",
+                "operator",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) The operator address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a8b4a48-f976-489a-a694-26d5a63c4338",
+              "name": "A list of cluster definitions which the operator is part of",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    "operator",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The operator address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cluster_definitions\": [\n    {\n      \"name\": \"My Obol Cluster\",\n      \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n      \"creator\": {},\n      \"version\": \"v1.8.0\",\n      \"num_validators\": 5,\n      \"threshold\": 3,\n      \"dkg_algorithm\": \"default\",\n      \"fork_version\": \"0x00001020\",\n      \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n      \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n      \"deposit_amounts\": [\n        \"8000000000\",\n        \"16000000000\",\n        \"8000000000\"\n      ],\n      \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n      \"consensus_protocol\": \"qbft\",\n      \"target_gas_limit\": 36000000,\n      \"compounding\": true\n    },\n    {\n      \"name\": \"My Obol Cluster\",\n      \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n      \"creator\": {},\n      \"version\": \"v1.8.0\",\n      \"num_validators\": 5,\n      \"threshold\": 3,\n      \"dkg_algorithm\": \"default\",\n      \"fork_version\": \"0x00001020\",\n      \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n      \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n      \"deposit_amounts\": [\n        \"8000000000\",\n        \"16000000000\",\n        \"8000000000\"\n      ],\n      \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n      \"consensus_protocol\": \"qbft\",\n      \"target_gas_limit\": 36000000,\n      \"compounding\": true\n    }\n  ],\n  \"total_count\": 2,\n  \"total_pages\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efe088ca-b02a-4b09-8940-bfeb8226be60",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition",
+                    "operator",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) The operator address"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab86397b-f08b-4f2e-a117-7b6e0b1c02cb",
+          "name": "Propose a new Distributed Validator Cluster",
+          "request": {
+            "name": "Propose a new Distributed Validator Cluster",
+            "description": {
+              "content": "This endpoint allows the caller to propose a distributed key generation ceremony.The caller must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). The caller must specify the configuration of a Distributed Validator Cluster; such as the participating operators and the validator exit details. Operators invited to participate in this cluster must submit a public key (in [ENR](https://docs.obol.tech/docs/v0.12.0/int/faq/errors#enrs-keys) form) to serve as their node's identity, along with EIP712 signatures indicating their acceptance of the terms of this cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "definition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"operators\": [\n    {\n      \"address\": \"<string>\",\n      \"enr\": \"<string>\",\n      \"fork_version\": \"<string>\",\n      \"version\": \"<string>\",\n      \"enr_signature\": \"<string>\",\n      \"config_signature\": \"<string>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"enr\": \"<string>\",\n      \"fork_version\": \"<string>\",\n      \"version\": \"<string>\",\n      \"enr_signature\": \"<string>\",\n      \"config_signature\": \"<string>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"enr\": \"<string>\",\n      \"fork_version\": \"<string>\",\n      \"version\": \"<string>\",\n      \"enr_signature\": \"<string>\",\n      \"config_signature\": \"<string>\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"<string>\",\n      \"config_signature\": \"<string>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"config_signature\": \"<string>\"\n    }\n  ],\n  \"uuid\": \"<string>\",\n  \"version\": \"<string>\",\n  \"num_validators\": \"<number>\",\n  \"threshold\": \"<number>\",\n  \"dkg_algorithm\": \"<string>\",\n  \"fork_version\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"<string>\",\n      \"withdrawal_address\": \"<string>\"\n    },\n    {\n      \"fee_recipient_address\": \"<string>\",\n      \"withdrawal_address\": \"<string>\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"<string>\",\n  \"target_gas_limit\": \"<number>\",\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "386e224c-6a5b-4a9d-9077-dc4f50ccbbaa",
+              "name": "The cluster object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 cluster definition hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Obol Cluster\",\n  \"operators\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    },\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Obol Cluster\",\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"creator\": {},\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"config_hash\": \"0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [],\n  \"deposit_amounts\": [\n    \"8000000000\",\n    \"16000000000\",\n    \"8000000000\"\n  ],\n  \"definition_hash\": \"0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c\",\n  \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n  \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\",\n  \"operators\": [],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb9b459f-c0f2-4106-9657-ac81a89cc7a6",
+              "name": "Invalid definition data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 cluster definition hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Obol Cluster\",\n  \"operators\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    },\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5122ac96-e5f3-42fc-8dfb-67d22236a576",
+              "name": "Missing t&c signature\n\nAuthorization header is missing or incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 cluster definition hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Obol Cluster\",\n  \"operators\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    },\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e07b42f5-b62e-45d2-9c50-52522c52d313",
+              "name": "Duplicate entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 cluster definition hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Obol Cluster\",\n  \"operators\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    },\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f24459f4-bdd7-42c6-94f3-9c85f08f59da",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "definition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) EIP712 cluster definition hash as bearer token",
+                    "key": "authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Obol Cluster\",\n  \"operators\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"enr\": \"enr://5fb90badb37c5821b6d95526a41a9504680b4e7c8b763a1b1d49d4955c848621\",\n      \"fork_version\": \"0x00001020\",\n      \"version\": \"v1.8.0\",\n      \"enr_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"creator\": [\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    },\n    {\n      \"address\": \"0x000000000000000000000000000000000000dead\",\n      \"config_signature\": \"0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c\"\n    }\n  ],\n  \"uuid\": \"0194FDC2-FA2F-FCC0-41D3-FF12045B73C8\",\n  \"version\": \"v1.8.0\",\n  \"num_validators\": 5,\n  \"threshold\": 3,\n  \"dkg_algorithm\": \"default\",\n  \"fork_version\": \"0x00001020\",\n  \"timestamp\": \"2022-07-19T18:19:58+02:00\",\n  \"validators\": [\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    },\n    {\n      \"fee_recipient_address\": \"0x000000000000000000000000000000000000dead\",\n      \"withdrawal_address\": \"0x000000000000000000000000000000000000dead\"\n    }\n  ],\n  \"deposit_amounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"consensus_protocol\": \"qbft\",\n  \"target_gas_limit\": 36000000,\n  \"compounding\": \"<boolean>\",\n  \"config_hash\": \"0x29b0223beea5f4f74391f445d15afd4294040374f6924b98cbf8713f8d962d7c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c50367e1-37d0-403e-b6ff-3afcc1059cf2",
+    "name": "Obol Address Cluster Definition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

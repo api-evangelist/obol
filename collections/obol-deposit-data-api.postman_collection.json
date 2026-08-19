@@ -1,0 +1,1108 @@
+{
+  "item": [
+    {
+      "id": "3e137dfe-09b4-4389-bcde-2c2a205c5827",
+      "name": "Deposit Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f3212e8-f997-46ad-be42-1097365f4d47",
+          "name": "Retrieve partial deposit data for a validator",
+          "request": {
+            "name": "Retrieve partial deposit data for a validator",
+            "description": {
+              "content": "This endpoint returns all partial deposit data grouped by amount for a specific validator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deposit_data",
+                ":lockHash",
+                ":pubkey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pubkey",
+                  "description": "(Required) The validator public key (distributed_public_key)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ddecbc5-3a41-4bda-a4ad-634006a6577e",
+              "name": "The deposit data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lock_hash\": \"\",\n  \"pubkey\": \"0xFULL_1\",\n  \"withdrawal_credentials\": \"0xWITHDRAW_1\",\n  \"amounts\": [\n    {\n      \"amount\": \"32000000000\",\n      \"partials\": [\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        },\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        }\n      ]\n    },\n    {\n      \"amount\": \"32000000000\",\n      \"partials\": [\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        },\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11e38be4-1bdd-4210-bf86-4bb17e30e67c",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "819998c0-71b7-4946-b550-a5a3474647d2",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fc2da41-f293-4633-9ee8-9b8ca469e59a",
+          "name": "Retrieve partial deposit data for a validator",
+          "request": {
+            "name": "Retrieve partial deposit data for a validator",
+            "description": {
+              "content": "This endpoint returns all partial deposit data grouped by amount for a specific validator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "deposit_data",
+                ":lockHash",
+                ":pubkey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pubkey",
+                  "description": "(Required) The validator public key (distributed_public_key)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "853ee305-5590-443d-89f1-b27c5e74d018",
+              "name": "The deposit data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lock_hash\": \"\",\n  \"pubkey\": \"0xFULL_1\",\n  \"withdrawal_credentials\": \"0xWITHDRAW_1\",\n  \"amounts\": [\n    {\n      \"amount\": \"32000000000\",\n      \"partials\": [\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        },\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        }\n      ]\n    },\n    {\n      \"amount\": \"32000000000\",\n      \"partials\": [\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        },\n        {\n          \"partial_public_key\": \"0xPARTIAL_A\",\n          \"partial_deposit_signature\": \"0xSIG_A1\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b6fabd-db30-4ba4-bd15-b9ce4e1375c6",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19b99678-ba1f-4eeb-ab01-8ef2fe6b7433",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    ":lockHash",
+                    ":pubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pubkey",
+                      "description": "(Required) The validator public key (distributed_public_key)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2af74e96-a999-4a51-b92b-e08f49252cdd",
+          "name": "Push partial deposit data",
+          "request": {
+            "name": "Push partial deposit data",
+            "description": {
+              "content": "This endpoint saves partial deposit data signed by an operator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deposit_data",
+                "partial_deposits",
+                ":lockHash",
+                ":share_index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The lock hash of the cluster"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "share_index",
+                  "description": "(Required) The share index (operator index + 1)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "331ca205-198b-4f5a-a229-f8e8f5a6249d",
+              "name": "Deposit data saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4abf1751-1135-4d7f-b02e-cb2e42d3125d",
+              "name": "Invalid request format | Conflicting withdrawal address. Delete the existing deposits first. | Validator is already initialised.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4e0b86c-5658-4eb0-9cda-f09439b9a68f",
+              "name": "Invalid deposit signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "011d9954-287b-45c3-9dd6-831aaf211bb4",
+              "name": "Data or validator not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19b4bacb-6ef0-483a-99f8-2b37bd48f3f0",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "008086f9-8a55-4fbf-a420-b11b52a96483",
+          "name": "Push partial deposit data",
+          "request": {
+            "name": "Push partial deposit data",
+            "description": {
+              "content": "This endpoint saves partial deposit data signed by an operator",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "deposit_data",
+                "partial_deposits",
+                ":lockHash",
+                ":share_index"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The lock hash of the cluster"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "share_index",
+                  "description": "(Required) The share index (operator index + 1)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd11f45f-6ce7-433e-81fe-d01a63a1f854",
+              "name": "Deposit data saved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0ad068c-9649-431e-9fa5-de41c78970f3",
+              "name": "Invalid request format | Conflicting withdrawal address. Delete the existing deposits first. | Validator is already initialised.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a448ec2-7560-4721-8200-d6b4625e0cf7",
+              "name": "Invalid deposit signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe6cdcac-406f-4196-bbf5-ce475d9c06b6",
+              "name": "Data or validator not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "943ec860-6474-492e-9a37-1cd32f89bc18",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "deposit_data",
+                    "partial_deposits",
+                    ":lockHash",
+                    ":share_index"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The lock hash of the cluster"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "share_index",
+                      "description": "(Required) The share index (operator index + 1)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_deposit_data\": [\n    {\n      \"pubkey\": \"<string>\",\n      \"withdrawal_credentials\": \"0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12\",\n      \"amount\": \"32000000000\",\n      \"signature\": \"0x1234...\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "786c1757-db8c-44d1-97bd-43c81d0ff44f",
+    "name": "Obol Address Deposit Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

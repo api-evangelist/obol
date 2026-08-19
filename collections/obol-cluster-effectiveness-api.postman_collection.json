@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "fcfc5e82-e707-4dc6-aa23-70162f4af2a3",
+      "name": "Cluster Effectiveness",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27dc0d65-476e-4ee1-922a-2cc0a7e3337b",
+          "name": "Retrieve a Distributed Validator Cluster Effectiveness Object",
+          "request": {
+            "name": "Retrieve a Distributed Validator Cluster Effectiveness Object",
+            "description": {
+              "content": "This endpoint is used to retrieve the effectiveness of a cluster by pubkey",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "effectiveness",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42ef16fa-7d10-45a2-a1b3-314bf5ca169d",
+              "name": "The cluster lock object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "effectiveness",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"all\": 7140.858120913671\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d85ced4f-6850-441d-a61d-33d0938d181d",
+              "name": "Data not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "effectiveness",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5de880d0-5a90-4cfb-8cee-b7fbe5c9cf92",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "effectiveness",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lock_hash` calculated for a cluster lock."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1f6abe3-dcc7-41e1-86a1-92e9a5c79144",
+    "name": "Obol Address Cluster Effectiveness API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

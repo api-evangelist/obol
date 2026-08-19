@@ -1,0 +1,2139 @@
+{
+  "item": [
+    {
+      "id": "a9b351cc-0db5-45b2-bed1-9d4fc9ccda1e",
+      "name": "DV Exit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9884cb8-d8ac-461e-944d-ec129810e3ee",
+          "name": "Retrieve validators exit status summary",
+          "request": {
+            "name": "Retrieve validators exit status summary",
+            "description": {
+              "content": "It shows data of operators who have signed and the count of validators ready to exit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exp",
+                "exit",
+                "status",
+                "summary",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3212a05-8fb0-438f-821d-0b48ac4bda79",
+              "name": "The exit summary data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator_exits\": {\n    \"0x000000000000000000000000000000000000dea1\": 5,\n    \"0x000000000000000000000000000000000000dead\": 10\n  },\n  \"ready_exits\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "910c8ddb-2473-4c1f-a8aa-ef21e8fd28ab",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5338983c-bb51-4b33-977f-59e4ffcd0da7",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "032df199-b50c-4bec-9e2a-2b00981b7bb1",
+          "name": "Retrieve validators exit status summary",
+          "request": {
+            "name": "Retrieve validators exit status summary",
+            "description": {
+              "content": "It shows data of operators who have signed and the count of validators ready to exit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "exp",
+                "exit",
+                "status",
+                "summary",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90f70448-b73d-4cb8-8f63-aff41a1c5939",
+              "name": "The exit summary data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator_exits\": {\n    \"0x000000000000000000000000000000000000dea1\": 5,\n    \"0x000000000000000000000000000000000000dead\": 10\n  },\n  \"ready_exits\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77079ad7-371b-4754-b03d-6114a0e2770d",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7dd66ab0-7c5a-408e-92d2-a87900080a54",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    "summary",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d736d030-fb15-4f0b-9d26-0c4782a0824a",
+          "name": "Retrieve validators exit status",
+          "request": {
+            "name": "Retrieve validators exit status",
+            "description": {
+              "content": "It shows data of operators who have signed and who have not",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exp",
+                "exit",
+                "status",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "operatorAddress",
+                  "value": "<string>",
+                  "description": "(Required) The operatorAddress."
+                },
+                {
+                  "disabled": false,
+                  "key": "validatorPubkey",
+                  "value": "<string>",
+                  "description": "(Required) The `pubkey` in a cluster lock."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lockHash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "066e2e5b-6e1b-4e6b-bd50-74550b5349aa",
+              "name": "The exit status data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a726f63-9f4c-471b-82cb-25bc4b79fe6e",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd1a2d1a-2362-4485-9937-377a9ec9fd1d",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a165b068-da3d-40ef-a951-9935864a91d0",
+          "name": "Retrieve validators exit status",
+          "request": {
+            "name": "Retrieve validators exit status",
+            "description": {
+              "content": "It shows data of operators who have signed and who have not",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "exp",
+                "exit",
+                "status",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "operatorAddress",
+                  "value": "<string>",
+                  "description": "(Required) The operatorAddress."
+                },
+                {
+                  "disabled": false,
+                  "key": "validatorPubkey",
+                  "value": "<string>",
+                  "description": "(Required) The `pubkey` in a cluster lock."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lockHash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b231f087-d89a-4cec-b94c-1265b8cf39b6",
+              "name": "The exit status data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4ee0fa2-4b07-4567-89c9-ddfb93b3ca27",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "848de22c-89d6-4e80-844f-acc2e8022419",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    "status",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "operatorAddress",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validatorPubkey",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "050a6144-8f32-465f-a179-4d2ddc8f38eb",
+          "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+          "request": {
+            "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+            "description": {
+              "content": "This endpoint is used to retrieve validator exit message",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exp",
+                "exit",
+                ":lockHash",
+                ":shareIdx",
+                ":validatorPubkey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "validatorPubkey",
+                  "description": "(Required) The `distributed_public_key` in a cluster lock."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "shareIdx",
+                  "description": "(Required) Represents the cluster operatorIndex+1."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lockHash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc04d602-7b6a-494f-8382-7b52c08a4632",
+              "name": "The DV signed exit message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b19fea3-283d-46b6-a43d-4bf96ef7b53d",
+              "name": "Authorization header is missing or incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa8f01a6-c17e-4e28-a4c7-acc99a816d4a",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3599297e-76a6-4d9b-a2c4-859bb9733341",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4395b12-9d8c-4b3c-bf25-5fa2bd127700",
+          "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+          "request": {
+            "name": "Retrieve Distributed Validator threshold aggregated signed exit msg",
+            "description": {
+              "content": "This endpoint is used to retrieve validator exit message",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "exp",
+                "exit",
+                ":lockHash",
+                ":shareIdx",
+                ":validatorPubkey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "validatorPubkey",
+                  "description": "(Required) The `distributed_public_key` in a cluster lock."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "shareIdx",
+                  "description": "(Required) Represents the cluster operatorIndex+1."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lockHash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b50e6b71-dbf5-4991-ab21-d968c7ee1580",
+              "name": "The DV signed exit message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7773b98e-609f-4322-be29-1738b15f1ba1",
+              "name": "Authorization header is missing or incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cfcf8478-8915-423c-8d35-66b5b100b404",
+              "name": "Data is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c74c20c-7701-4a1b-bb34-c97f82c818a4",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "exit",
+                    ":lockHash",
+                    ":shareIdx",
+                    ":validatorPubkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validatorPubkey",
+                      "description": "(Required) The `distributed_public_key` in a cluster lock."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "shareIdx",
+                      "description": "(Required) Represents the cluster operatorIndex+1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lockHash."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a042618b-0004-4ba1-9031-b88722edb891",
+          "name": "Push Distributed Validator partial signed exit message",
+          "request": {
+            "name": "Push Distributed Validator partial signed exit message",
+            "description": {
+              "content": "This endpoint saves partial signed exit messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exp",
+                "partial_exits",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"<string>\",\n          \"validator_index\": \"<string>\"\n        },\n        \"signature\": \"<string>\"\n      }\n    }\n  ],\n  \"share_idx\": \"<number>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cfe3b46-4416-44af-8e90-3924a3ddd633",
+              "name": "success message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d826de39-df43-4ab2-be70-0b5279249d05",
+              "name": "Bad request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "502ee207-271d-4807-a96e-54e909a73557",
+              "name": "Data or validator not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "697b1b22-01d0-4d71-9e37-7713200d7d50",
+              "name": "Duplicate entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c741fda-a4e4-4919-8373-69ae5e558305",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16e2da45-5d97-4faf-a049-bbf8587496d8",
+          "name": "Push Distributed Validator partial signed exit message",
+          "request": {
+            "name": "Push Distributed Validator partial signed exit message",
+            "description": {
+              "content": "This endpoint saves partial signed exit messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "exp",
+                "partial_exits",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"<string>\",\n          \"validator_index\": \"<string>\"\n        },\n        \"signature\": \"<string>\"\n      }\n    }\n  ],\n  \"share_idx\": \"<number>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f826be99-e020-47bb-bfd7-b0645b69eab0",
+              "name": "success message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed9ca988-7cff-4759-9852-34088b3df7b1",
+              "name": "Bad request received",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8623c19-b924-43fb-9365-7ca3eb9c10d9",
+              "name": "Data or validator not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f72789bf-e0b5-4d24-ac50-73d23f718efd",
+              "name": "Duplicate entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98978933-40ea-4782-917a-e81311801ece",
+              "name": "An unknown error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "exp",
+                    "partial_exits",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The `lockHash` of the cluster which the validator belongs to"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_exits\": [\n    {\n      \"public_key\": \"<string>\",\n      \"signed_exit_message\": {\n        \"message\": {\n          \"epoch\": \"162304\",\n          \"validator_index\": \"42\"\n        },\n        \"signature\": \"\"\n      }\n    }\n  ],\n  \"share_idx\": 42,\n  \"signature\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "24fad579-2d22-43c1-bcc6-cbb119afec31",
+    "name": "Obol Address DV Exit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

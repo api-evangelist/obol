@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address OWR Information API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OWR Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve OWR tranch information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/owr/:network/:address",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network of the OWR."
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address of the OWR."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint is used to retrieve information on the tranches of an OWR."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Terms And Conditions API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Terms And Conditions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Saves user's approval latest terms and conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/termsAndConditions",
+            "headers": [
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Saves user's signature to latest [Obol's terms and conditions](https://obol.tech/terms.pdf) hash and it's version"
+        },
+        {
+          "info": {
+            "name": "Verify Signature on Terms and Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/termsAndConditions/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The address to check the Terms and Conditions."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to check whether the Terms and Conditions has been signed by the user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,612 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address Cluster Lock API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster Lock",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster Lock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a cluster lock."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve a cluster lock object."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster Lock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/:lockHash",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a cluster lock."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve a cluster lock object."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Cluster Lock Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/search/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              },
+              {
+                "name": "partialLockHash",
+                "value": "",
+                "type": "query",
+                "description": "A substring of the `lock_hash` calculated for a cluster lock."
+              },
+              {
+                "name": "partialClusterName",
+                "value": "",
+                "type": "query",
+                "description": "A substring of the cluster name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to search for Cluster Lock Objects that match a substring of their `lock_hash`."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Cluster Lock Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/search/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              },
+              {
+                "name": "partialLockHash",
+                "value": "",
+                "type": "query",
+                "description": "A substring of the `lock_hash` calculated for a cluster lock."
+              },
+              {
+                "name": "partialClusterName",
+                "value": "",
+                "type": "query",
+                "description": "A substring of the cluster name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to search for Cluster Lock Objects that match a substring of their `lock_hash`."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster Lock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/configHash/:configHash",
+            "params": [
+              {
+                "name": "configHash",
+                "value": "",
+                "type": "path",
+                "description": "The `config_hash` calculated for a cluster configuration."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve a cluster lock object by the hash of the configuration used to create it."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Distributed Validator Cluster Lock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/configHash/:configHash",
+            "params": [
+              {
+                "name": "configHash",
+                "value": "",
+                "type": "path",
+                "description": "The `config_hash` calculated for a cluster configuration."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve a cluster lock object by the hash of the configuration used to create it."
+        },
+        {
+          "info": {
+            "name": "Redirect to the launchpad cluster status page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/:lockHash/launchpad",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a Distributed Validator Cluster."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to redirect users to the created cluster status page after DKG is completed."
+        },
+        {
+          "info": {
+            "name": "Redirect to the launchpad cluster status page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/:lockHash/launchpad",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a Distributed Validator Cluster."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to redirect users to the created cluster status page after DKG is completed."
+        },
+        {
+          "info": {
+            "name": "Get average peer scores for operators in a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/:lockHash/peer-scores",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a cluster lock."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the range (ISO 8601 format). If not provided, defaults to endDate - 7 days."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for the range (ISO 8601 format). If not provided, defaults to the latest available date."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the average peer_score for each operator address in a cluster lock within a specified date range. Results are sorted by peer_score in descending order."
+        },
+        {
+          "info": {
+            "name": "Get average peer scores for operators in a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/:lockHash/peer-scores",
+            "params": [
+              {
+                "name": "lockHash",
+                "value": "",
+                "type": "path",
+                "description": "The `lock_hash` calculated for a cluster lock."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the range (ISO 8601 format). If not provided, defaults to endDate - 7 days."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for the range (ISO 8601 format). If not provided, defaults to the latest available date."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the average peer_score for each operator address in a cluster lock within a specified date range. Results are sorted by peer_score in descending order."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for which this address is an operator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/operator",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for which this address is an operator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/operator/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for which this address is an operator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/operator",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for which this address is an operator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/operator/:address",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "path",
+                "description": "The operator address."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of Distributed Validator Clusters for which the address provided is a node operator."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/network/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "numerical field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "order of sorting the field"
+              },
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query",
+                "description": "cluster type or pool"
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "The flag to populate cluster definition information."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of cluster lock objects for a given network."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/network/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of cluster lock objects to return."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "numerical field to sort by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "order of sorting the field"
+              },
+              {
+                "name": "pool",
+                "value": "",
+                "type": "query",
+                "description": "cluster type or pool"
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "The flag to populate cluster definition information."
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a number of cluster lock objects for a given network."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/lock/network/summary/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a nsummary of the lock files stored for a given network"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of Distributed Validator Clusters for a given network",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/lock/network/summary/:network",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "path",
+                "description": "The network to retrieve clusters on"
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a nsummary of the lock files stored for a given network"
+        },
+        {
+          "info": {
+            "name": "Push Distributed Validator Cluster Lock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/lock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves cluster lock objects that describe the created Distributed Validator Cluster. If the lock_hash is already stored, the existing lock is returned (idempotent; no re-validation) with the same 201 response."
+        },
+        {
+          "info": {
+            "name": "Push Distributed Validator Cluster Lock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/lock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint saves cluster lock objects that describe the created Distributed Validator Cluster. If the lock_hash is already stored, the existing lock is returned (idempotent; no re-validation) with the same 201 response."
+        },
+        {
+          "info": {
+            "name": "Verify Distributed Validator Cluster Lock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/lock/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint verifies cluster lock data including BLS public keys and signatures created during the DKG phase."
+        },
+        {
+          "info": {
+            "name": "Verify Distributed Validator Cluster Lock Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.obol.tech/v1/lock/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint verifies cluster lock data including BLS public keys and signatures created during the DKG phase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

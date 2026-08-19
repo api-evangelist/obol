@@ -1,8 +1,8 @@
 generated: '2026-07-20'
 method: derived
 status: candidate
-note: Candidate tool list derived from Obol API operations; Obol publishes a Claude
-  Code skills plugin (ObolNetwork/skills) but no hosted MCP server was found.
+note: Candidate tool list derived from Obol API operations; Obol publishes a Claude Code skills plugin
+  (ObolNetwork/skills) but no hosted MCP server was found.
 server:
   name: obol
   transport: http
@@ -53,20 +53,16 @@ tools:
   description: Get average peer scores for operators in a cluster
   source_operation: openapi/obol-openapi-original.json#LockController_getAveragePeerScores[1]_v1
 - name: LockController_getClusterLocksByOperator[0]
-  description: Retrieve a list of Distributed Validator Clusters for which this address
-    is an operator
+  description: Retrieve a list of Distributed Validator Clusters for which this address is an operator
   source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[0]
 - name: LockController_getClusterLocksByOperator[1]
-  description: Retrieve a list of Distributed Validator Clusters for which this address
-    is an operator
+  description: Retrieve a list of Distributed Validator Clusters for which this address is an operator
   source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[1]
 - name: LockController_getClusterLocksByOperator[2]_v1
-  description: Retrieve a list of Distributed Validator Clusters for which this address
-    is an operator
+  description: Retrieve a list of Distributed Validator Clusters for which this address is an operator
   source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[2]_v1
 - name: LockController_getClusterLocksByOperator[3]_v1
-  description: Retrieve a list of Distributed Validator Clusters for which this address
-    is an operator
+  description: Retrieve a list of Distributed Validator Clusters for which this address is an operator
   source_operation: openapi/obol-openapi-original.json#LockController_getClusterLocksByOperator[3]_v1
 - name: LockController_getClusterLocksByNetwork[0]
   description: Retrieve a list of Distributed Validator Clusters for a given network
@@ -215,3 +211,9 @@ tools:
 - name: EthAprController_getEthApr[1]_v1
   description: Get network ETH APR
   source_operation: openapi/obol-openapi-original.json#EthAprController_getEthApr[1]_v1
+deployment:
+  mode: none
+  verified: derived
+  tools: 68
+  checked: '2026-08-12'
+  source: catalog MCP census

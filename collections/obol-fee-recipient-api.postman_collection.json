@@ -1,0 +1,987 @@
+{
+  "item": [
+    {
+      "id": "50f3e5fb-bbe8-47e2-acfa-0a3bd1ea530d",
+      "name": "Fee Recipient",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "002b6034-ea35-4538-a32b-de28c6e30ed6",
+          "name": "Submit partial fee recipient registrations",
+          "request": {
+            "name": "Submit partial fee recipient registrations",
+            "description": {
+              "content": "Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fee_recipient",
+                "partial",
+                ":lockHash",
+                ":shareIdx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "shareIdx",
+                  "description": "(Required) The operator share index (1-based)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30c3240b-4d70-47a4-81b5-4e87f43ee6e3",
+              "name": "Partial registrations saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e818173a-0654-459d-8eb4-ee6bd18376d7",
+              "name": "Invalid request body, signature verification failed, invalid share index, or duplicate pubkey in request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "edc2adff-de52-4c48-9a9b-1a6d549a9923",
+              "name": "Lock not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "645d73af-8ff8-446d-88e0-0a5f33cb8a26",
+              "name": "An unknown error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a3246a1-26f9-4543-8879-3c3e8e36d4d1",
+          "name": "Submit partial fee recipient registrations",
+          "request": {
+            "name": "Submit partial fee recipient registrations",
+            "description": {
+              "content": "Stores partial BLS-signed builder registration messages for a given cluster operator. Partials are grouped into builder registrations by message content (fee_recipient, gas_limit, timestamp). The timestamp must be greater than or equal to the highest timestamp any operator has submitted for each pubkey. Equal timestamps are allowed so operators can join an existing registration group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fee_recipient",
+                "partial",
+                ":lockHash",
+                ":shareIdx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "shareIdx",
+                  "description": "(Required) The operator share index (1-based)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce8c3012-69ea-4003-afaf-1611751626e0",
+              "name": "Partial registrations saved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0609c6c2-bbac-4969-85e0-11e0f6539b5e",
+              "name": "Invalid request body, signature verification failed, invalid share index, or duplicate pubkey in request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f93c0fe-4070-4bb3-b1c3-2ca85b7af4c3",
+              "name": "Lock not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5aa7bf3a-ace5-4c88-9a76-26f2b5d4d46c",
+              "name": "An unknown error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    "partial",
+                    ":lockHash",
+                    ":shareIdx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "shareIdx",
+                      "description": "(Required) The operator share index (1-based)."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partial_registrations\": [\n    {\n      \"message\": {\n        \"fee_recipient\": \"<string>\",\n        \"gas_limit\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"pubkey\": \"<string>\"\n      },\n      \"signature\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c1a5c2e-8452-452e-b38b-29489b101ba6",
+          "name": "Fetch partial fee recipient registrations",
+          "request": {
+            "name": "Fetch partial fee recipient registrations",
+            "description": {
+              "content": "Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fee_recipient",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pubkeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e637092d-dc33-4099-89b3-a8376092e707",
+              "name": "Per validator: at most 2 builder registrations (latest with quorum: true, latest with quorum: false). Each registration includes the signed message, partial signatures, and a quorum boolean. Pubkeys returned without 0x prefix.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4bbe5ddc-154f-4d07-8dc4-11076c6425e3",
+              "name": "Lock not found or no partial registrations found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55e6a3d7-1615-41c9-8ee5-44d4549956e4",
+              "name": "An unknown error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32b1e625-e1be-42bf-a349-cab483188af7",
+          "name": "Fetch partial fee recipient registrations",
+          "request": {
+            "name": "Fetch partial fee recipient registrations",
+            "description": {
+              "content": "Returns builder registration status for validators in a cluster. For each validator, returns at most two registrations: the latest one that reached quorum (quorum: true) and the latest one still collecting signatures (quorum: false). Validators with no registration data are omitted. Optionally pass an array of pubkeys in the request body to filter results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fee_recipient",
+                ":lockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lockHash",
+                  "description": "(Required) The cluster lock hash."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pubkeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3eb5ac7c-8d4e-4fae-8bba-5b47d389b218",
+              "name": "Per validator: at most 2 builder registrations (latest with quorum: true, latest with quorum: false). Each registration includes the signed message, partial signatures, and a quorum boolean. Pubkeys returned without 0x prefix.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4d47b6d-7030-4102-a589-dc1da7c44b0b",
+              "name": "Lock not found or no partial registrations found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b25b80bf-fcfd-42bf-abfd-228126ddce8e",
+              "name": "An unknown error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fee_recipient",
+                    ":lockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lockHash",
+                      "description": "(Required) The cluster lock hash."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pubkeys\": [\n    \"0xdeadbeef...\",\n    \"0xcafebabe...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.obol.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7b02a8c6-fe14-4294-9b73-ee153e421126",
+    "name": "Obol Address Fee Recipient API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:\n\nContact Support:\n Name: Obol Labs\n Email: support@obol.tech",
+      "type": "text/plain"
+    }
+  }
+}

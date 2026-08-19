@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Obol Address System API",
+    "version": "v1.0.0-local"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Redirect to the API docs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/"
+          },
+          "docs": "Hitting the root of the domain redirects to /docs and a swagger deployment."
+        },
+        {
+          "info": {
+            "name": "Check the API health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/_health"
+          },
+          "docs": "This endpoint reports the API and its dependencies health."
+        },
+        {
+          "info": {
+            "name": "Get network ETH APR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/eth-apr"
+          },
+          "docs": "Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR."
+        },
+        {
+          "info": {
+            "name": "Get network ETH APR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.obol.tech/v1/eth-apr"
+          },
+          "docs": "Proxies Beaconcha.in ethstore/latest to avoid CORS. Returns mainnet network APR."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
