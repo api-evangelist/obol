@@ -228,6 +228,8 @@ apis:
   humanURL: https://docs.obol.org/api
   baseURL: https://api.obol.tech
   tags:
+  - States
+  tags_raw:
   - State
   properties:
   - type: OpenAPI
@@ -291,7 +293,8 @@ apis:
   description: The Test API from Obol — 2 operation(s) for test.
   humanURL: https://docs.obol.org/api
   baseURL: https://api.obol.tech
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
