@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address Cluster Lock API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol Cluster Lock API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -329,14 +338,16 @@ paths:
                       type: number
                       example: 99.89
                     peer_name:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: puzzled-pen
-                      nullable: true
                       description: Peer name shown when the peer score row has no operator address.
                     peer_nickname:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: Alice node
-                      nullable: true
                       description: Operator-configured peer nickname, when available.
                     last_updated:
                       type: string
@@ -397,14 +408,16 @@ paths:
                       type: number
                       example: 99.89
                     peer_name:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: puzzled-pen
-                      nullable: true
                       description: Peer name shown when the peer score row has no operator address.
                     peer_nickname:
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                       example: Alice node
-                      nullable: true
                       description: Operator-configured peer nickname, when available.
                     last_updated:
                       type: string
@@ -458,7 +471,7 @@ paths:
                 - $ref: '#/components/schemas/ClusterLockPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an…
       tags:
       - Cluster Lock
   /lock/operator/{address}:
@@ -496,7 +509,7 @@ paths:
                 - $ref: '#/components/schemas/ClusterLockPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an…
       tags:
       - Cluster Lock
   /v1/lock/operator:
@@ -534,7 +547,7 @@ paths:
                 - $ref: '#/components/schemas/ClusterLockPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an…
       tags:
       - Cluster Lock
   /v1/lock/operator/{address}:
@@ -572,7 +585,7 @@ paths:
                 - $ref: '#/components/schemas/ClusterLockPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of Distributed Validator Clusters for which this address is an operator
+      summary: Retrieve a list of Distributed Validator Clusters for which this address is an…
       tags:
       - Cluster Lock
   /lock/network/{network}:
@@ -911,47 +924,63 @@ paths:
       - Cluster Lock
 components:
   schemas:
-    Creator:
-      type: object
-      properties: {}
-    BuilderRegistrationDto:
+    DistributedValidatorDto:
       type: object
       properties:
-        message:
-          description: builder registration information.
-          allOf:
-          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
-        signature:
-          type: string
-          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
-      required:
-      - message
-      - signature
-    DepositDataDto:
-      type: object
-      properties:
-        pubkey:
+        distributed_public_key:
           type: string
           pattern: ^(0x|0h)?[0-9A-F]+$
           example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-        withdrawal_credentials:
-          type: string
-          example: '0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec'
-        amount:
-          type: string
-          example: '32000000000'
-        deposit_data_root:
-          type: string
-          example: 5e58a5d8f1e53479343cb6188f061f6b1a46c521c53eef0580b04f485ad62bad
-        signature:
-          type: string
-          example: '0x88fe84889608a8b2424bddae2047d2ee4b42f72c4d8201d69e732d7c3bfa1bcb00f930979770b7d00071673fde8f205108dabe8d83ec49aa6de1b7869966b555be80a159e6ad11e273c4e0234038cfa525923044d6a89a4924fdc178f333568b'
+        public_shares:
+          description: array of public shares of the distributed public key.
+          type: array
+          items:
+            type: string
+            pattern: ^(0x|0h)?[0-9A-F]+$
+        deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
+        builder_registration:
+          description: Pre-generated signed validator builder registration.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationDto'
+        partial_deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
       required:
-      - pubkey
-      - withdrawal_credentials
-      - amount
-      - deposit_data_root
-      - signature
+      - distributed_public_key
+      - public_shares
+      - deposit_data
+      - builder_registration
+      - partial_deposit_data
+    ClusterLockPagedResponse:
+      type: object
+      properties:
+        cluster_locks:
+          type: array
+          items:
+            type: string
+        total_active_stake_eth:
+          type: number
+          example: 128.5
+        total_active_stake_usd:
+          type: number
+          example: 128.5
+        unique_validators_count:
+          type: number
+          example: 10
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - cluster_locks
+      - total_count
+      - total_pages
     ClusterDefinitionResponse:
       type: object
       properties:
@@ -1043,136 +1072,15 @@ components:
       - consensus_protocol
       - target_gas_limit
       - compounding
-    BuilderRegistrationMessageDto:
-      type: object
-      properties:
-        fee_recipient:
-          type: string
-          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
-        gas_limit:
-          type: number
-          example: 30000000
-        timestamp:
-          type: number
-          example: 1616508000
-        pubkey:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-      required:
-      - fee_recipient
-      - gas_limit
-      - timestamp
-      - pubkey
-    ClusterLockResponse:
-      type: object
-      properties:
-        cluster_definition:
-          description: Cluster definition data that was used in dkg to generate cluster lock.
-          allOf:
-          - $ref: '#/components/schemas/ClusterDefinitionResponse'
-        distributed_validators:
-          type: array
-          items:
-            $ref: '#/components/schemas/DistributedValidator'
-        signature_aggregate:
-          type: string
-          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
-        lock_hash:
-          type: string
-          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
-        node_signatures:
-          type: array
-          items:
-            type: string
-      required:
-      - cluster_definition
-      - distributed_validators
-      - signature_aggregate
-      - lock_hash
-      - node_signatures
     Validator:
       type: object
       properties: {}
     DistributedValidator:
       type: object
       properties: {}
-    Operator:
+    Creator:
       type: object
       properties: {}
-    ClusterLockNetworkSummaryResponse:
-      type: object
-      properties:
-        eth_staked:
-          type: number
-          example: 2
-        total_clusters:
-          type: number
-          example: 2
-        total_operators:
-          type: number
-          example: 4
-      required:
-      - eth_staked
-      - total_clusters
-      - total_operators
-    ClusterLockPagedResponse:
-      type: object
-      properties:
-        cluster_locks:
-          type: array
-          items:
-            type: string
-        total_active_stake_eth:
-          type: number
-          example: 128.5
-        total_active_stake_usd:
-          type: number
-          example: 128.5
-        unique_validators_count:
-          type: number
-          example: 10
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 4
-      required:
-      - cluster_locks
-      - total_count
-      - total_pages
-    DistributedValidatorDto:
-      type: object
-      properties:
-        distributed_public_key:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-        public_shares:
-          description: array of public shares of the distributed public key.
-          type: array
-          items:
-            type: string
-            pattern: ^(0x|0h)?[0-9A-F]+$
-        deposit_data:
-          description: Deposit data for validator activation.
-          allOf:
-          - $ref: '#/components/schemas/DepositDataDto'
-        builder_registration:
-          description: Pre-generated signed validator builder registration.
-          allOf:
-          - $ref: '#/components/schemas/BuilderRegistrationDto'
-        partial_deposit_data:
-          description: Deposit data for validator activation.
-          allOf:
-          - $ref: '#/components/schemas/DepositDataDto'
-      required:
-      - distributed_public_key
-      - public_shares
-      - deposit_data
-      - builder_registration
-      - partial_deposit_data
     ClusterLockDto:
       type: object
       properties:
@@ -1204,6 +1112,111 @@ components:
       - signature_aggregate
       - lock_hash
       - node_signatures
+    ClusterLockResponse:
+      type: object
+      properties:
+        cluster_definition:
+          description: Cluster definition data that was used in dkg to generate cluster lock.
+          allOf:
+          - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        distributed_validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DistributedValidator'
+        signature_aggregate:
+          type: string
+          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
+        lock_hash:
+          type: string
+          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
+        node_signatures:
+          type: array
+          items:
+            type: string
+      required:
+      - cluster_definition
+      - distributed_validators
+      - signature_aggregate
+      - lock_hash
+      - node_signatures
+    BuilderRegistrationDto:
+      type: object
+      properties:
+        message:
+          description: builder registration information.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
+        signature:
+          type: string
+          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
+      required:
+      - message
+      - signature
+    BuilderRegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
+        gas_limit:
+          type: number
+          example: 30000000
+        timestamp:
+          type: number
+          example: 1616508000
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
+    Operator:
+      type: object
+      properties: {}
+    DepositDataDto:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+        withdrawal_credentials:
+          type: string
+          example: '0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec'
+        amount:
+          type: string
+          example: '32000000000'
+        deposit_data_root:
+          type: string
+          example: 5e58a5d8f1e53479343cb6188f061f6b1a46c521c53eef0580b04f485ad62bad
+        signature:
+          type: string
+          example: '0x88fe84889608a8b2424bddae2047d2ee4b42f72c4d8201d69e732d7c3bfa1bcb00f930979770b7d00071673fde8f205108dabe8d83ec49aa6de1b7869966b555be80a159e6ad11e273c4e0234038cfa525923044d6a89a4924fdc178f333568b'
+      required:
+      - pubkey
+      - withdrawal_credentials
+      - amount
+      - deposit_data_root
+      - signature
+    ClusterLockNetworkSummaryResponse:
+      type: object
+      properties:
+        eth_staked:
+          type: number
+          example: 2
+        total_clusters:
+          type: number
+          example: 2
+        total_operators:
+          type: number
+          example: 4
+      required:
+      - eth_staked
+      - total_clusters
+      - total_operators
   securitySchemes:
     bearer:
       scheme: bearer

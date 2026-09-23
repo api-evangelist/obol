@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address Cluster Definition API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol Cluster Definition API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -19,7 +28,7 @@ tags:
 paths:
   /v1/definition/{configHash}:
     get:
-      description: This endpoint allows a charon client or launchpad interface to retrieve the terms of a proposed DKG. Once all operators listed in the DKG have submitted signed approvals to the terms, this object will be ready for a cluster of operators to use as part of a DKG ceremony. If the objects in the `operators` array are not fully populated, these operators need to use the [PUT request](#/Distributed%20Validators/DefinitionController_updateClusterDefinition) to upload their charon client's public key and a signature from their address to indicate their acceptance of the terms.
+      description: This endpoint allows a charon client or launchpad interface to retrieve the terms of a proposed DKG. Once all operators listed in the DKG have submitted signed approvals to the terms, this object will be ready for a cluster of operators to use as part of a DKG ceremony. If the objects in the `operators` array are not fully populated, these operators need to use the PUT request to upload their charon client's public key and a signature from their address to indicate their acceptance of the terms.
       operationId: DefinitionController_getClusterDefinition_v1
       parameters:
       - name: configHash
@@ -44,7 +53,7 @@ paths:
       tags:
       - Cluster Definition
     put:
-      description: This endpoint is used by the operators present in the `operators` array of a cluster definition. The operator must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). These operators must submit a public key (in ENR form) to serve as their identity during the DKG, along with EIP712 signatures indicating their acceptance of the terms of this DKG.
+      description: This endpoint is used by the operators present in the `operators` array of a cluster definition. The operator must have accepted the latest version of Obol's terms and conditions. These operators must submit a public key (in ENR form) to serve as their identity during the DKG, along with EIP712 signatures indicating their acceptance of the terms of this DKG.
       operationId: DefinitionController_updateClusterDefinition_v1
       parameters:
       - name: authorization
@@ -122,7 +131,7 @@ paths:
                 - $ref: '#/components/schemas/ClusterDefinitionPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of cluster definitions which the address belongs to.
+      summary: Retrieve a list of cluster definitions which the address belongs to
       tags:
       - Cluster Definition
   /v1/definition/operator/{address}:
@@ -156,12 +165,12 @@ paths:
                 - $ref: '#/components/schemas/ClusterDefinitionPagedResponse'
         '500':
           description: An unknown error occurred
-      summary: Retrieve a list of cluster definitions which the address belongs to.
+      summary: Retrieve a list of cluster definitions which the address belongs to
       tags:
       - Cluster Definition
   /v1/definition:
     post:
-      description: This endpoint allows the caller to propose a distributed key generation ceremony.The caller must have accepted the latest version of [Obol's terms and conditions](https://obol.tech/terms.pdf). The caller must specify the configuration of a Distributed Validator Cluster; such as the participating operators and the validator exit details. Operators invited to participate in this cluster must submit a public key (in [ENR](https://docs.obol.tech/docs/v0.12.0/int/faq/errors#enrs-keys) form) to serve as their node's identity, along with EIP712 signatures indicating their acceptance of the terms of this cluster.
+      description: This endpoint allows the caller to propose a distributed key generation ceremony.The caller must have accepted the latest version of Obol's terms and conditions. The caller must specify the configuration of a Distributed Validator Cluster; such as the participating operators and the validator exit details. Operators invited to participate in this cluster must submit a public key (in ENR form) to serve as their node's identity, along with EIP712 signatures indicating their acceptance of the terms of this cluster.
       operationId: DefinitionController_postClusterDefinition_v1
       parameters:
       - name: authorization
@@ -202,6 +211,97 @@ paths:
       - Cluster Definition
 components:
   schemas:
+    ClusterDefinitionResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          example: My Obol Cluster
+        uuid:
+          type: string
+          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
+        creator:
+          $ref: '#/components/schemas/Creator'
+        version:
+          type: string
+          example: v1.8.0
+        num_validators:
+          type: number
+          example: 5
+        threshold:
+          type: number
+          example: 3
+        dkg_algorithm:
+          type: string
+          example: default
+        fork_version:
+          type: string
+          example: '0x00001020'
+        config_hash:
+          type: string
+          description: config_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
+        timestamp:
+          type: string
+          example: '2022-07-19T18:19:58+02:00'
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Validator'
+        deposit_amounts:
+          description: Partial depoists.
+          example:
+          - '8000000000'
+          - '16000000000'
+          - '8000000000'
+          type: array
+          items:
+            type: string
+        definition_hash:
+          type: string
+          description: definition_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+        operators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operator'
+        consensus_protocol:
+          type: string
+          example: qbft
+        target_gas_limit:
+          type: number
+          example: 36000000
+        compounding:
+          type: boolean
+          example: true
+      required:
+      - name
+      - uuid
+      - creator
+      - version
+      - num_validators
+      - threshold
+      - dkg_algorithm
+      - fork_version
+      - config_hash
+      - timestamp
+      - validators
+      - deposit_amounts
+      - definition_hash
+      - fee_recipient_address
+      - withdrawal_address
+      - operators
+      - consensus_protocol
+      - target_gas_limit
+      - compounding
     OperatorDto:
       type: object
       properties:
@@ -242,6 +342,43 @@ components:
       - version
       - enr_signature
       - config_signature
+    Validator:
+      type: object
+      properties: {}
+    Creator:
+      type: object
+      properties: {}
+    ClusterDefinitionPagedResponse:
+      type: object
+      properties:
+        cluster_definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterDefinitionResponse'
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 3
+      required:
+      - cluster_definitions
+      - total_count
+      - total_pages
+    ClusterDefValidator:
+      type: object
+      properties:
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+      required:
+      - fee_recipient_address
+      - withdrawal_address
     ClusterDefDto:
       type: object
       properties:
@@ -340,114 +477,6 @@ components:
       - target_gas_limit
       - compounding
       - config_hash
-    ClusterDefValidator:
-      type: object
-      properties:
-        fee_recipient_address:
-          type: string
-          description: Ethereum address to receive transaction fees.
-          example: '0x000000000000000000000000000000000000dead'
-        withdrawal_address:
-          type: string
-          description: Ethereum address to receive staked ether.
-          example: '0x000000000000000000000000000000000000dead'
-      required:
-      - fee_recipient_address
-      - withdrawal_address
-    Creator:
-      type: object
-      properties: {}
-    ClusterDefinitionResponse:
-      type: object
-      properties:
-        name:
-          type: string
-          example: My Obol Cluster
-        uuid:
-          type: string
-          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
-        creator:
-          $ref: '#/components/schemas/Creator'
-        version:
-          type: string
-          example: v1.8.0
-        num_validators:
-          type: number
-          example: 5
-        threshold:
-          type: number
-          example: 3
-        dkg_algorithm:
-          type: string
-          example: default
-        fork_version:
-          type: string
-          example: '0x00001020'
-        config_hash:
-          type: string
-          description: config_hash is a 32 bytes SSZ hash of cluster config.
-          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
-        timestamp:
-          type: string
-          example: '2022-07-19T18:19:58+02:00'
-        validators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Validator'
-        deposit_amounts:
-          description: Partial depoists.
-          example:
-          - '8000000000'
-          - '16000000000'
-          - '8000000000'
-          type: array
-          items:
-            type: string
-        definition_hash:
-          type: string
-          description: definition_hash is a 32 bytes SSZ hash of cluster config.
-          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
-        fee_recipient_address:
-          type: string
-          description: Ethereum address to receive transaction fees.
-          example: '0x000000000000000000000000000000000000dead'
-        withdrawal_address:
-          type: string
-          description: Ethereum address to receive staked ether.
-          example: '0x000000000000000000000000000000000000dead'
-        operators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operator'
-        consensus_protocol:
-          type: string
-          example: qbft
-        target_gas_limit:
-          type: number
-          example: 36000000
-        compounding:
-          type: boolean
-          example: true
-      required:
-      - name
-      - uuid
-      - creator
-      - version
-      - num_validators
-      - threshold
-      - dkg_algorithm
-      - fork_version
-      - config_hash
-      - timestamp
-      - validators
-      - deposit_amounts
-      - definition_hash
-      - fee_recipient_address
-      - withdrawal_address
-      - operators
-      - consensus_protocol
-      - target_gas_limit
-      - compounding
     CreatorDto:
       type: object
       properties:
@@ -461,29 +490,9 @@ components:
       required:
       - address
       - config_signature
-    Validator:
-      type: object
-      properties: {}
     Operator:
       type: object
       properties: {}
-    ClusterDefinitionPagedResponse:
-      type: object
-      properties:
-        cluster_definitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterDefinitionResponse'
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 3
-      required:
-      - cluster_definitions
-      - total_count
-      - total_pages
   securitySchemes:
     bearer:
       scheme: bearer

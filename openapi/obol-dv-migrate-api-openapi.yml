@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address DV Migrate API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol DV Migrate API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -81,15 +90,6 @@ paths:
       - DV Migrate
 components:
   schemas:
-    MigrationStateResponse:
-      type: object
-      properties:
-        validators:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidatorDetails'
-      required:
-      - validators
     ValidatorDetails:
       type: object
       properties:
@@ -111,6 +111,15 @@ components:
       - status
       - effective_balance
       - lock_hash
+    MigrationStateResponse:
+      type: object
+      properties:
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorDetails'
+      required:
+      - validators
   securitySchemes:
     bearer:
       scheme: bearer

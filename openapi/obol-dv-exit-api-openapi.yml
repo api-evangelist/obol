@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address DV Exit API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol DV Exit API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -320,6 +329,18 @@ components:
       required:
       - message
       - signature
+    ExitBlobDto:
+      type: object
+      properties:
+        public_key:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
+        signed_exit_message:
+          $ref: '#/components/schemas/SignedExitMessageDto'
+      required:
+      - public_key
+      - signed_exit_message
     ExitDto:
       type: object
       properties:
@@ -338,6 +359,24 @@ components:
       - partial_exits
       - share_idx
       - signature
+    ExitMessageDto:
+      type: object
+      properties:
+        epoch:
+          type: string
+          example: '162304'
+        validator_index:
+          type: string
+          example: '42'
+      required:
+      - epoch
+      - validator_index
+    ExitBlob:
+      type: object
+      properties: {}
+    ClusterExitStatusResponse:
+      type: object
+      properties: {}
     ClusterExitStatusSummaryResponse:
       type: object
       properties:
@@ -353,36 +392,6 @@ components:
       required:
       - operator_exits
       - ready_exits
-    ExitBlobDto:
-      type: object
-      properties:
-        public_key:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
-        signed_exit_message:
-          $ref: '#/components/schemas/SignedExitMessageDto'
-      required:
-      - public_key
-      - signed_exit_message
-    ExitBlob:
-      type: object
-      properties: {}
-    ExitMessageDto:
-      type: object
-      properties:
-        epoch:
-          type: string
-          example: '162304'
-        validator_index:
-          type: string
-          example: '42'
-      required:
-      - epoch
-      - validator_index
-    ClusterExitStatusResponse:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

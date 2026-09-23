@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Obol Address API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -360,6 +369,32 @@ paths:
       - Address
 components:
   schemas:
+    AddressIncentivesResponse:
+      type: object
+      properties:
+        operator_address:
+          type: string
+          description: Operator address
+        amount:
+          type: string
+          description: The amount the recipient is entitled to
+        index:
+          type: number
+          description: The recipient’s index in the Merkle tree
+        merkle_proof:
+          description: The Merkle proof (an array of hashes) generated for the recipient
+          type: array
+          items:
+            type: string
+        contract_address:
+          type: string
+          description: The MerkleDistributor contract address.
+      required:
+      - operator_address
+      - amount
+      - index
+      - merkle_proof
+      - contract_address
     AddressTechneResponse:
       type: object
       properties:
@@ -388,6 +423,23 @@ components:
       - bronze
       - silver
       - gold
+    OperatorsPagedResponse:
+      type: object
+      properties:
+        operators:
+          type: array
+          items:
+            type: string
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - operators
+      - total_count
+      - total_pages
     MigrateableValidatorsResponse:
       type: object
       properties:
@@ -410,49 +462,6 @@ components:
             type: string
       required:
       - badges
-    OperatorsPagedResponse:
-      type: object
-      properties:
-        operators:
-          type: array
-          items:
-            type: string
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 4
-      required:
-      - operators
-      - total_count
-      - total_pages
-    AddressIncentivesResponse:
-      type: object
-      properties:
-        operator_address:
-          type: string
-          description: Operator address
-        amount:
-          type: string
-          description: The amount the recipient is entitled to
-        index:
-          type: number
-          description: The recipient’s index in the Merkle tree
-        merkle_proof:
-          description: The Merkle proof (an array of hashes) generated for the recipient
-          type: array
-          items:
-            type: string
-        contract_address:
-          type: string
-          description: The MerkleDistributor contract address.
-      required:
-      - operator_address
-      - amount
-      - index
-      - merkle_proof
-      - contract_address
   securitySchemes:
     bearer:
       scheme: bearer

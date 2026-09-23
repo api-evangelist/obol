@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address Test API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol Test API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -86,6 +95,25 @@ components:
           type: string
           description: 'Base64-encoded secp256k1 ECDSA signature (65 bytes: 32-byte r + 32-byte s + 1-byte recovery id) over the SSZ `hashTreeRoot` of the UTF-8 bytes of `JSON.stringify(data)`, matching Charon `publishResultToObolAPI`'
           example: AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ
+    TestCategoryDto:
+      type: object
+      properties:
+        category_name:
+          type: string
+          description: Category name
+          example: mev
+        execution_time:
+          type: string
+          description: Execution time
+          example: 636.089125ms
+        score:
+          type: string
+          description: Score letter grade
+          example: A
+        targets:
+          type: object
+          description: Targets with test results
+          example: {}
     TestCategoriesDto:
       type: object
       properties:
@@ -109,25 +137,6 @@ components:
           description: Infrastructure test results
           allOf:
           - $ref: '#/components/schemas/TestCategoryDto'
-    TestCategoryDto:
-      type: object
-      properties:
-        category_name:
-          type: string
-          description: Category name
-          example: mev
-        execution_time:
-          type: string
-          description: Execution time
-          example: 636.089125ms
-        score:
-          type: string
-          description: Score letter grade
-          example: A
-        targets:
-          type: object
-          description: Targets with test results
-          example: {}
   securitySchemes:
     bearer:
       scheme: bearer

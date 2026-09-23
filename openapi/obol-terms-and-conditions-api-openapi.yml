@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address Terms And Conditions API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol Terms And Conditions API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -19,7 +28,7 @@ tags:
 paths:
   /v1/termsAndConditions:
     post:
-      description: Saves user's signature to latest [Obol's terms and conditions](https://obol.tech/terms.pdf) hash and it's version
+      description: Saves user's signature to latest Obol's terms and conditions hash and it's version
       operationId: TermsAndConditionsController_signTermsAndConditions_v1
       parameters:
       - name: authorization
@@ -76,6 +85,14 @@ paths:
       - Terms And Conditions
 components:
   schemas:
+    TermsAndConditions:
+      type: object
+      properties:
+        isTermsAndConditionsSigned:
+          type: boolean
+          description: Boolean Value Indicating if Terms and Conditions Have Been Signed
+      required:
+      - isTermsAndConditionsSigned
     TermsAndConditionsDto:
       type: object
       properties:
@@ -106,14 +123,6 @@ components:
       - address
       - version
       - terms_and_conditions_hash
-    TermsAndConditions:
-      type: object
-      properties:
-        isTermsAndConditionsSigned:
-          type: boolean
-          description: Boolean Value Indicating if Terms and Conditions Have Been Signed
-      required:
-      - isTermsAndConditionsSigned
   securitySchemes:
     bearer:
       scheme: bearer

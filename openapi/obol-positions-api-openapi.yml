@@ -1,7 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Obol Address Positions API
-  description: "## What is this API?\n\nThis API is for creating and managing [Distributed Validators](https://docs.obol.tech/docs/int/key-concepts#distributed-validator). This API works in tandem with Obol's [Distributed Validator Launchpad](https://hoodi.launchpad.obol.org), a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK. \n\nRead more about Obol and how to use the [launchpad](https://hoodi.launchpad.obol.org) on our [docs site](https://docs.obol.tech/). \n\nFor enquiries:"
+  title: Obol Positions API
+  description: '## What is this API?
+
+
+    This API is for creating and managing Distributed Validators. This API works in tandem with Obol''s Distributed Validator Launchpad, a dapp designed to allow people to authenticate their counterparties and agree to the terms of a Distributed Validator Cluster. This API will be made more easy for code-only interaction in the coming quarters with the release of the Obol-SDK.
+
+
+    Read more about Obol and how to use the launchpad on our docs site.
+
+
+    For enquiries:'
   version: v1.0.0-local
   contact:
     name: Obol Labs
@@ -93,53 +102,28 @@ paths:
       - Positions
 components:
   schemas:
-    PositionCluster:
-      type: object
-      properties:
-        lock_hash:
-          type: string
-          description: Cluster lock hash
-        cluster_name:
-          type: string
-          description: Cluster name
-        num_validators_total:
-          type: number
-          description: Total validators in this cluster
-        validators:
-          description: Validators matched by search addresses
-          type: array
-          items:
-            $ref: '#/components/schemas/PositionValidator'
-        total_balance_eth:
-          type: number
-          description: Sum of balance_eth for matched validators (latest snapshot)
-        avg_effectiveness:
-          type: number
-          description: Average effectiveness for matched validators (latest snapshot)
-        cluster_apr:
-          type: number
-          description: Average APR of affiliated validators (from validator_apy in clusterinformationdetailedv3)
-      required:
-      - lock_hash
-      - cluster_name
-      - num_validators_total
-      - validators
-      - total_balance_eth
-      - avg_effectiveness
-    PositionsResponse:
-      type: object
-      properties:
-        positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PositionCluster'
-      required:
-      - positions
     PositionsRequestDto:
       type: object
       properties:
         additionalAddresses:
           description: Additional addresses to search (e.g. split addresses from getRelatedSplits, DeFi wrapper WA)
+          type: array
+          items:
+            type: string
+    ResolvedRecipients:
+      type: object
+      properties:
+        principal_recipient:
+          type: string
+          description: 'OVM/OWR: principal recipient address'
+        reward_recipient:
+          type: string
+          description: 'OVM/OWR: reward recipient address'
+        threshold:
+          type: string
+          description: 'OWR only: threshold in wei'
+        split_recipients:
+          description: 'Split: list of split recipients'
           type: array
           items:
             type: string
@@ -183,23 +167,48 @@ components:
       - pubkey
       - withdrawal_address
       - fee_recipient_address
-    ResolvedRecipients:
+    PositionsResponse:
       type: object
       properties:
-        principal_recipient:
-          type: string
-          description: 'OVM/OWR: principal recipient address'
-        reward_recipient:
-          type: string
-          description: 'OVM/OWR: reward recipient address'
-        threshold:
-          type: string
-          description: 'OWR only: threshold in wei'
-        split_recipients:
-          description: 'Split: list of split recipients'
+        positions:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/PositionCluster'
+      required:
+      - positions
+    PositionCluster:
+      type: object
+      properties:
+        lock_hash:
+          type: string
+          description: Cluster lock hash
+        cluster_name:
+          type: string
+          description: Cluster name
+        num_validators_total:
+          type: number
+          description: Total validators in this cluster
+        validators:
+          description: Validators matched by search addresses
+          type: array
+          items:
+            $ref: '#/components/schemas/PositionValidator'
+        total_balance_eth:
+          type: number
+          description: Sum of balance_eth for matched validators (latest snapshot)
+        avg_effectiveness:
+          type: number
+          description: Average effectiveness for matched validators (latest snapshot)
+        cluster_apr:
+          type: number
+          description: Average APR of affiliated validators (from validator_apy in clusterinformationdetailedv3)
+      required:
+      - lock_hash
+      - cluster_name
+      - num_validators_total
+      - validators
+      - total_balance_eth
+      - avg_effectiveness
   securitySchemes:
     bearer:
       scheme: bearer
