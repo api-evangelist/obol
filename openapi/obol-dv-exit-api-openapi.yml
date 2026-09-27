@@ -318,17 +318,6 @@ paths:
       - DV Exit
 components:
   schemas:
-    SignedExitMessageDto:
-      type: object
-      properties:
-        message:
-          $ref: '#/components/schemas/ExitMessageDto'
-        signature:
-          type: string
-          example: ''
-      required:
-      - message
-      - signature
     ExitBlobDto:
       type: object
       properties:
@@ -341,6 +330,24 @@ components:
       required:
       - public_key
       - signed_exit_message
+    ClusterExitStatusSummaryResponse:
+      type: object
+      properties:
+        operator_exits:
+          type: object
+          example:
+            '0x000000000000000000000000000000000000dea1': 5
+            '0x000000000000000000000000000000000000dead': 10
+          description: An object where the key is an operator address and the value is a number of signed validators.
+        ready_exits:
+          type: number
+          example: 2
+      required:
+      - operator_exits
+      - ready_exits
+    ClusterExitStatusResponse:
+      type: object
+      properties: {}
     ExitDto:
       type: object
       properties:
@@ -371,27 +378,20 @@ components:
       required:
       - epoch
       - validator_index
+    SignedExitMessageDto:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ExitMessageDto'
+        signature:
+          type: string
+          example: ''
+      required:
+      - message
+      - signature
     ExitBlob:
       type: object
       properties: {}
-    ClusterExitStatusResponse:
-      type: object
-      properties: {}
-    ClusterExitStatusSummaryResponse:
-      type: object
-      properties:
-        operator_exits:
-          type: object
-          example:
-            '0x000000000000000000000000000000000000dea1': 5
-            '0x000000000000000000000000000000000000dead': 10
-          description: An object where the key is an operator address and the value is a number of signed validators.
-        ready_exits:
-          type: number
-          example: 2
-      required:
-      - operator_exits
-      - ready_exits
   securitySchemes:
     bearer:
       scheme: bearer

@@ -158,27 +158,6 @@ paths:
       - Fee Recipient
 components:
   schemas:
-    FetchQueryDto:
-      type: object
-      properties:
-        pubkeys:
-          description: Optional list of validator pubkeys to filter by. If omitted or empty, returns all validators with registrations.
-          example:
-          - 0xdeadbeef...
-          - 0xcafebabe...
-          type: array
-          items:
-            type: string
-    FeeRecipientDto:
-      type: object
-      properties:
-        partial_registrations:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialRegistrationDto'
-      required:
-      - partial_registrations
     RegistrationMessageDto:
       type: object
       properties:
@@ -195,6 +174,17 @@ components:
       - gas_limit
       - timestamp
       - pubkey
+    FetchQueryDto:
+      type: object
+      properties:
+        pubkeys:
+          description: Optional list of validator pubkeys to filter by. If omitted or empty, returns all validators with registrations.
+          example:
+          - 0xdeadbeef...
+          - 0xcafebabe...
+          type: array
+          items:
+            type: string
     PartialRegistrationDto:
       type: object
       properties:
@@ -205,6 +195,16 @@ components:
       required:
       - message
       - signature
+    FeeRecipientDto:
+      type: object
+      properties:
+        partial_registrations:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialRegistrationDto'
+      required:
+      - partial_registrations
   securitySchemes:
     bearer:
       scheme: bearer

@@ -320,7 +320,7 @@ apis:
   - type: GettingStarted
     url: https://docs.obol.org/next/run-a-dv/start
 - aid: obol:obol-tvs-api
-  name: Obol tvs API
+  name: Obol Tvs API
   description: The tvs API from Obol — 2 operation(s) for tvs.
   humanURL: https://docs.obol.org/api
   baseURL: https://api.obol.tech

@@ -166,56 +166,6 @@ paths:
       - Deposit Data
 components:
   schemas:
-    DepositDto:
-      type: object
-      properties:
-        partial_deposit_data:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialDepositDataDto'
-      required:
-      - partial_deposit_data
-    AmountGroupResponse:
-      type: object
-      properties:
-        amount:
-          type: string
-          example: '32000000000'
-          description: Amount in Gwei
-        partials:
-          description: Array of partial deposits for this amount
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialDepositResponse'
-      required:
-      - amount
-      - partials
-    DepositDataResponse:
-      type: object
-      properties:
-        lock_hash:
-          type: string
-          example: ''
-          description: ''
-        pubkey:
-          type: string
-          example: 0xFULL_1
-          description: Full public key of the validator
-        withdrawal_credentials:
-          type: string
-          example: 0xWITHDRAW_1
-          description: Withdrawal credentials
-        amounts:
-          description: Array of amounts with their partial deposits
-          type: array
-          items:
-            $ref: '#/components/schemas/AmountGroupResponse'
-      required:
-      - lock_hash
-      - pubkey
-      - withdrawal_credentials
-      - amounts
     PartialDepositDataDto:
       type: object
       properties:
@@ -256,6 +206,56 @@ components:
       required:
       - partial_public_key
       - partial_deposit_signature
+    AmountGroupResponse:
+      type: object
+      properties:
+        amount:
+          type: string
+          example: '32000000000'
+          description: Amount in Gwei
+        partials:
+          description: Array of partial deposits for this amount
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositResponse'
+      required:
+      - amount
+      - partials
+    DepositDto:
+      type: object
+      properties:
+        partial_deposit_data:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositDataDto'
+      required:
+      - partial_deposit_data
+    DepositDataResponse:
+      type: object
+      properties:
+        lock_hash:
+          type: string
+          example: ''
+          description: ''
+        pubkey:
+          type: string
+          example: 0xFULL_1
+          description: Full public key of the validator
+        withdrawal_credentials:
+          type: string
+          example: 0xWITHDRAW_1
+          description: Withdrawal credentials
+        amounts:
+          description: Array of amounts with their partial deposits
+          type: array
+          items:
+            $ref: '#/components/schemas/AmountGroupResponse'
+      required:
+      - lock_hash
+      - pubkey
+      - withdrawal_credentials
+      - amounts
   securitySchemes:
     bearer:
       scheme: bearer

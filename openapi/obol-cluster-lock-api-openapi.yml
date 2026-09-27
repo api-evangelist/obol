@@ -955,32 +955,6 @@ components:
       - deposit_data
       - builder_registration
       - partial_deposit_data
-    ClusterLockPagedResponse:
-      type: object
-      properties:
-        cluster_locks:
-          type: array
-          items:
-            type: string
-        total_active_stake_eth:
-          type: number
-          example: 128.5
-        total_active_stake_usd:
-          type: number
-          example: 128.5
-        unique_validators_count:
-          type: number
-          example: 10
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 4
-      required:
-      - cluster_locks
-      - total_count
-      - total_pages
     ClusterDefinitionResponse:
       type: object
       properties:
@@ -1075,12 +1049,113 @@ components:
     Validator:
       type: object
       properties: {}
+    ClusterLockPagedResponse:
+      type: object
+      properties:
+        cluster_locks:
+          type: array
+          items:
+            type: string
+        total_active_stake_eth:
+          type: number
+          example: 128.5
+        total_active_stake_usd:
+          type: number
+          example: 128.5
+        unique_validators_count:
+          type: number
+          example: 10
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - cluster_locks
+      - total_count
+      - total_pages
+    DepositDataDto:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+        withdrawal_credentials:
+          type: string
+          example: '0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec'
+        amount:
+          type: string
+          example: '32000000000'
+        deposit_data_root:
+          type: string
+          example: 5e58a5d8f1e53479343cb6188f061f6b1a46c521c53eef0580b04f485ad62bad
+        signature:
+          type: string
+          example: '0x88fe84889608a8b2424bddae2047d2ee4b42f72c4d8201d69e732d7c3bfa1bcb00f930979770b7d00071673fde8f205108dabe8d83ec49aa6de1b7869966b555be80a159e6ad11e273c4e0234038cfa525923044d6a89a4924fdc178f333568b'
+      required:
+      - pubkey
+      - withdrawal_credentials
+      - amount
+      - deposit_data_root
+      - signature
+    BuilderRegistrationDto:
+      type: object
+      properties:
+        message:
+          description: builder registration information.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
+        signature:
+          type: string
+          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
+      required:
+      - message
+      - signature
+    ClusterLockNetworkSummaryResponse:
+      type: object
+      properties:
+        eth_staked:
+          type: number
+          example: 2
+        total_clusters:
+          type: number
+          example: 2
+        total_operators:
+          type: number
+          example: 4
+      required:
+      - eth_staked
+      - total_clusters
+      - total_operators
     DistributedValidator:
       type: object
       properties: {}
-    Creator:
+    Operator:
       type: object
       properties: {}
+    BuilderRegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
+        gas_limit:
+          type: number
+          example: 30000000
+        timestamp:
+          type: number
+          example: 1616508000
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
     ClusterLockDto:
       type: object
       properties:
@@ -1112,6 +1187,9 @@ components:
       - signature_aggregate
       - lock_hash
       - node_signatures
+    Creator:
+      type: object
+      properties: {}
     ClusterLockResponse:
       type: object
       properties:
@@ -1139,84 +1217,6 @@ components:
       - signature_aggregate
       - lock_hash
       - node_signatures
-    BuilderRegistrationDto:
-      type: object
-      properties:
-        message:
-          description: builder registration information.
-          allOf:
-          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
-        signature:
-          type: string
-          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
-      required:
-      - message
-      - signature
-    BuilderRegistrationMessageDto:
-      type: object
-      properties:
-        fee_recipient:
-          type: string
-          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
-        gas_limit:
-          type: number
-          example: 30000000
-        timestamp:
-          type: number
-          example: 1616508000
-        pubkey:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-      required:
-      - fee_recipient
-      - gas_limit
-      - timestamp
-      - pubkey
-    Operator:
-      type: object
-      properties: {}
-    DepositDataDto:
-      type: object
-      properties:
-        pubkey:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-        withdrawal_credentials:
-          type: string
-          example: '0x01000000000000000000000086b8145c98e5bd25ba722645b15ed65f024a87ec'
-        amount:
-          type: string
-          example: '32000000000'
-        deposit_data_root:
-          type: string
-          example: 5e58a5d8f1e53479343cb6188f061f6b1a46c521c53eef0580b04f485ad62bad
-        signature:
-          type: string
-          example: '0x88fe84889608a8b2424bddae2047d2ee4b42f72c4d8201d69e732d7c3bfa1bcb00f930979770b7d00071673fde8f205108dabe8d83ec49aa6de1b7869966b555be80a159e6ad11e273c4e0234038cfa525923044d6a89a4924fdc178f333568b'
-      required:
-      - pubkey
-      - withdrawal_credentials
-      - amount
-      - deposit_data_root
-      - signature
-    ClusterLockNetworkSummaryResponse:
-      type: object
-      properties:
-        eth_staked:
-          type: number
-          example: 2
-        total_clusters:
-          type: number
-          example: 2
-        total_operators:
-          type: number
-          example: 4
-      required:
-      - eth_staked
-      - total_clusters
-      - total_operators
   securitySchemes:
     bearer:
       scheme: bearer

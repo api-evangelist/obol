@@ -395,6 +395,45 @@ components:
       - index
       - merkle_proof
       - contract_address
+    OperatorsPagedResponse:
+      type: object
+      properties:
+        operators:
+          type: array
+          items:
+            type: string
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - operators
+      - total_count
+      - total_pages
+    AddressBadgeResponse:
+      type: object
+      properties:
+        badges:
+          description: List of badge metadata
+          type: array
+          items:
+            type: string
+      required:
+      - badges
+    MigrateableValidatorsResponse:
+      type: object
+      properties:
+        validators:
+          type: array
+          items:
+            type: string
+        hasMore:
+          type: boolean
+      required:
+      - validators
+      - hasMore
     AddressTechneResponse:
       type: object
       properties:
@@ -423,45 +462,6 @@ components:
       - bronze
       - silver
       - gold
-    OperatorsPagedResponse:
-      type: object
-      properties:
-        operators:
-          type: array
-          items:
-            type: string
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 4
-      required:
-      - operators
-      - total_count
-      - total_pages
-    MigrateableValidatorsResponse:
-      type: object
-      properties:
-        validators:
-          type: array
-          items:
-            type: string
-        hasMore:
-          type: boolean
-      required:
-      - validators
-      - hasMore
-    AddressBadgeResponse:
-      type: object
-      properties:
-        badges:
-          description: List of badge metadata
-          type: array
-          items:
-            type: string
-      required:
-      - badges
   securitySchemes:
     bearer:
       scheme: bearer
