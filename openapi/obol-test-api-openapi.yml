@@ -80,6 +80,21 @@ paths:
       - Test
 components:
   schemas:
+    TestResultDto:
+      type: object
+      properties:
+        data:
+          description: Nested test categories (`charon_peers`, `beacon_node`, `validator_client`, `mev`, `infra`). Charon signs `JSON.stringify` of this object (after `json.Marshal` in Go); the guard recomputes the hash from the parsed `data` value.
+          allOf:
+          - $ref: '#/components/schemas/TestCategoriesDto'
+        enr:
+          type: string
+          description: ENR text for the Charon node whose private key signed the payload
+          example: enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon
+        sig:
+          type: string
+          description: 'Base64-encoded secp256k1 ECDSA signature (65 bytes: 32-byte r + 32-byte s + 1-byte recovery id) over the SSZ `hashTreeRoot` of the UTF-8 bytes of `JSON.stringify(data)`, matching Charon `publishResultToObolAPI`'
+          example: AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ
     TestCategoriesDto:
       type: object
       properties:
@@ -122,21 +137,6 @@ components:
           type: object
           description: Targets with test results
           example: {}
-    TestResultDto:
-      type: object
-      properties:
-        data:
-          description: Nested test categories (`charon_peers`, `beacon_node`, `validator_client`, `mev`, `infra`). Charon signs `JSON.stringify` of this object (after `json.Marshal` in Go); the guard recomputes the hash from the parsed `data` value.
-          allOf:
-          - $ref: '#/components/schemas/TestCategoriesDto'
-        enr:
-          type: string
-          description: ENR text for the Charon node whose private key signed the payload
-          example: enr:-IS4QAnExamplePlaceholderReplaceWithRealEnrFromCharon
-        sig:
-          type: string
-          description: 'Base64-encoded secp256k1 ECDSA signature (65 bytes: 32-byte r + 32-byte s + 1-byte recovery id) over the SSZ `hashTreeRoot` of the UTF-8 bytes of `JSON.stringify(data)`, matching Charon `publishResultToObolAPI`'
-          example: AbCdEfGhIjKlMnOpQrStUvWxYz0123456789abcdefghijklmnoPQRSTUVWxyZ
   securitySchemes:
     bearer:
       scheme: bearer

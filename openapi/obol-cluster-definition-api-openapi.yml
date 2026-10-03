@@ -211,9 +211,59 @@ paths:
       - Cluster Definition
 components:
   schemas:
-    ClusterDefValidator:
+    Operator:
+      type: object
+      properties: {}
+    ClusterDefinitionResponse:
       type: object
       properties:
+        name:
+          type: string
+          example: My Obol Cluster
+        uuid:
+          type: string
+          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
+        creator:
+          $ref: '#/components/schemas/Creator'
+        version:
+          type: string
+          example: v1.8.0
+        num_validators:
+          type: number
+          example: 5
+        threshold:
+          type: number
+          example: 3
+        dkg_algorithm:
+          type: string
+          example: default
+        fork_version:
+          type: string
+          example: '0x00001020'
+        config_hash:
+          type: string
+          description: config_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
+        timestamp:
+          type: string
+          example: '2022-07-19T18:19:58+02:00'
+        validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Validator'
+        deposit_amounts:
+          description: Partial depoists.
+          example:
+          - '8000000000'
+          - '16000000000'
+          - '8000000000'
+          type: array
+          items:
+            type: string
+        definition_hash:
+          type: string
+          description: definition_hash is a 32 bytes SSZ hash of cluster config.
+          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
         fee_recipient_address:
           type: string
           description: Ethereum address to receive transaction fees.
@@ -222,9 +272,39 @@ components:
           type: string
           description: Ethereum address to receive staked ether.
           example: '0x000000000000000000000000000000000000dead'
+        operators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operator'
+        consensus_protocol:
+          type: string
+          example: qbft
+        target_gas_limit:
+          type: number
+          example: 36000000
+        compounding:
+          type: boolean
+          example: true
       required:
+      - name
+      - uuid
+      - creator
+      - version
+      - num_validators
+      - threshold
+      - dkg_algorithm
+      - fork_version
+      - config_hash
+      - timestamp
+      - validators
+      - deposit_amounts
+      - definition_hash
       - fee_recipient_address
       - withdrawal_address
+      - operators
+      - consensus_protocol
+      - target_gas_limit
+      - compounding
     ClusterDefDto:
       type: object
       properties:
@@ -323,56 +403,9 @@ components:
       - target_gas_limit
       - compounding
       - config_hash
-    ClusterDefinitionResponse:
+    ClusterDefValidator:
       type: object
       properties:
-        name:
-          type: string
-          example: My Obol Cluster
-        uuid:
-          type: string
-          example: 0194FDC2-FA2F-FCC0-41D3-FF12045B73C8
-        creator:
-          $ref: '#/components/schemas/Creator'
-        version:
-          type: string
-          example: v1.8.0
-        num_validators:
-          type: number
-          example: 5
-        threshold:
-          type: number
-          example: 3
-        dkg_algorithm:
-          type: string
-          example: default
-        fork_version:
-          type: string
-          example: '0x00001020'
-        config_hash:
-          type: string
-          description: config_hash is a 32 bytes SSZ hash of cluster config.
-          example: '0x2204ba6c238ed2d6a8ff951d4513db993c8d6f8860468391342649bf735a87d7'
-        timestamp:
-          type: string
-          example: '2022-07-19T18:19:58+02:00'
-        validators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Validator'
-        deposit_amounts:
-          description: Partial depoists.
-          example:
-          - '8000000000'
-          - '16000000000'
-          - '8000000000'
-          type: array
-          items:
-            type: string
-        definition_hash:
-          type: string
-          description: definition_hash is a 32 bytes SSZ hash of cluster config.
-          example: '0xb656f5a4a5537b5817d6bcf735d043f17f5aff568b1a7ec9102a9f687bd4510c'
         fee_recipient_address:
           type: string
           description: Ethereum address to receive transaction fees.
@@ -381,55 +414,9 @@ components:
           type: string
           description: Ethereum address to receive staked ether.
           example: '0x000000000000000000000000000000000000dead'
-        operators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operator'
-        consensus_protocol:
-          type: string
-          example: qbft
-        target_gas_limit:
-          type: number
-          example: 36000000
-        compounding:
-          type: boolean
-          example: true
       required:
-      - name
-      - uuid
-      - creator
-      - version
-      - num_validators
-      - threshold
-      - dkg_algorithm
-      - fork_version
-      - config_hash
-      - timestamp
-      - validators
-      - deposit_amounts
-      - definition_hash
       - fee_recipient_address
       - withdrawal_address
-      - operators
-      - consensus_protocol
-      - target_gas_limit
-      - compounding
-    Validator:
-      type: object
-      properties: {}
-    CreatorDto:
-      type: object
-      properties:
-        address:
-          type: string
-          description: Ethereum address of Creator.
-          example: '0x000000000000000000000000000000000000dead'
-        config_signature:
-          type: string
-          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
-      required:
-      - address
-      - config_signature
     OperatorDto:
       type: object
       properties:
@@ -470,6 +457,19 @@ components:
       - version
       - enr_signature
       - config_signature
+    CreatorDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Ethereum address of Creator.
+          example: '0x000000000000000000000000000000000000dead'
+        config_signature:
+          type: string
+          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
+      required:
+      - address
+      - config_signature
     ClusterDefinitionPagedResponse:
       type: object
       properties:
@@ -487,7 +487,7 @@ components:
       - cluster_definitions
       - total_count
       - total_pages
-    Operator:
+    Validator:
       type: object
       properties: {}
     Creator:

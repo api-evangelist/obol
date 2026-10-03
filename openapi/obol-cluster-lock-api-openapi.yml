@@ -924,37 +924,36 @@ paths:
       - Cluster Lock
 components:
   schemas:
-    DistributedValidatorDto:
+    Operator:
+      type: object
+      properties: {}
+    ClusterLockResponse:
       type: object
       properties:
-        distributed_public_key:
+        cluster_definition:
+          description: Cluster definition data that was used in dkg to generate cluster lock.
+          allOf:
+          - $ref: '#/components/schemas/ClusterDefinitionResponse'
+        distributed_validators:
+          type: array
+          items:
+            $ref: '#/components/schemas/DistributedValidator'
+        signature_aggregate:
           type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-        public_shares:
-          description: array of public shares of the distributed public key.
+          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
+        lock_hash:
+          type: string
+          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
+        node_signatures:
           type: array
           items:
             type: string
-            pattern: ^(0x|0h)?[0-9A-F]+$
-        deposit_data:
-          description: Deposit data for validator activation.
-          allOf:
-          - $ref: '#/components/schemas/DepositDataDto'
-        builder_registration:
-          description: Pre-generated signed validator builder registration.
-          allOf:
-          - $ref: '#/components/schemas/BuilderRegistrationDto'
-        partial_deposit_data:
-          description: Deposit data for validator activation.
-          allOf:
-          - $ref: '#/components/schemas/DepositDataDto'
       required:
-      - distributed_public_key
-      - public_shares
-      - deposit_data
-      - builder_registration
-      - partial_deposit_data
+      - cluster_definition
+      - distributed_validators
+      - signature_aggregate
+      - lock_hash
+      - node_signatures
     ClusterDefinitionResponse:
       type: object
       properties:
@@ -1046,35 +1045,19 @@ components:
       - consensus_protocol
       - target_gas_limit
       - compounding
-    Validator:
-      type: object
-      properties: {}
-    ClusterLockPagedResponse:
+    BuilderRegistrationDto:
       type: object
       properties:
-        cluster_locks:
-          type: array
-          items:
-            type: string
-        total_active_stake_eth:
-          type: number
-          example: 128.5
-        total_active_stake_usd:
-          type: number
-          example: 128.5
-        unique_validators_count:
-          type: number
-          example: 10
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 4
+        message:
+          description: builder registration information.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
+        signature:
+          type: string
+          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
       required:
-      - cluster_locks
-      - total_count
-      - total_pages
+      - message
+      - signature
     DepositDataDto:
       type: object
       properties:
@@ -1100,62 +1083,6 @@ components:
       - amount
       - deposit_data_root
       - signature
-    BuilderRegistrationDto:
-      type: object
-      properties:
-        message:
-          description: builder registration information.
-          allOf:
-          - $ref: '#/components/schemas/BuilderRegistrationMessageDto'
-        signature:
-          type: string
-          example: '0x851e4f196b7e7bda6429b94cceb92d480f53fa9753e1d6c830ff2706acb8cd866d81d5533db7dcfac1dc9d00a16e5e4801d33f36bdf1c2a2003e1c586466109e7851c79179b2c46d69c53c4a59e361d2727186a7e72bbd11debad1f2fae6f97d'
-      required:
-      - message
-      - signature
-    ClusterLockNetworkSummaryResponse:
-      type: object
-      properties:
-        eth_staked:
-          type: number
-          example: 2
-        total_clusters:
-          type: number
-          example: 2
-        total_operators:
-          type: number
-          example: 4
-      required:
-      - eth_staked
-      - total_clusters
-      - total_operators
-    DistributedValidator:
-      type: object
-      properties: {}
-    Operator:
-      type: object
-      properties: {}
-    BuilderRegistrationMessageDto:
-      type: object
-      properties:
-        fee_recipient:
-          type: string
-          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
-        gas_limit:
-          type: number
-          example: 30000000
-        timestamp:
-          type: number
-          example: 1616508000
-        pubkey:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
-      required:
-      - fee_recipient
-      - gas_limit
-      - timestamp
-      - pubkey
     ClusterLockDto:
       type: object
       properties:
@@ -1187,36 +1114,109 @@ components:
       - signature_aggregate
       - lock_hash
       - node_signatures
-    Creator:
-      type: object
-      properties: {}
-    ClusterLockResponse:
+    ClusterLockNetworkSummaryResponse:
       type: object
       properties:
-        cluster_definition:
-          description: Cluster definition data that was used in dkg to generate cluster lock.
-          allOf:
-          - $ref: '#/components/schemas/ClusterDefinitionResponse'
-        distributed_validators:
-          type: array
-          items:
-            $ref: '#/components/schemas/DistributedValidator'
-        signature_aggregate:
+        eth_staked:
+          type: number
+          example: 2
+        total_clusters:
+          type: number
+          example: 2
+        total_operators:
+          type: number
+          example: 4
+      required:
+      - eth_staked
+      - total_clusters
+      - total_operators
+    DistributedValidatorDto:
+      type: object
+      properties:
+        distributed_public_key:
           type: string
-          example: '0x85650c30ec29a3703934bf50a28da102975deda77e758579ea3dfe4136abf752'
-        lock_hash:
-          type: string
-          example: '0xd2880980169ee4a0000f23feb8fad9a6c70f38312956fe67aa89e118f5b0e048'
-        node_signatures:
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+        public_shares:
+          description: array of public shares of the distributed public key.
           type: array
           items:
             type: string
+            pattern: ^(0x|0h)?[0-9A-F]+$
+        deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
+        builder_registration:
+          description: Pre-generated signed validator builder registration.
+          allOf:
+          - $ref: '#/components/schemas/BuilderRegistrationDto'
+        partial_deposit_data:
+          description: Deposit data for validator activation.
+          allOf:
+          - $ref: '#/components/schemas/DepositDataDto'
       required:
-      - cluster_definition
-      - distributed_validators
-      - signature_aggregate
-      - lock_hash
-      - node_signatures
+      - distributed_public_key
+      - public_shares
+      - deposit_data
+      - builder_registration
+      - partial_deposit_data
+    BuilderRegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+          example: '0x86B8145c98e5BD25BA722645b15eD65f024a87EC'
+        gas_limit:
+          type: number
+          example: 30000000
+        timestamp:
+          type: number
+          example: 1616508000
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0xb51336c31c4f0cc365d6c7b5d8ff1b4b7d4cf7c70163f9fd51a2badc854f5e29823fa11e3d7749d207807867149508d6'
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
+    Validator:
+      type: object
+      properties: {}
+    ClusterLockPagedResponse:
+      type: object
+      properties:
+        cluster_locks:
+          type: array
+          items:
+            type: string
+        total_active_stake_eth:
+          type: number
+          example: 128.5
+        total_active_stake_usd:
+          type: number
+          example: 128.5
+        unique_validators_count:
+          type: number
+          example: 10
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 4
+      required:
+      - cluster_locks
+      - total_count
+      - total_pages
+    Creator:
+      type: object
+      properties: {}
+    DistributedValidator:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

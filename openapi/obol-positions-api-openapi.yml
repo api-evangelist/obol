@@ -102,39 +102,15 @@ paths:
       - Positions
 components:
   schemas:
-    PositionCluster:
+    PositionsResponse:
       type: object
       properties:
-        lock_hash:
-          type: string
-          description: Cluster lock hash
-        cluster_name:
-          type: string
-          description: Cluster name
-        num_validators_total:
-          type: number
-          description: Total validators in this cluster
-        validators:
-          description: Validators matched by search addresses
+        positions:
           type: array
           items:
-            $ref: '#/components/schemas/PositionValidator'
-        total_balance_eth:
-          type: number
-          description: Sum of balance_eth for matched validators (latest snapshot)
-        avg_effectiveness:
-          type: number
-          description: Average effectiveness for matched validators (latest snapshot)
-        cluster_apr:
-          type: number
-          description: Average APR of affiliated validators (from validator_apy in clusterinformationdetailedv3)
+            $ref: '#/components/schemas/PositionCluster'
       required:
-      - lock_hash
-      - cluster_name
-      - num_validators_total
-      - validators
-      - total_balance_eth
-      - avg_effectiveness
+      - positions
     PositionsRequestDto:
       type: object
       properties:
@@ -183,15 +159,39 @@ components:
       - pubkey
       - withdrawal_address
       - fee_recipient_address
-    PositionsResponse:
+    PositionCluster:
       type: object
       properties:
-        positions:
+        lock_hash:
+          type: string
+          description: Cluster lock hash
+        cluster_name:
+          type: string
+          description: Cluster name
+        num_validators_total:
+          type: number
+          description: Total validators in this cluster
+        validators:
+          description: Validators matched by search addresses
           type: array
           items:
-            $ref: '#/components/schemas/PositionCluster'
+            $ref: '#/components/schemas/PositionValidator'
+        total_balance_eth:
+          type: number
+          description: Sum of balance_eth for matched validators (latest snapshot)
+        avg_effectiveness:
+          type: number
+          description: Average effectiveness for matched validators (latest snapshot)
+        cluster_apr:
+          type: number
+          description: Average APR of affiliated validators (from validator_apy in clusterinformationdetailedv3)
       required:
-      - positions
+      - lock_hash
+      - cluster_name
+      - num_validators_total
+      - validators
+      - total_balance_eth
+      - avg_effectiveness
     ResolvedRecipients:
       type: object
       properties:

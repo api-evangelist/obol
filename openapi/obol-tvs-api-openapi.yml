@@ -144,36 +144,6 @@ paths:
       - tvs
 components:
   schemas:
-    TVSDetailedResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: Timestamp of the data snapshot. All data in this response (balances, counts) is for this specific timestamp.
-          example: '2025-10-02T00:00:00.000Z'
-        network:
-          type: string
-          description: Network name
-          example: mainnet
-        balances:
-          description: Array of validator balances at the snapshot timestamp
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidatorBalance'
-        total_count:
-          type: number
-          description: Total number of validators at the snapshot timestamp (used for pagination)
-          example: 100
-        total_pages:
-          type: number
-          description: Total number of pages based on the limit parameter and total_count at the snapshot timestamp
-          example: 4
-      required:
-      - timestamp
-      - network
-      - balances
-      - total_count
-      - total_pages
     TVSSummaryResponse:
       type: object
       properties:
@@ -218,6 +188,36 @@ components:
       - total_balance_usd
       - timestamp
       - network
+    TVSDetailedResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Timestamp of the data snapshot. All data in this response (balances, counts) is for this specific timestamp.
+          example: '2025-10-02T00:00:00.000Z'
+        network:
+          type: string
+          description: Network name
+          example: mainnet
+        balances:
+          description: Array of validator balances at the snapshot timestamp
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidatorBalance'
+        total_count:
+          type: number
+          description: Total number of validators at the snapshot timestamp (used for pagination)
+          example: 100
+        total_pages:
+          type: number
+          description: Total number of pages based on the limit parameter and total_count at the snapshot timestamp
+          example: 4
+      required:
+      - timestamp
+      - network
+      - balances
+      - total_count
+      - total_pages
     ValidatorBalance:
       type: object
       properties:

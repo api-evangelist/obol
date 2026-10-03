@@ -221,16 +221,6 @@ components:
       required:
       - amount
       - partials
-    DepositDto:
-      type: object
-      properties:
-        partial_deposit_data:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialDepositDataDto'
-      required:
-      - partial_deposit_data
     DepositDataResponse:
       type: object
       properties:
@@ -256,6 +246,16 @@ components:
       - pubkey
       - withdrawal_credentials
       - amounts
+    DepositDto:
+      type: object
+      properties:
+        partial_deposit_data:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositDataDto'
+      required:
+      - partial_deposit_data
   securitySchemes:
     bearer:
       scheme: bearer

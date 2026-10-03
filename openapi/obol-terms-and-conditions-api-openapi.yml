@@ -85,14 +85,6 @@ paths:
       - Terms And Conditions
 components:
   schemas:
-    TermsAndConditions:
-      type: object
-      properties:
-        isTermsAndConditionsSigned:
-          type: boolean
-          description: Boolean Value Indicating if Terms and Conditions Have Been Signed
-      required:
-      - isTermsAndConditionsSigned
     TermsAndConditionsDto:
       type: object
       properties:
@@ -123,6 +115,14 @@ components:
       - address
       - version
       - terms_and_conditions_hash
+    TermsAndConditions:
+      type: object
+      properties:
+        isTermsAndConditionsSigned:
+          type: boolean
+          description: Boolean Value Indicating if Terms and Conditions Have Been Signed
+      required:
+      - isTermsAndConditionsSigned
   securitySchemes:
     bearer:
       scheme: bearer
