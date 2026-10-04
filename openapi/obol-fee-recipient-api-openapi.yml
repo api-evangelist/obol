@@ -158,6 +158,16 @@ paths:
       - Fee Recipient
 components:
   schemas:
+    FeeRecipientDto:
+      type: object
+      properties:
+        partial_registrations:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialRegistrationDto'
+      required:
+      - partial_registrations
     FetchQueryDto:
       type: object
       properties:
@@ -169,16 +179,6 @@ components:
           type: array
           items:
             type: string
-    FeeRecipientDto:
-      type: object
-      properties:
-        partial_registrations:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialRegistrationDto'
-      required:
-      - partial_registrations
     PartialRegistrationDto:
       type: object
       properties:

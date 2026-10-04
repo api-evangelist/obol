@@ -214,6 +214,9 @@ components:
     Operator:
       type: object
       properties: {}
+    Creator:
+      type: object
+      properties: {}
     ClusterDefinitionResponse:
       type: object
       properties:
@@ -305,6 +308,53 @@ components:
       - consensus_protocol
       - target_gas_limit
       - compounding
+    ClusterDefValidator:
+      type: object
+      properties:
+        fee_recipient_address:
+          type: string
+          description: Ethereum address to receive transaction fees.
+          example: '0x000000000000000000000000000000000000dead'
+        withdrawal_address:
+          type: string
+          description: Ethereum address to receive staked ether.
+          example: '0x000000000000000000000000000000000000dead'
+      required:
+      - fee_recipient_address
+      - withdrawal_address
+    CreatorDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Ethereum address of Creator.
+          example: '0x000000000000000000000000000000000000dead'
+        config_signature:
+          type: string
+          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
+      required:
+      - address
+      - config_signature
+    Validator:
+      type: object
+      properties: {}
+    ClusterDefinitionPagedResponse:
+      type: object
+      properties:
+        cluster_definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClusterDefinitionResponse'
+        total_count:
+          type: number
+          example: 2
+        total_pages:
+          type: number
+          example: 3
+      required:
+      - cluster_definitions
+      - total_count
+      - total_pages
     ClusterDefDto:
       type: object
       properties:
@@ -403,20 +453,6 @@ components:
       - target_gas_limit
       - compounding
       - config_hash
-    ClusterDefValidator:
-      type: object
-      properties:
-        fee_recipient_address:
-          type: string
-          description: Ethereum address to receive transaction fees.
-          example: '0x000000000000000000000000000000000000dead'
-        withdrawal_address:
-          type: string
-          description: Ethereum address to receive staked ether.
-          example: '0x000000000000000000000000000000000000dead'
-      required:
-      - fee_recipient_address
-      - withdrawal_address
     OperatorDto:
       type: object
       properties:
@@ -457,42 +493,6 @@ components:
       - version
       - enr_signature
       - config_signature
-    CreatorDto:
-      type: object
-      properties:
-        address:
-          type: string
-          description: Ethereum address of Creator.
-          example: '0x000000000000000000000000000000000000dead'
-        config_signature:
-          type: string
-          example: '0x1199fc4440aa7929905ec171ed1dad82a9f6a89891193b2b4cf45937a8cf9ece4972e02bc7e23d8b8b2e550b6430693ac6bc8c82a0509f65d0abb34d7ae0a8a81c'
-      required:
-      - address
-      - config_signature
-    ClusterDefinitionPagedResponse:
-      type: object
-      properties:
-        cluster_definitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClusterDefinitionResponse'
-        total_count:
-          type: number
-          example: 2
-        total_pages:
-          type: number
-          example: 3
-      required:
-      - cluster_definitions
-      - total_count
-      - total_pages
-    Validator:
-      type: object
-      properties: {}
-    Creator:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

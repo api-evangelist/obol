@@ -333,20 +333,6 @@ components:
       required:
       - operator_exits
       - ready_exits
-    ExitBlob:
-      type: object
-      properties: {}
-    SignedExitMessageDto:
-      type: object
-      properties:
-        message:
-          $ref: '#/components/schemas/ExitMessageDto'
-        signature:
-          type: string
-          example: ''
-      required:
-      - message
-      - signature
     ExitMessageDto:
       type: object
       properties:
@@ -390,6 +376,20 @@ components:
       - share_idx
       - signature
     ClusterExitStatusResponse:
+      type: object
+      properties: {}
+    SignedExitMessageDto:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/ExitMessageDto'
+        signature:
+          type: string
+          example: ''
+      required:
+      - message
+      - signature
+    ExitBlob:
       type: object
       properties: {}
   securitySchemes:

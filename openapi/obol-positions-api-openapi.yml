@@ -111,14 +111,6 @@ components:
             $ref: '#/components/schemas/PositionCluster'
       required:
       - positions
-    PositionsRequestDto:
-      type: object
-      properties:
-        additionalAddresses:
-          description: Additional addresses to search (e.g. split addresses from getRelatedSplits, DeFi wrapper WA)
-          type: array
-          items:
-            type: string
     PositionValidator:
       type: object
       properties:
@@ -192,6 +184,14 @@ components:
       - validators
       - total_balance_eth
       - avg_effectiveness
+    PositionsRequestDto:
+      type: object
+      properties:
+        additionalAddresses:
+          description: Additional addresses to search (e.g. split addresses from getRelatedSplits, DeFi wrapper WA)
+          type: array
+          items:
+            type: string
     ResolvedRecipients:
       type: object
       properties:

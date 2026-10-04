@@ -398,32 +398,6 @@ components:
       - operators
       - total_count
       - total_pages
-    AddressIncentivesResponse:
-      type: object
-      properties:
-        operator_address:
-          type: string
-          description: Operator address
-        amount:
-          type: string
-          description: The amount the recipient is entitled to
-        index:
-          type: number
-          description: The recipient’s index in the Merkle tree
-        merkle_proof:
-          description: The Merkle proof (an array of hashes) generated for the recipient
-          type: array
-          items:
-            type: string
-        contract_address:
-          type: string
-          description: The MerkleDistributor contract address.
-      required:
-      - operator_address
-      - amount
-      - index
-      - merkle_proof
-      - contract_address
     AddressTechneResponse:
       type: object
       properties:
@@ -452,6 +426,32 @@ components:
       - bronze
       - silver
       - gold
+    AddressIncentivesResponse:
+      type: object
+      properties:
+        operator_address:
+          type: string
+          description: Operator address
+        amount:
+          type: string
+          description: The amount the recipient is entitled to
+        index:
+          type: number
+          description: The recipient’s index in the Merkle tree
+        merkle_proof:
+          description: The Merkle proof (an array of hashes) generated for the recipient
+          type: array
+          items:
+            type: string
+        contract_address:
+          type: string
+          description: The MerkleDistributor contract address.
+      required:
+      - operator_address
+      - amount
+      - index
+      - merkle_proof
+      - contract_address
     AddressBadgeResponse:
       type: object
       properties:

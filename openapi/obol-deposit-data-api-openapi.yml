@@ -166,32 +166,16 @@ paths:
       - Deposit Data
 components:
   schemas:
-    PartialDepositDataDto:
+    DepositDto:
       type: object
       properties:
-        pubkey:
-          type: string
-          pattern: ^(0x|0h)?[0-9A-F]+$
-          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
-          description: Public key of the validator (should be in lock file)
-        withdrawal_credentials:
-          type: string
-          example: '0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12'
-          description: Withdrawal credentials (0x01 or 0x02)
-        amount:
-          type: string
-          pattern: ^\d+$
-          example: '32000000000'
-          description: Amount in Gwei as string (between 1 and 2048 ETH)
-        signature:
-          type: string
-          example: 0x1234...
-          description: BLS signature over (pubkey, withdrawal_credentials, amount)
+        partial_deposit_data:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/PartialDepositDataDto'
       required:
-      - pubkey
-      - withdrawal_credentials
-      - amount
-      - signature
+      - partial_deposit_data
     PartialDepositResponse:
       type: object
       properties:
@@ -246,16 +230,32 @@ components:
       - pubkey
       - withdrawal_credentials
       - amounts
-    DepositDto:
+    PartialDepositDataDto:
       type: object
       properties:
-        partial_deposit_data:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/PartialDepositDataDto'
+        pubkey:
+          type: string
+          pattern: ^(0x|0h)?[0-9A-F]+$
+          example: '0x8b69c67720c909423d7edc5d3a7554e1d1e50f6d7d5f8d18548d68daf424e536afba8b31fbd15df1970ba4af4a7d944c'
+          description: Public key of the validator (should be in lock file)
+        withdrawal_credentials:
+          type: string
+          example: '0x010000000000000000000000abcdef1234567890abcdef1234567890abcdef12'
+          description: Withdrawal credentials (0x01 or 0x02)
+        amount:
+          type: string
+          pattern: ^\d+$
+          example: '32000000000'
+          description: Amount in Gwei as string (between 1 and 2048 ETH)
+        signature:
+          type: string
+          example: 0x1234...
+          description: BLS signature over (pubkey, withdrawal_credentials, amount)
       required:
-      - partial_deposit_data
+      - pubkey
+      - withdrawal_credentials
+      - amount
+      - signature
   securitySchemes:
     bearer:
       scheme: bearer
