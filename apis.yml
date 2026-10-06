@@ -45,7 +45,7 @@ accessModel:
 image: https://obol.org/obolnetwork.png
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 tags:
 - Company
 - Crypto
@@ -336,6 +336,8 @@ apis:
   - type: GettingStarted
     url: https://docs.obol.org/next/run-a-dv/start
 common:
+- url: https://blog.obol.org/rss/
+  type: BlogRSS
 - type: DeveloperPortal
   url: https://docs.obol.org/
 - type: Documentation
