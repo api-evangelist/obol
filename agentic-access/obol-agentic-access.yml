@@ -1,22 +1,28 @@
-generated: '2026-07-20'
+generated: '2026-09-23'
 method: generated
-source: openapi/obol-openapi-original.json
+source: openapi/obol-address-api-openapi.yml, openapi/obol-cluster-definition-api-openapi.yml,
+  openapi/obol-cluster-effectiveness-api-openapi.yml, openapi/obol-cluster-lock-api-openapi.yml,
+  openapi/obol-deposit-data-api-openapi.yml, openapi/obol-dv-exit-api-openapi.yml, openapi/obol-dv-migrate-api-openapi.yml,
+  openapi/obol-fee-recipient-api-openapi.yml, openapi/obol-metrics-api-openapi.yml, openapi/obol-owr-information-api-openapi.yml,
+  openapi/obol-positions-api-openapi.yml, openapi/obol-state-api-openapi.yml, openapi/obol-system-api-openapi.yml,
+  openapi/obol-techne-credentials-api-openapi.yml, openapi/obol-terms-and-conditions-api-openapi.yml,
+  openapi/obol-test-api-openapi.yml, openapi/obol-tvs-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 71
   by_action_class:
-    connected: 53
-    acting: 18
+    connected: 57
+    acting: 14
   by_consequence:
-    read: 53
-    safety-critical: 18
-  human_in_the_loop_required: 18
+    read: 57
+    safety-critical: 14
+  human_in_the_loop_required: 14
 operations:
-- path: /
+- path: /v1/address/techne/{address}
   method: get
-  operationId: AppController_redirect
+  operationId: AddressController_getAddressTechneCredentials_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -24,9 +30,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/_health
+- path: /v1/address/badges/{address}
   method: get
-  operationId: HealthController_check_v1
+  operationId: AddressController_getAddressBadgess_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -34,9 +40,49 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /metrics
+- path: /v1/address/incentives/{network}/{address}
   method: get
-  operationId: MetricsController_metrics
+  operationId: AddressController_getAddressIncentives_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/address/incentives/historical/{network}/{address}
+  method: get
+  operationId: AddressController_getHistoricalAddressContributions_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/address/network/{network}
+  method: get
+  operationId: AddressController_getOperatorsByNetwork_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/address/search/{network}
+  method: get
+  operationId: AddressController_searchOperators_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/address/migrateable-validators/{network}/{withdrawalAddress}
+  method: get
+  operationId: AddressController_getMigrateableValidators_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -106,6 +152,16 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /v1/effectiveness/{lockHash}
+  method: get
+  operationId: EffectivenessController_getClusterLock_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /lock/{lockHash}
   method: get
   operationId: LockController_getClusterLock[0]
@@ -350,9 +406,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/state/{lockHash}
+- path: /deposit_data/{lockHash}/{pubkey}
   method: get
-  operationId: StateController_getDistributedValidatorStatesByLockHash_v1
+  operationId: DepositController_getDeposits[0]
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -360,6 +416,48 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /v1/deposit_data/{lockHash}/{pubkey}
+  method: get
+  operationId: DepositController_getDeposits[1]_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /deposit_data/partial_deposits/{lockHash}/{share_index}
+  method: post
+  operationId: DepositController_submitPartialDeposits[0]
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/deposit_data/partial_deposits/{lockHash}/{share_index}
+  method: post
+  operationId: DepositController_submitPartialDeposits[1]_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
 - path: /exp/exit/status/summary/{lockHash}
   method: get
   operationId: ExitController_getClusterExitStatusSummary[0]
@@ -452,9 +550,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/effectiveness/{lockHash}
+- path: /v1/migrate/{network}
   method: get
-  operationId: EffectivenessController_getClusterLock_v1
+  operationId: MigrateController_getValidatorsMigrateStatus_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -462,9 +560,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/termsAndConditions
+- path: /fee_recipient/partial/{lockHash}/{shareIdx}
   method: post
-  operationId: TermsAndConditionsController_signTermsAndConditions_v1
+  operationId: FeeRecipientController_postPartialFeeRecipients[0]
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -478,9 +576,125 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/termsAndConditions/{address}
+- path: /v1/fee_recipient/partial/{lockHash}/{shareIdx}
+  method: post
+  operationId: FeeRecipientController_postPartialFeeRecipients[1]_v1
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /fee_recipient/{lockHash}
+  method: post
+  operationId: FeeRecipientController_getPartialFeeRecipients[0]
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/fee_recipient/{lockHash}
+  method: post
+  operationId: FeeRecipientController_getPartialFeeRecipients[1]_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics
   method: get
-  operationId: TermsAndConditionsController_getTermsAndConditionsSigned_v1
+  operationId: MetricsController_metrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/owr/{network}/{address}
+  method: get
+  operationId: OWRController_get_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /positions/{network}/{address}
+  method: post
+  operationId: PositionsController_getPositions[0]
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/positions/{network}/{address}
+  method: post
+  operationId: PositionsController_getPositions[1]_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/state/{lockHash}
+  method: get
+  operationId: StateController_getDistributedValidatorStatesByLockHash_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: AppController_redirect
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/_health
+  method: get
+  operationId: HealthController_check_v1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /eth-apr
+  method: get
+  operationId: EthAprController_getEthApr[0]
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/eth-apr
+  method: get
+  operationId: EthAprController_getEthApr[1]_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -528,89 +742,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/address/techne/{address}
-  method: get
-  operationId: AddressController_getAddressTechneCredentials_v1
+- path: /v1/termsAndConditions
+  method: post
+  operationId: TermsAndConditionsController_signTermsAndConditions_v1
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/badges/{address}
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/termsAndConditions/{address}
   method: get
-  operationId: AddressController_getAddressBadgess_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/incentives/{network}/{address}
-  method: get
-  operationId: AddressController_getAddressIncentives_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/incentives/historical/{network}/{address}
-  method: get
-  operationId: AddressController_getHistoricalAddressContributions_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/network/{network}
-  method: get
-  operationId: AddressController_getOperatorsByNetwork_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/search/{network}
-  method: get
-  operationId: AddressController_searchOperators_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/address/migrateable-validators/{network}/{withdrawalAddress}
-  method: get
-  operationId: AddressController_getMigrateableValidators_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/owr/{network}/{address}
-  method: get
-  operationId: OWRController_get_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/migrate/{network}
-  method: get
-  operationId: MigrateController_getValidatorsMigrateStatus_v1
+  operationId: TermsAndConditionsController_getTermsAndConditionsSigned_v1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -644,122 +794,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /deposit_data/{lockHash}/{pubkey}
-  method: get
-  operationId: DepositController_getDeposits[0]
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/deposit_data/{lockHash}/{pubkey}
-  method: get
-  operationId: DepositController_getDeposits[1]_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /deposit_data/partial_deposits/{lockHash}/{share_index}
-  method: post
-  operationId: DepositController_submitPartialDeposits[0]
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/deposit_data/partial_deposits/{lockHash}/{share_index}
-  method: post
-  operationId: DepositController_submitPartialDeposits[1]_v1
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /fee_recipient/partial/{lockHash}/{shareIdx}
-  method: post
-  operationId: FeeRecipientController_postPartialFeeRecipients[0]
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/fee_recipient/partial/{lockHash}/{shareIdx}
-  method: post
-  operationId: FeeRecipientController_postPartialFeeRecipients[1]_v1
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /fee_recipient/{lockHash}
-  method: post
-  operationId: FeeRecipientController_getPartialFeeRecipients[0]
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/fee_recipient/{lockHash}
-  method: post
-  operationId: FeeRecipientController_getPartialFeeRecipients[1]_v1
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /tvs/{network}
   method: get
   operationId: TVSController_getTVS[0]
@@ -773,58 +807,6 @@ operations:
 - path: /v1/tvs/{network}
   method: get
   operationId: TVSController_getTVS[1]_v1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /positions/{network}/{address}
-  method: post
-  operationId: PositionsController_getPositions[0]
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/positions/{network}/{address}
-  method: post
-  operationId: PositionsController_getPositions[1]_v1
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /eth-apr
-  method: get
-  operationId: EthAprController_getEthApr[0]
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/eth-apr
-  method: get
-  operationId: EthAprController_getEthApr[1]_v1
   x-agentic-access:
     action-class: connected
     consequence: read
