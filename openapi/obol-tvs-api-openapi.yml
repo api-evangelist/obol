@@ -144,6 +144,20 @@ paths:
       - tvs
 components:
   schemas:
+    ValidatorBalance:
+      type: object
+      properties:
+        public_key:
+          type: string
+          description: Validator public key
+          example: '0xa35873f8b87560432432b5247e0d88b23602db03695722585ac7e7151efd457f91fc5e8bd949b67777e5f1cfd504a902'
+        balance_eth:
+          type: number
+          description: Balance in ETH at the snapshot timestamp
+          example: 32
+      required:
+      - public_key
+      - balance_eth
     TVSSummaryResponse:
       type: object
       properties:
@@ -218,20 +232,6 @@ components:
       - balances
       - total_count
       - total_pages
-    ValidatorBalance:
-      type: object
-      properties:
-        public_key:
-          type: string
-          description: Validator public key
-          example: '0xa35873f8b87560432432b5247e0d88b23602db03695722585ac7e7151efd457f91fc5e8bd949b67777e5f1cfd504a902'
-        balance_eth:
-          type: number
-          description: Balance in ETH at the snapshot timestamp
-          example: 32
-      required:
-      - public_key
-      - balance_eth
   securitySchemes:
     bearer:
       scheme: bearer

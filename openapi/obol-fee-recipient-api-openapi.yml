@@ -158,6 +158,22 @@ paths:
       - Fee Recipient
 components:
   schemas:
+    RegistrationMessageDto:
+      type: object
+      properties:
+        fee_recipient:
+          type: string
+        gas_limit:
+          type: string
+        timestamp:
+          type: string
+        pubkey:
+          type: string
+      required:
+      - fee_recipient
+      - gas_limit
+      - timestamp
+      - pubkey
     FeeRecipientDto:
       type: object
       properties:
@@ -189,22 +205,6 @@ components:
       required:
       - message
       - signature
-    RegistrationMessageDto:
-      type: object
-      properties:
-        fee_recipient:
-          type: string
-        gas_limit:
-          type: string
-        timestamp:
-          type: string
-        pubkey:
-          type: string
-      required:
-      - fee_recipient
-      - gas_limit
-      - timestamp
-      - pubkey
   securitySchemes:
     bearer:
       scheme: bearer
